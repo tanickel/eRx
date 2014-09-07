@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.dt:DecisionTable xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.dt="http://ilog.rules.studio/model/dt.ecore">
+  <eAnnotations source="ilog.rules.custom_properties">
+    <details key="FR#" value="3.1.3"/>
+  </eAnnotations>
+  <name>NDC Drug Exclusions</name>
+  <uuid>e219517e-a8bc-46b7-a233-edf9efd05b07</uuid>
+  <documentation><![CDATA[FR# 3.1.3 The system must exclude drugs from the automation process using the following configurable drug exclusion lists:
+     • NDC
+     • GPI (Full GPI)
+     • Therapeutic  Class
+     • DEA class (based on local store state)
+     • Dosage Form
+     • Package Type (unit of use, unit dose, standard)
+The system will determine if the transmitted NDC is on the Drug Override list, which will override the products on the Drug Exclusion lists.
+
+The NDC 819 is overidden, so not to be excluded.
+!!! This rule is just a template for future exclusion logic]]></documentation>
+  <priority></priority>
+  <locale>en_US</locale>
+  <definition>
+<DT xmlns="http://schemas.ilog.com/Rules/7.0/DecisionTable" Version="7.0">
+  <Body>
+    <Properties>
+      <Property Name="Check.Gap.ErrorLevel">Info</Property>
+      <Property Name="UI.RenderBoolean" Type="xs:boolean"><![CDATA[true]]></Property>
+    </Properties>
+    <Preconditions>
+      <Text><![CDATA[definitions]]>&#13;<![CDATA[
+    set drug to a drug in the substitution drug lists ]]>&#13;<![CDATA[
+    	where it is not true that this drug is overridden ;]]>&#13;<![CDATA[
+]]>&#13;<![CDATA[
+    ]]>&#13;<![CDATA[
+    ]]>&#13;<![CDATA[
+    ]]>&#13;<![CDATA[
+    ]]></Text>
+    </Preconditions>
+    <Structure>
+      <ConditionDefinitions>
+        <ConditionDefinition Id="C0">
+          <ExpressionDefinition>
+            <Text><![CDATA[the national drug code of drug  is <a string>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+      </ConditionDefinitions>
+      <ActionDefinitions>
+        <ActionDefinition Id="A2">
+          <ExpressionDefinition>
+            <Text><![CDATA[make it <a boolean> that drug  is overridden]]></Text>
+          </ExpressionDefinition>
+        </ActionDefinition>
+        <ActionDefinition Id="A0">
+          <ExpressionDefinition>
+            <Text><![CDATA[make it <a boolean> that drug is excluded]]></Text>
+          </ExpressionDefinition>
+        </ActionDefinition>
+        <ActionDefinition Id="A1">
+          <ExpressionDefinition>
+            <Text><![CDATA[set the completion status of the erx transaction to <a result type>]]></Text>
+          </ExpressionDefinition>
+        </ActionDefinition>
+      </ActionDefinitions>
+    </Structure>
+    <Contents>
+      <Partition DefId="C0">
+        <Condition>
+          <Expression>
+            <Param><![CDATA["12345"]]></Param>
+          </Expression>
+          <ActionSet>
+            <Action DefId="A2">
+              <Expression/>
+            </Action>
+            <Action DefId="A0">
+              <Expression>
+                <Param><![CDATA[true]]></Param>
+              </Expression>
+            </Action>
+            <Action DefId="A1">
+              <Expression>
+                <Param><![CDATA[MANUAL]]></Param>
+              </Expression>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["1111111111111111111111"]]></Param>
+          </Expression>
+          <ActionSet>
+            <Action DefId="A2">
+              <Expression/>
+            </Action>
+            <Action DefId="A0">
+              <Expression>
+                <Param><![CDATA[true]]></Param>
+              </Expression>
+            </Action>
+            <Action DefId="A1">
+              <Expression>
+                <Param><![CDATA[MANUAL]]></Param>
+              </Expression>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["123"]]></Param>
+          </Expression>
+          <ActionSet>
+            <Action DefId="A2">
+              <Expression/>
+            </Action>
+            <Action DefId="A0">
+              <Expression>
+                <Param><![CDATA[true]]></Param>
+              </Expression>
+            </Action>
+            <Action DefId="A1">
+              <Expression>
+                <Param><![CDATA[MANUAL]]></Param>
+              </Expression>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA["819456789"]]></Param>
+          </Expression>
+          <ActionSet>
+            <Action DefId="A2">
+              <Expression>
+                <Param><![CDATA[true]]></Param>
+              </Expression>
+            </Action>
+            <Action DefId="A0">
+              <Expression>
+                <Param><![CDATA[false]]></Param>
+              </Expression>
+            </Action>
+            <Action DefId="A1">
+              <Expression>
+                <Param><![CDATA[IN_PROGRESS]]></Param>
+              </Expression>
+            </Action>
+          </ActionSet>
+        </Condition>
+      </Partition>
+    </Contents>
+  </Body>
+  <Resources DefaultLocale="en_US">
+    <ResourceSet Locale="en_US">
+      <Data Name="Definitions(A0)#HeaderText"><![CDATA[Excluded]]></Data>
+      <Data Name="Definitions(A0)#Width"><![CDATA[255]]></Data>
+      <Data Name="Definitions(A1)#HeaderText"><![CDATA[Set to Completion Status]]></Data>
+      <Data Name="Definitions(A1)#Width"><![CDATA[254]]></Data>
+      <Data Name="Definitions(A2)#HeaderText"><![CDATA[Overridden]]></Data>
+      <Data Name="Definitions(A2)#Width"><![CDATA[65]]></Data>
+      <Data Name="Definitions(C0)#HeaderText"><![CDATA[NDC]]></Data>
+      <Data Name="Definitions(C0)#Width"><![CDATA[254]]></Data>
+    </ResourceSet>
+  </Resources>
+</DT></definition>
+  <status>validated</status>
+</ilog.rules.studio.model.dt:DecisionTable>

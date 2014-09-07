@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>FR_0_05 Set MANUAL Refill Before Date</name>
+  <uuid>91bf3228-4f09-44bd-8f22-235387ac99b1</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[
+if 
+  the completion status of the erx transaction is COMPLETE and 
+  the calculated values of the substituted drug is not null and
+  the refill before date of the calculated values of the substituted drug is not null and 
+  the refill before date of the calculated values of the substituted drug is before the transaction date time
+then
+	set the completion status of 'eRx Transaction'  to MANUAL ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

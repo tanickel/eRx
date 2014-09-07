@@ -1,0 +1,20 @@
+package $49$$_$new.Common_All_Package_Types.Initialization.Initialize_Values {
+   use sameSizeOrMultiplier;
+   /**
+ * 4.21
+ * multipler
+ */
+rule Validate_Quantity_Equals_Package_Size {
+      property ilog.rules.business_name = "Validate Quantity Equals Package Size";
+      property ilog.rules.package_name = "1_new.Common All Package Types.Initialization.Initialize Values";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         evaluate (var$_$0.prescription.quantityPrescribed / var$_$0.substitutedDrug.packageSize in {1, 2, 3});
+      } then {
+         sameSizeOrMultiplier = true;
+         ?context.updateContext();
+      }
+   }
+}
+

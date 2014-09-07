@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.dt:DecisionTable xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.dt="http://ilog.rules.studio/model/dt.ecore">
+  <eAnnotations source="ilog.rules.custom_properties">
+    <details key="2FR#" value="3.1.15"/>
+    <details key="FR#" value="3.1.8"/>
+  </eAnnotations>
+  <name>Assign Orange Book States</name>
+  <uuid>c3ee7b38-b7f9-474f-b3ee-d579c90dc5cb</uuid>
+  <documentation><![CDATA[FR# 3.1.15 The system will determine if the transmitted NDC is to be dispensed in an Orange Book state.
+This DT should not be there, this kind of information may be already in the data
+
+The requirement is also 3.1.8	Orange Book State list	The system must provide a mechanism to support and maintain a list of Orange Book states.
+The system must determine the state of the store where the product will be dispensed to the patient. (e.g. If the product is entered and filled at the central facility in Florida which is not an Orange Book state but dispensed to the patient in Georgia which is an Orange Book state it must follow Orange Book state rules) ]]></documentation>
+  <priority>100</priority>
+  <locale>en_US</locale>
+  <definition>
+<DT xmlns="http://schemas.ilog.com/Rules/7.0/DecisionTable" Version="7.0">
+  <Body>
+    <Properties>
+      <Property Name="Check.Expression.ErrorLevel">Info</Property>
+      <Property Name="Check.Gap.ErrorLevel">Info</Property>
+      <Property Name="Check.Overlap.ErrorLevel">Info</Property>
+      <Property Name="UI.RenderBoolean" Type="xs:boolean"><![CDATA[true]]></Property>
+      <Property Name="UI.ShowInvisibleColumns" Type="xs:boolean"><![CDATA[true]]></Property>
+      <Property Name="UI.ShowLockIcon" Type="xs:boolean"><![CDATA[false]]></Property>
+    </Properties>
+    <Structure>
+      <ConditionDefinitions>
+        <ConditionDefinition Id="C0">
+          <ExpressionDefinition>
+            <Text><![CDATA[the state of the store of the prescription is not null and the state of the store of the prescription is <a state type>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+      </ConditionDefinitions>
+      <ActionDefinitions>
+        <ActionDefinition Id="A0">
+          <Properties>
+            <Property Name="Visible"><![CDATA[false]]></Property>
+          </Properties>
+          <ExpressionDefinition>
+            <Text><![CDATA[make it true that the store of the prescription is in orange book state]]></Text>
+          </ExpressionDefinition>
+        </ActionDefinition>
+        <ActionDefinition Id="A1">
+          <ExpressionDefinition>
+            <Text><![CDATA[set the enable orange book check to true]]></Text>
+          </ExpressionDefinition>
+        </ActionDefinition>
+      </ActionDefinitions>
+    </Structure>
+    <Contents>
+      <Partition DefId="C0">
+        <Condition>
+          <Expression>
+            <Param><![CDATA[CA]]></Param>
+          </Expression>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[AZ]]></Param>
+          </Expression>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[FL]]></Param>
+          </Expression>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+        <Condition>
+          <Expression>
+            <Param><![CDATA[NY]]></Param>
+          </Expression>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression/>
+            </Action>
+            <Action DefId="A1">
+              <Expression/>
+            </Action>
+          </ActionSet>
+        </Condition>
+      </Partition>
+    </Contents>
+  </Body>
+  <Resources DefaultLocale="en_US">
+    <ResourceSet Locale="en_US">
+      <Data Name="Definitions(A0)#HeaderText"><![CDATA[Set State as Orange Book State]]></Data>
+      <Data Name="Definitions(A0)#Width"><![CDATA[420]]></Data>
+      <Data Name="Definitions(A1)#HeaderText"><![CDATA[Enable Orange Book Check]]></Data>
+      <Data Name="Definitions(A1)#Width"><![CDATA[247]]></Data>
+      <Data Name="Definitions(C0)#HeaderText"><![CDATA[State]]></Data>
+      <Data Name="Definitions(C0)#Width"><![CDATA[445]]></Data>
+    </ResourceSet>
+  </Resources>
+</DT></definition>
+  <status>validated</status>
+</ilog.rules.studio.model.dt:DecisionTable>

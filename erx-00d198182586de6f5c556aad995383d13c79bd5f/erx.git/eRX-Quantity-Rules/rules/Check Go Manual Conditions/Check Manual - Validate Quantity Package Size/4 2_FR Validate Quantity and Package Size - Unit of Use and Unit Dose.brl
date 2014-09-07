@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>4 2_FR Validate Quantity and Package Size - Unit of Use and Unit Dose</name>
+  <uuid>865e40d9-6764-42bb-b0b6-813707ccf0e3</uuid>
+  <documentation><![CDATA[4.21
+4.5
+4.3
+4.4
+]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[if
+    all of the following conditions are true :
+            - the package type of the substituted drug is one of { UNIT OF USE , UNIT DOSE }
+            - 'same size or multiple' is false
+            - the valid therapeutic class is the substituted drug is false
+            - any of the following conditions is true :
+                    - the quantity prescribed of the prescription is more than 3
+                    - the package size of the substituted drug is less than 3
+then
+    set the completion status of 'eRx Transaction' to MANUAL ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

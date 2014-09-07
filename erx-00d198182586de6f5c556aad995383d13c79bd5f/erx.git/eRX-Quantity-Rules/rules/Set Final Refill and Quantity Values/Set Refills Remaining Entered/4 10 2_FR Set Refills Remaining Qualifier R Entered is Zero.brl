@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>4 10 2_FR Set Refills Remaining Qualifier R Entered is Zero</name>
+  <uuid>09ad0283-135f-4b78-b1ff-5e40a379525a</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[if
+	the refill qualifier of the prescription is "R"
+	and the numeric value of the refills remaining of the calculated values of the substituted drug is 0
+then
+	set the refills remaining entered of the calculated values of the substituted drug to "NO";
+	
+]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

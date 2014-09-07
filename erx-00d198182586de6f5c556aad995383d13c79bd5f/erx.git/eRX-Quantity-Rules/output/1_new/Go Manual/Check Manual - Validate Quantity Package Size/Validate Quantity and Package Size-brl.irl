@@ -1,0 +1,23 @@
+package $49$$_$new.Go_Manual.Check_Manual_$45$_Validate_Quantity_Package_Size {
+   use sameSizeOrMultiplier;
+   /**
+ * 4.4
+ * 4.21
+ * 4.3
+ * Quantity package size was not a multipler and package was greater than 3.
+ */
+rule Validate_Quantity_and_Package_Size {
+      property ilog.rules.business_name = "Validate Quantity and Package Size";
+      property ilog.rules.package_name = "1_new.Go Manual.Check Manual - Validate Quantity Package Size";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         evaluate (((((sameSizeOrMultiplier) == (false)
+         	&& var$_$0.prescription.quantityPrescribed <= 3))
+         	&& var$_$0.substitutedDrug.packageSize <= 3));
+      } then {
+         erxTransaction.completionStatus = com.walgreens.pharmacy.rules.ResultType.MANUAL;
+      }
+   }
+}
+

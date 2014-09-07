@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>7-5_FR Select Coupon GPI12 Match as COB</name>
+  <uuid>d38d8d19-2912-43d4-ab71-670f5661a821</uuid>
+  <documentation><![CDATA[7.5]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'substituted drug' to the substituted drug ;
+    set fill to the fill of the prescription ;
+    set 'selected primary plan' to the bill to plan of fill;
+    set 'drug coupon plan' to a plan
+            where the payment mode of this plan is COUPON
+            and the generic product identifier of this plan is not empty
+            and the generic product identifier of this plan
+                has same Gpi12 as the generic product identifier of 'substituted drug' ;
+if
+    all of the following conditions are true :
+            - 'selected primary plan' is not 'drug coupon plan'
+            - there is no plan
+                    where the payment mode of this plan is COB ,
+             
+then
+    set the cob plan of fill to 'drug coupon plan'  ;
+]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

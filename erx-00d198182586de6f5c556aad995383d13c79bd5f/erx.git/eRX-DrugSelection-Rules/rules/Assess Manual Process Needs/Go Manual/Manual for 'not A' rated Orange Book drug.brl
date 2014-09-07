@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <eAnnotations source="ilog.rules.custom_properties"/>
+  <name>Manual for 'not A' rated Orange Book drug</name>
+  <uuid>fc2f9285-44a1-4b2d-9bee-9aa261bf0bce</uuid>
+  <documentation><![CDATA[FR# 3.1.18 The system will determine if the ‘flag to process manual’  (when the transmitted NDC is not Orange Book "A rated") .
+The orange book check is always set to on. TODO assess if this setting should not be conditionnel
+
+Orange book values are 2 characters and 'A' rated products Orange Book rating begin with the letter 'A'.
+Other values include 'B' rated and blank which are no rating.
+
+So the goal is to assess if the rating is not A then we go manual if we consider orange book check]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[if 
+	the completion status of the erx transaction is IN_PROGRESS 
+	and the orange book check is enabled 
+	and  the orange book rating of the transmitted drug of the prescription does not start with "A"
+	
+then
+	set the completion status of 'eRx Transaction'  to MANUAL ;]]></definition>
+  <status>validated</status>
+  <Requirement>3.1.18</Requirement>
+</ilog.rules.studio.model.brl:ActionRule>

@@ -1,0 +1,12 @@
+eRX-Model/bin
+eRX-DecisionServices/bin
+eRX-DecisionServices/dist
+eRX-DecisionServices/lib
+eRX-DecisionServices/WebContent/WEB-INF/lib
+eRX-DecisionServices/WebContent/WEB-INF/classes
+eRX-Rules-UnitTesting/bin
+eRX-Rules-UnitTesting/logs
+eRX-Rules-UnitTesting/res_data
+eRX-Rules-UnitTesting/res_xom
+custom-rule-report
+.metadata

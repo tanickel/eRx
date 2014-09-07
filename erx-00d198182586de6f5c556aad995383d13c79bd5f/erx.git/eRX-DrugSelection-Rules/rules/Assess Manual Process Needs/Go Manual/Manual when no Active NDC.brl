@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Manual when no Active NDC</name>
+  <uuid>3cd48074-76e6-462e-a976-18c3ff290e63</uuid>
+  <documentation><![CDATA[If there is no active NDC found in the substitution list we should go manual]]></documentation>
+  <priority></priority>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'drug list' to all drugs in the substitution drug lists
+            where the status of each drug is ACTIVE ;      
+if
+    there is no drug in 'drug list'   
+then
+	set the completion status of the erx transaction to MANUAL ; 
+	            ]]></definition>
+  <status>validated</status>
+</ilog.rules.studio.model.brl:ActionRule>

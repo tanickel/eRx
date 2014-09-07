@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>6 1 4_PS Check Manual - Days Supply Not Equal to Transmitted</name>
+  <uuid>5498c49e-a995-4af4-ae8b-9ead001cf336</uuid>
+  <documentation><![CDATA[PS # :  6.1.4  FR # :  6.1.4
+Requirement Description : This is a process step leading to manual processing if absolute difference between days of supply and transmitted days of supply is more than one day.
+
+This rule has to moved to the other package. we will review it later.
+]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'substituted drug' to the substituted drug  ;
+    set 'diff in days supply' to the days of supply of the calculated values of 'substituted drug' - the default days of supply of the transmitted drug of the prescription ;
+if
+    all of the following conditions are true :
+            - the days of supply of the calculated values of the transmitted drug of the prescription is more than 0
+            - the translated dosage form of 'substituted drug' is one of { TABLET , CAPSULE }
+            - absolute value of ( 'diff in days supply') is more than 1
+                    
+then
+    set the completion status of 'eRx Transaction' to MANUAL ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

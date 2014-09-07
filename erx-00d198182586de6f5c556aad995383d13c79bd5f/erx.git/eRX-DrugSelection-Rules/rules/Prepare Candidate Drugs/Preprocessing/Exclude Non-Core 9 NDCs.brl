@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <eAnnotations source="ilog.rules.custom_properties">
+    <details key="FR#" value="3.1.6"/>
+  </eAnnotations>
+  <name>Exclude Non-Core 9 NDCs</name>
+  <uuid>920ce623-b444-41bc-be31-cd2702579ea4</uuid>
+  <documentation><![CDATA[3.1.6 Find Active NDCs within the Transmitted NDC's Core 9 & GPI
+Core 9 = 1st 5 digits of NDC ( Mfr Number) and next 4 digits of NDC (Product Number)
+This will start the list of possible products for drug selection.  The list can include the transmitted NDC as long it is Active.]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+   set 'a drug' to a drug in the candidate drugs  
+   where the type of this drug is BRAND;
+if  
+	the dispensed as written of the prescription is 1 and the national drug code of 'a drug' is not the same core 9 NDC as the transmitted drug of the prescription 
+then
+	remove 'a drug' from the candidate drugs ;]]></definition>
+  <status>validated</status>
+</ilog.rules.studio.model.brl:ActionRule>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><teamservers>
+<teamserver>
+<target dataSource="" login="rtsAdmin" url="http://localhost:9082/teamserver"/>
+<entry baseType="BRLRule" checksum="1159982609" projectName="eRX-DaysSupply" qualifiedName="AssignDaysSupply" sourceCS="97FCB8E9DF3E4BE3272A615C31692D79" targetCS="1159982609" type="BRLRule" uuid="5dc65c64-aabf-4d58-b9de-5dad8f5b5e26"/>
+<entry baseType="BRLRule" checksum="381684030" projectName="eRX-DaysSupply" qualifiedName="CalcDaysSupplymorethan100" sourceCS="08C97C706A3E29D8FDE4670D82FCD274" targetCS="381684030" type="BRLRule" uuid="cb800f37-bd55-4365-88f9-75d2ce3d8f26"/>
+<entry baseType="BRLRule" checksum="2686416606" projectName="eRX-DaysSupply" qualifiedName="CalculateDaysSupply" sourceCS="71F36527D138F5E404C859778524D01F" targetCS="2686416606" type="BRLRule" uuid="b70d126e-9d83-4e2e-8638-3382795e74df"/>
+<entry baseType="BRLRule" checksum="2789798768" projectName="eRX-DaysSupply" qualifiedName="CompareCalcDaysSupply&amp;TransDaysSupply" sourceCS="79091C7B9E4BE6F7334837E603873A38" targetCS="2789798768" type="BRLRule" uuid="f02ce27a-fcb9-42fb-9fe4-6058c71fb868"/>
+<entry baseType="BRLRule" checksum="3374959505" projectName="eRX-DaysSupply" qualifiedName="CompareDaysSupply&amp;Duration" sourceCS="EE823244A1C7FE44FD146A175F2EB6CF" targetCS="3374959505" type="BRLRule" uuid="d1868b85-87a3-4e8c-813f-3a4d7fe07f1e"/>
+<entry baseType="BRLRule" checksum="569784912" projectName="eRX-DaysSupply" qualifiedName="ValidateCalcDaysSupply" sourceCS="9A6EDC3DB6A94908A96FB569C2B0F58A" targetCS="569784912" type="BRLRule" uuid="d391c24d-2508-4931-aa12-6e679192b9a0"/>
+<entry baseType="BRLRule" checksum="2047629804" projectName="eRX-DaysSupply" qualifiedName="ValidateSIG" sourceCS="EC6E188E8E0A6427127EE1C9E172A578" targetCS="2047629804" type="BRLRule" uuid="f74cce9a-c015-48da-944c-5da0b0ef3469"/>
+<entry baseType="Resource" checksum="2977781481" projectName="eRX-DaysSupply" qualifiedName="META-INF/deployment.xml" sourceCS="11D3830C505B0DE7F35340A78EC71628" targetCS="2977781481" type="Resource" uuid="META-INF/deployment.xml"/>
+<entry baseType="Ruleflow" checksum="2686416606" projectName="eRX-DaysSupply" qualifiedName="CalculateDaysSupply" sourceCS="A85AC1A34678F94CF6EB2C724E0695A7" targetCS="2686416606" type="Ruleflow" uuid="678ec447-57fa-4036-b2b6-4ae04c682492"/>
+<entry baseType="Ruleflow" checksum="3662705659" projectName="eRX-DaysSupply" qualifiedName="DaysSupply" sourceCS="83A567926D81A688370219C00C3E3158" targetCS="3662705659" type="Ruleflow" uuid="ddbd72a7-3e45-4e6a-a22c-a4c1030c50da"/>
+<entry baseType="RuleProjectInfo" checksum="525150607" projectName="eRX-DaysSupply" qualifiedName="eRX-DaysSupply" sourceCS="393478F8D57B7099426536303D1A3D17" targetCS="525150607" type="RuleProjectInfo" uuid="5bee6e40-8fcc-4090-873c-855293744a37"/>
+</teamserver>
+</teamservers>

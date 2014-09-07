@@ -1,0 +1,82 @@
+// begin DT Calculate Quantity NDC Therapeutic Inclusion
+// -- begin rule 'Calculate Quantity NDC Therapeutic Inclusion 0'
+package $49$$_$new.Common_Unit_of_Use_and_Unit_Dose.Calculate_Quantity_Therapeutic_Inclusion {
+   rule Calculate_Quantity_NDC_Therapeutic_Inclusion_0 {
+      property ilog.rules.business_name = "Calculate Quantity NDC Therapeutic Inclusion 1";
+      property ilog.rules.dt = "1_new.Common Unit of Use and Unit Dose.Calculate Quantity Therapeutic Inclusion.Calculate Quantity NDC Therapeutic Inclusion";
+      property ilog.rules.group = "$49$$_$new.Common_Unit_of_Use_and_Unit_Dose.Calculate_Quantity_Therapeutic_Inclusion.Calculate_Quantity_NDC_Therapeutic_Inclusion";
+      property ilog.rules.package_name = "1_new.Common Unit of Use and Unit Dose.Calculate Quantity Therapeutic Inclusion";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         substitued_drug: com.walgreens.pharmacy.rules.Drug() from var$_$0.substitutedDrug;
+         evaluate (package_size : (substitued_drug.packageSize));
+         evaluate ((((substitued_drug.isValidTherapeuticClass().booleanValue()) == (true)) && (((var$_$0.prescription.quantityPrescribed == 30) && (substitued_drug.packageSize in {21, 28})))));
+      } then {
+         substitued_drug.calculatedValues.quantity = package_size;
+      }
+   }
+}
+
+// -- end rule 'Calculate Quantity NDC Therapeutic Inclusion 0'
+// -- begin rule 'Calculate Quantity NDC Therapeutic Inclusion 1'
+package $49$$_$new.Common_Unit_of_Use_and_Unit_Dose.Calculate_Quantity_Therapeutic_Inclusion {
+   rule Calculate_Quantity_NDC_Therapeutic_Inclusion_1 {
+      property ilog.rules.business_name = "Calculate Quantity NDC Therapeutic Inclusion 2";
+      property ilog.rules.dt = "1_new.Common Unit of Use and Unit Dose.Calculate Quantity Therapeutic Inclusion.Calculate Quantity NDC Therapeutic Inclusion";
+      property ilog.rules.group = "$49$$_$new.Common_Unit_of_Use_and_Unit_Dose.Calculate_Quantity_Therapeutic_Inclusion.Calculate_Quantity_NDC_Therapeutic_Inclusion";
+      property ilog.rules.package_name = "1_new.Common Unit of Use and Unit Dose.Calculate Quantity Therapeutic Inclusion";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         substitued_drug: com.walgreens.pharmacy.rules.Drug() from var$_$0.substitutedDrug;
+         evaluate (package_size : (substitued_drug.packageSize));
+         evaluate ((((substitued_drug.isValidTherapeuticClass().booleanValue()) == (true)) && (((var$_$0.prescription.quantityPrescribed == 60) && (substitued_drug.packageSize in {21, 28})))));
+      } then {
+         substitued_drug.calculatedValues.quantity = package_size * 2;
+      }
+   }
+}
+
+// -- end rule 'Calculate Quantity NDC Therapeutic Inclusion 1'
+// -- begin rule 'Calculate Quantity NDC Therapeutic Inclusion 2'
+package $49$$_$new.Common_Unit_of_Use_and_Unit_Dose.Calculate_Quantity_Therapeutic_Inclusion {
+   rule Calculate_Quantity_NDC_Therapeutic_Inclusion_2 {
+      property ilog.rules.business_name = "Calculate Quantity NDC Therapeutic Inclusion 3";
+      property ilog.rules.dt = "1_new.Common Unit of Use and Unit Dose.Calculate Quantity Therapeutic Inclusion.Calculate Quantity NDC Therapeutic Inclusion";
+      property ilog.rules.group = "$49$$_$new.Common_Unit_of_Use_and_Unit_Dose.Calculate_Quantity_Therapeutic_Inclusion.Calculate_Quantity_NDC_Therapeutic_Inclusion";
+      property ilog.rules.package_name = "1_new.Common Unit of Use and Unit Dose.Calculate Quantity Therapeutic Inclusion";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         substitued_drug: com.walgreens.pharmacy.rules.Drug() from var$_$0.substitutedDrug;
+         evaluate (package_size : (substitued_drug.packageSize));
+         evaluate ((((substitued_drug.isValidTherapeuticClass().booleanValue()) == (true)) && (((var$_$0.prescription.quantityPrescribed == 90) && (substitued_drug.packageSize in {21, 28})))));
+      } then {
+         substitued_drug.calculatedValues.quantity = package_size * 3;
+      }
+   }
+}
+
+// -- end rule 'Calculate Quantity NDC Therapeutic Inclusion 2'
+// -- begin rule 'Calculate Quantity NDC Therapeutic Inclusion 3'
+package $49$$_$new.Common_Unit_of_Use_and_Unit_Dose.Calculate_Quantity_Therapeutic_Inclusion {
+   rule Calculate_Quantity_NDC_Therapeutic_Inclusion_3 {
+      property ilog.rules.business_name = "Calculate Quantity NDC Therapeutic Inclusion 4";
+      property ilog.rules.dt = "1_new.Common Unit of Use and Unit Dose.Calculate Quantity Therapeutic Inclusion.Calculate Quantity NDC Therapeutic Inclusion";
+      property ilog.rules.group = "$49$$_$new.Common_Unit_of_Use_and_Unit_Dose.Calculate_Quantity_Therapeutic_Inclusion.Calculate_Quantity_NDC_Therapeutic_Inclusion";
+      property ilog.rules.package_name = "1_new.Common Unit of Use and Unit Dose.Calculate Quantity Therapeutic Inclusion";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         substitued_drug: com.walgreens.pharmacy.rules.Drug() from var$_$0.substitutedDrug;
+         evaluate (package_size : (substitued_drug.packageSize));
+         evaluate ((((substitued_drug.isValidTherapeuticClass().booleanValue()) == (true)) && (((var$_$0.prescription.quantityPrescribed == 90) && (substitued_drug.packageSize == 91)))));
+      } then {
+         substitued_drug.calculatedValues.quantity = package_size;
+      }
+   }
+}
+
+// -- end rule 'Calculate Quantity NDC Therapeutic Inclusion 3'
+// end DT Calculate Quantity NDC Therapeutic Inclusion

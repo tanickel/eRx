@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>FR_0_08 Set MANUAL Compound Drug</name>
+  <uuid>7d749f07-8316-4f4d-b26f-20e12ced4bbb</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[if
+  the completion status of the erx transaction is COMPLETE and 
+	the substituted drug  is compound drug
+then
+	set the completion status of 'eRx Transaction'  to MANUAL ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

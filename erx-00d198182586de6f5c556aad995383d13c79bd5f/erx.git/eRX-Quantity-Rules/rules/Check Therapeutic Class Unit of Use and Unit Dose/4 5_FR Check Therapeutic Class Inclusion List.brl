@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>4 5_FR Check Therapeutic Class Inclusion List</name>
+  <uuid>dfe2a4ff-8ff1-4e32-9c9c-5295a688a6de</uuid>
+  <documentation><![CDATA[4.5
+]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[if
+	 the package type of the substituted drug is one of { UNIT OF USE , UNIT DOSE } 
+	 and the therapeutic class of the substituted drug is one of {200404,680400,681200,681604,81206,922400}
+then
+	make it true that the substituted drug is on therapeutic inclusion list ; 
+
+	]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

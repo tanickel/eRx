@@ -1,0 +1,23 @@
+package $49$$_$new.Set_Final_Refill_and_Quantity_Values.Set_Quantity_Remaining {
+   /**
+ * PRN is as needed.
+ * Add qualifer to Prescription. Check
+ * $= Number of Refills
+ * P = Pharmacy Requested Refills
+ * A = Addtiona Refills Authorized
+ * PRN = As Needed
+ */
+rule Set_Quantity_Remaining_PRN {
+      property ilog.rules.business_name = "Set Quantity Remaining PRN";
+      property ilog.rules.package_name = "1_new.Set Final Refill and Quantity Values.Set Quantity Remaining";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         evaluate (((var$_$0.substitutedDrug.calculatedValues.refillsRemaining.equals("0"))
+         	&& (var$_$0.substitutedDrug.calculatedValues.refillsRemainingEntered.equals("PRN"))));
+      } then {
+         var$_$0.substitutedDrug.calculatedValues.quantityRemaining = "0";
+      }
+   }
+}
+

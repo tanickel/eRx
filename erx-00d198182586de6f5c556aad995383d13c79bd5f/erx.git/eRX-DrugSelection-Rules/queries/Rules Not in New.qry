@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.query:Query xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.query="http://ilog.rules.studio/model/query.ecore">
+  <name>Rules Not in New</name>
+  <uuid>ac5e3275-d279-4f4b-99da-fe73a7ec10d4</uuid>
+  <definition><![CDATA[Find all business rules 
+	 such that the status of each business rule is not new ]]></definition>
+  <locale>en_US</locale>
+</ilog.rules.studio.model.query:Query>

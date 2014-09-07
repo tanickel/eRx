@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>6 1 2_FR Validate Incomming SIG List</name>
+  <uuid>dbf8fae2-af9f-48f0-9ed9-e63e62f0a4cb</uuid>
+  <documentation><![CDATA[FR # : 6.1.2 
+Requirement Description : The system must manually process the prescription if Day Supply cannot be calculated.
+]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'substituted drug' to the substituted drug ;
+    set 'all sigs' to all sigs  
+    	where the dose of each sig is 0
+    		or the frequency of each sig is 0
+    		or the time period of each sig is 0;
+if
+    the quantity dispensed of the calculated values of 'substituted drug' is 0
+    or the number of elements in 'all sigs' is at least 1
+    
+then
+    set the completion status of 'eRx Transaction' to MANUAL ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

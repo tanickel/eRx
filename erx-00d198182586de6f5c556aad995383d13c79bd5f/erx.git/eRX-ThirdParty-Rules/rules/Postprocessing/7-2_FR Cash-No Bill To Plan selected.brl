@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>7-2_FR Cash-No Bill To Plan selected</name>
+  <uuid>f8e3827c-4f9a-4758-a58c-4aace86dd27f</uuid>
+  <priority></priority>
+  <locale>en_US</locale>
+  <definition><![CDATA[if the bill to plan of the fill of the prescription is null
+then
+    set the payment method of the fill of the prescription to CASH ;
+]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

@@ -1,0 +1,56 @@
+// begin DT Annotation
+// -- begin rule 'Annotation 0'
+package Unit_Dose {
+   rule Annotation_0 {
+      property ilog.rules.business_name = "Annotation 1";
+      property ilog.rules.dt = "Unit Dose.Annotation";
+      property ilog.rules.group = "Unit_Dose.Annotation";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate (((var$_$0.prescription.quantityPrescribed != var$_$0.substitutedDrug.calculatedValues.quantity) && (var$_$0.prescription.numberOfRefillsPrescribed != var$_$0.substitutedDrug.calculatedValues.numberOfRefills)));
+      } then {
+         var$_$0.annotation = ((((((((("Quantity has been changed from " + var$_$0.prescription.quantityPrescribed) + " to ") + var$_$0.substitutedDrug.calculatedValues.quantity) + " Refills has been changed from ") + var$_$0.prescription.numberOfRefillsPrescribed) + " to ") + var$_$0.substitutedDrug.calculatedValues.numberOfRefills) + " on ") + com.walgreens.pharmacy.rules.util.Utilities.dateToString(var$_$0.transactionDateTime));
+      }
+   }
+}
+
+// -- end rule 'Annotation 0'
+// -- begin rule 'Annotation 1'
+package Unit_Dose {
+   rule Annotation_1 {
+      property ilog.rules.business_name = "Annotation 2";
+      property ilog.rules.dt = "Unit Dose.Annotation";
+      property ilog.rules.group = "Unit_Dose.Annotation";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate (((var$_$0.prescription.quantityPrescribed != var$_$0.substitutedDrug.calculatedValues.quantity)));
+      } then {
+         var$_$0.annotation = ((((("Quantity has been changed from " + var$_$0.prescription.quantityPrescribed) + " to ") + var$_$0.substitutedDrug.calculatedValues.quantity) + " on ") + com.walgreens.pharmacy.rules.util.Utilities.dateToString(var$_$0.transactionDateTime));
+      }
+   }
+}
+
+// -- end rule 'Annotation 1'
+// -- begin rule 'Annotation 2'
+package Unit_Dose {
+   rule Annotation_2 {
+      property ilog.rules.business_name = "Annotation 3";
+      property ilog.rules.dt = "Unit Dose.Annotation";
+      property ilog.rules.group = "Unit_Dose.Annotation";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate (((var$_$0.prescription.numberOfRefillsPrescribed != var$_$0.substitutedDrug.calculatedValues.numberOfRefills)));
+      } then {
+         var$_$0.annotation = ((((("Refills has been changed from " + var$_$0.prescription.numberOfRefillsPrescribed) + " to ") + var$_$0.substitutedDrug.calculatedValues.numberOfRefills) + " on ") + com.walgreens.pharmacy.rules.util.Utilities.dateToString(var$_$0.transactionDateTime));
+      }
+   }
+}
+
+// -- end rule 'Annotation 2'
+// end DT Annotation

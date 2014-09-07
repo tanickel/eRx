@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.query:Query xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.query="http://ilog.rules.studio/model/query.ecore">
+  <name>Rules Validated</name>
+  <uuid>60fc7f74-ebab-4256-a64d-4cfd7c402302</uuid>
+  <definition><![CDATA[Find all business rules 
+	 such that the status of each business rule is validated ]]></definition>
+  <locale>en_US</locale>
+</ilog.rules.studio.model.query:Query>

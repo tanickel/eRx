@@ -1,0 +1,116 @@
+<?xml version="1.0" standalone="yes"?>
+<project name="eRXDecisionServices" default="all" basedir=".">
+
+	<description>Build File for ODM Custom Web Service</description>
+	<property name="was.home" value="C:/IBM/WAS_ND_8502/AppServer"/>
+	<property name="jrules.home" value="C:/IBM/ODM860"/>
+	
+	<property name="web.src.dir" location="${basedir}/WebContent" />
+	<property name="webinf.dir" location="${web.src.dir}/WEB-INF" />
+	<property name="build.dir" location="${web.src.dir}/WEB-INF/classes" />
+	<property name="src.dir" value="${basedir}/src"/>
+	<property name="lib.dir" location="${webinf.dir}/lib" />
+	<property name="wsdl.dir" location="${webinf.dir}/wsdl" />
+	<property name="dist" location="${basedir}/dist" />
+    <!-- version numbering pattern: release.iteration.bugfix -->
+	<property name="version" value="0.2.0"/>
+	<property name="jar.name" value="${ant.project.name}-${version}.jar"/>
+	  	
+	<patternset id="was.jaxrs.jar.files">
+		<include name="com.ibm.jaxrs.thinclient_8.5.0.jar" />
+	</patternset>
+	<patternset id="was.jaxws.jar.files">
+			<include name="com.ibm.jaxws.thinclient_8.5.0.jar" />
+	</patternset>
+	
+	<path id="local-cp">
+		<fileset dir="${was.home}/runtimes">
+			<patternset refid="was.jaxrs.jar.files" />
+			<patternset refid="was.jaxws.jar.files" />
+		</fileset>
+		<fileset dir="${lib.dir}" includes="*.jar"/>
+	    <pathelement location="${jrules.home}/executionserver/lib/jrules-res-session-java.jar" /> 
+	    <pathelement location="${jrules.home}/executionserver/lib/j2ee_connector-1_5-fr.jar" /> 
+		<pathelement location="${jrules.home}/executionserver/lib/commons-logging-1.0.4.jar" /> 
+    </path>
+    
+	<!-- Entry point for the task -->
+	<target name="all" depends="clean,init">
+		<!-- copy the jar for the model in the lib dir -->
+		<copy todir="${lib.dir}">
+			<fileset dir="${basedir}/../eRX-Model" includes="eRX-Model*.jar" />
+		</copy>
+		<antcall target="compile"/>	
+		<!-- <antcall target="ws-gen"/>	-->
+		<antcall target="war"/>	
+		<antcall target="ear"/>			
+	</target>
+
+	<!-- Create build directory -->
+	<target name="init">
+		<tstamp />
+		<mkdir dir="${wsdl.dir}" />
+		<mkdir dir="${dist}" />
+	</target>
+
+	  	
+	  <target name="compile">
+		<copy todir="${build.dir}" file="${src.dir}/ruleprocessing.properties" /> 	
+	  	<javac destdir="${build.dir}/" memoryMaximumSize="300m" 
+	  			deprecation="on" debug="on" optimize="on" verbose="off" fork="yes" 
+	  			includeAntRuntime="no" failonerror="no" srcdir="${src.dir}">
+	  		 <classpath>
+	  			  <path refid="local-cp" /> 
+	  		  </classpath>
+	  	</javac>
+ 	  </target>
+	  			  	
+	
+	<!-- Clean up the directories -->
+	<target name="clean" description="clean up">
+		<delete dir="${wsdl.dir}" />
+		<delete dir="${dist}" />
+		<delete includeEmptyDirs="true" quiet="true">
+			  <fileset dir="${build.dir}" />
+			</delete>
+	</target>
+	
+
+	<target name="ear" depends="" description="generate the Web Service EAR">
+		<ear destfile="${dist}/${ant.project.name}.ear" appxml="${web.src.dir}/META-INF/application.xml">	
+			<fileset dir="${dist}">
+				<include name="${ant.project.name}.war" />
+			</fileset>
+		</ear>
+		<tstamp>
+	 		<format property="now" pattern="MM/dd/yyyy hh:mm aa" /> 
+	 	</tstamp>
+	</target>
+	<!--
+	<lib dir="${executionserver.home}/applicationservers/WebSphere85">
+		<include name="jrules-res-session-ejb3-WAS85.jar" />
+	</lib>
+	-->
+		<!-- Create the WAR File -->
+	<target name="war" depends="" description="generate the Web Service WAR">
+		<war destfile="${dist}/${ant.project.name}.war" webxml="${webinf.dir}/web.xml">
+			<lib dir="${jrules.home}/executionserver/lib">
+				<include name="jrules-res-session-java.jar" />
+			</lib>
+			<fileset dir="${web.src.dir}" excludes="**/application.xml" includes="**/*.*">
+			</fileset>		
+		</war>
+	</target>
+	
+
+	<target name="deploy" >
+		<copy todir="${was.home}\profiles\RuleSrv01\monitoredDeployableApps\servers\server1"
+			file="${dist}/${ant.project.name}.ear">
+		</copy>
+	</target>
+
+  <target name="ws-gen">
+    <exec executable="${basedir}/wsgen_call.cmd" />
+  </target>
+
+</project>

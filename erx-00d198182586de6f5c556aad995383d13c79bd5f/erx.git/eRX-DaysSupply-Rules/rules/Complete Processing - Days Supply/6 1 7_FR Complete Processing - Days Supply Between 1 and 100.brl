@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>6 1 7_FR Complete Processing - Days Supply Between 1 and 100</name>
+  <uuid>78e00e80-71de-4be7-9dd6-ed86e5fde6d3</uuid>
+  <documentation><![CDATA[FR # : 6.1.7
+Requirement Description : The system must manually process the prescription if the Day Supply is more than 100 days.]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'substituted drug' to the substituted drug;
+    set 'the days supply' to the days of supply of the calculated values of 'substituted drug' ;
+if
+ 	'the days supply' is between 1 and  100
+
+then
+    set the completion status of 'eRx Transaction' to COMPLETE ;
+    ]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

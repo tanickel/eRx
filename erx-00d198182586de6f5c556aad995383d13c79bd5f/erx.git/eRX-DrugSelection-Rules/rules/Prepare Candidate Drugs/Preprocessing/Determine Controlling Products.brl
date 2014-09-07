@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Determine Controlling Products</name>
+  <uuid>27367b26-ec03-4338-94f8-e38c6c570aab</uuid>
+  <documentation><![CDATA[FR# 3.2.3 Select the drugs from the substitution durs that is set to be preferred by Walgreens. To know that we need to look at the categories the drug belong to. 
+
+When we assign a drug in one of the sublist than we should remove it from the candidate list.
+The remaining drugs in the candidate list will be the drugs not in one of the major buckets: controlling, store preferred, warehouse]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+   set 'a candidate drug' to a drug in the candidate drugs ;
+if
+  there is at least one product category in the categories of 'a candidate drug' 
+  where the category of this product category is Controlling
+    	 and the drug id of this product category is the drug id of 'a candidate drug' ,
+then
+   add 'a candidate drug' to the controlling drugs ;
+]]></definition>
+  <status>validated</status>
+</ilog.rules.studio.model.brl:ActionRule>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Select Store Preferred-Unit of Use(Generic) Multiple of Pkg Size</name>
+  <uuid>1676a117-f25a-4d86-8a31-1d46ad3c4fdd</uuid>
+  <documentation><![CDATA[FR# 3.7.9
+FR# 3.7.10
+FR# 3.7.2
+FR# 3.7.3]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'all drugs' to all drugs in the store preferred drugs of the erx transaction
+            where the transmitted quantity is multiple of package size each drug is true
+            and the package size of each drug is more than 3
+            and the package type of each drug is UNIT OF USE
+            and the type of each drug is GENERIC ;
+    set 'largest package drugs' to retain the largest package size 'all drugs' Less Than the quantity prescribed of the prescription ;
+    set 'largest' to a drug in 'largest package drugs' ;
+if
+    the completion status of the erx transaction is not COMPLETE
+then
+    set the substituted drug to 'largest' ;
+    set the completion status of the erx transaction to COMPLETE ;
+    print the name of this rule ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

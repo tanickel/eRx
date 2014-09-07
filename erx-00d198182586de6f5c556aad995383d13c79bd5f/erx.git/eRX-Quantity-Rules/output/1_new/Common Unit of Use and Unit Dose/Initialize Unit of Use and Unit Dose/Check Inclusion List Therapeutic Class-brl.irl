@@ -1,0 +1,15 @@
+package $49$$_$new.Common_Unit_of_Use_and_Unit_Dose.Initialize_Unit_of_Use_and_Unit_Dose {
+   rule Check_Inclusion_List_Therapeutic_Class {
+      property ilog.rules.business_name = "Check Inclusion List Therapeutic Class";
+      property ilog.rules.package_name = "1_new.Common Unit of Use and Unit Dose.Initialize Unit of Use and Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         substitued_drug: com.walgreens.pharmacy.rules.Drug() from var$_$0.substitutedDrug;
+         evaluate (var$_$0.substitutedDrug.therapeuticClass in {200404, 680400, 681200, 681604, 81206, 922400});
+      } then {
+         substitued_drug.validQuantityQualifier = java.lang.Boolean.valueOf(true);
+      }
+   }
+}
+

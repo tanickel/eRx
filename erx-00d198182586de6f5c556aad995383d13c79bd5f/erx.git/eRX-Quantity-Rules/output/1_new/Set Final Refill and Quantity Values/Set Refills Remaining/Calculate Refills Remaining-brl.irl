@@ -1,0 +1,17 @@
+package $49$$_$new.Set_Final_Refill_and_Quantity_Values.Set_Refills_Remaining {
+   rule Calculate_Refills_Remaining {
+      property ilog.rules.business_name = "Calculate Refills Remaining";
+      property ilog.rules.package_name = "1_new.Set Final Refill and Quantity Values.Set Refills Remaining";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         evaluate (the_refills_plus_current : (var$_$0.prescription.numberOfRefillsPrescribed + 1));
+         evaluate (the_total_fills_allowed : (com.walgreens.pharmacy.rules.util.Utilities.stringToInt(var$_$0.substitutedDrug.stateDrugClass.totalFillsAllowed)));
+         evaluate (((var$_$0.prescription.refillQualifier.equals("R"))
+         	&& the_refills_plus_current >= the_total_fills_allowed.intValue()));
+      } then {
+         var$_$0.substitutedDrug.calculatedValues.refillsRemaining = com.walgreens.pharmacy.rules.util.Utilities.intToString(java.lang.Integer.valueOf((int) var$_$0.prescription.numberOfRefillsPrescribed ));
+      }
+   }
+}
+

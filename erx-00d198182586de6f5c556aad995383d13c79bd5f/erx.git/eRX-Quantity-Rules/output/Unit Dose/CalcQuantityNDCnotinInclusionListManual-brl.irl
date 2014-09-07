@@ -1,0 +1,16 @@
+package Unit_Dose {
+   rule CalcQuantityNDCnotinInclusionListManual {
+      property ilog.rules.business_name = "CalcQuantityNDCnotinInclusionListManual";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         substitued_drug: com.walgreens.pharmacy.rules.Drug() from var$_$0.substitutedDrug;
+         evaluate (((substitued_drug.therapeuticClass !in {200404, 680400, 681200, 681604, 81206, 922400}) && (var$_$0.prescription.quantityPrescribed > 3) && (!(((var$_$0.prescription.quantityPrescribed in {1, 2, 3}
+         	&& substitued_drug.packageSize >= 3))))));
+      } then {
+         erxTransaction.completionStatus = com.walgreens.pharmacy.rules.ResultType.MANUAL;
+      }
+   }
+}
+

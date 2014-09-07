@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Validate Quantity Equals Package Size</name>
+  <uuid>da7839a2-725c-43eb-8fd3-c12b6a6ae10b</uuid>
+  <documentation><![CDATA[4.21
+multipler]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[if
+	 the quantity prescribed of the prescription
+	 / the package size of the substituted drug is one of { 1 , 2 , 3 }
+     
+then
+	set'same size or multiple' to true;
+	
+	          ]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

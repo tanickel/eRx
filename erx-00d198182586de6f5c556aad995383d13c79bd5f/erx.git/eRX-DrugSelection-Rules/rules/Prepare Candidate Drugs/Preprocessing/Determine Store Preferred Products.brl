@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Determine Store Preferred Products</name>
+  <uuid>1d840661-3e9e-4cbb-abde-0e434cde76f0</uuid>
+  <documentation><![CDATA[FR#: 3.2.1 The transmitted drug may have a store preferred drug id, when the pharmacy when to substitute it. 
+
+When we assign a drug in one of the sublist than we should remove it from the candidate list.
+The remaining drugs in the candidate list will be the drugs not in one of the major buckets: controlling, store preferred, warehouse]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'the store preferred drug' to a drug in the candidate drugs ;
+
+if 
+	 there is at least one product category in the categories of 'the store preferred drug' 
+  where the category of this product category is StorePreferred  
+    	 and the drug id of this product category is the drug id of 'the store preferred drug' ,
+then
+    add 'the store preferred drug' to the store preferred drugs ;
+]]></definition>
+  <status>validated</status>
+</ilog.rules.studio.model.brl:ActionRule>

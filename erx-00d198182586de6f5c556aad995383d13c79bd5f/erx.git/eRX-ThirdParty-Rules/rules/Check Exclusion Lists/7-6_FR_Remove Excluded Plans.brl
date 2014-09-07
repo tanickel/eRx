@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>7-6_FR_Remove Excluded Plans</name>
+  <uuid>6e4f1b21-2fca-4927-addd-e96c913ca737</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+	set 'excluded plan' to a plan where this plan is excluded ;
+	
+then
+	remove 'excluded plan' from consideration ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

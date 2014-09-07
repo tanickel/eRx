@@ -1,0 +1,157 @@
+package $49$$_$new {
+  import com.walgreens.pharmacy.rules.ResultType;
+  import com.walgreens.pharmacy.rules.Drug;
+  import com.walgreens.pharmacy.rules.PackageType;
+
+
+  flowtask Quantity$45$Main {
+    property mainflowtask = false;
+    property ilog.rules.business_name = "Quantity-Main";
+    property ilog.rules.package_name = "1_new";
+    body {
+      Quantity$45$Main#Initialize_Values;
+      Quantity$45$Main#Determine_Quantity;
+      Quantity$45$Main#Check_Manual_$45$_Validate_Quantity_Package_Size;
+      if (erxTransaction.completionStatus.equals(ResultType.MANUAL)) {
+      }
+      else {
+        if (erxTransaction.substitutedDrug.packageType.equals(PackageType.UNIT_OF_USE) ||
+        erxTransaction.substitutedDrug.packageType.equals(PackageType.UNIT_DOSE)
+        ) {
+          Quantity$45$Main#Initialize_Unit_of_Use_and_Unit_Dose$_$0;
+          Quantity$45$Main#Calculate_Quantity_Therapeutic_Inclusion$_$0;
+          Quantity$45$Main#Check_Manual_Unit_of_Use;
+          _node_7 : Quantity$45$Main#Check_Manual_$45$_Dispensing_Quantity;
+          if (erxTransaction.completionStatus.equals(ResultType.MANUAL)) {
+          }
+          else {
+            Quantity$45$Main#Add_Annotations;
+            Quantity$45$Main#Set_Refills_Remaining;
+            Quantity$45$Main#Set_Refills_Remaining_Entered;
+            Quantity$45$Main#Set_Quantity_Remaining;
+          }
+        }
+        else {
+          goto _node_7;
+        }
+      }
+    }
+  };
+
+  ruletask Quantity$45$Main#Check_Manual_$45$_Validate_Quantity_Package_Size {
+    property ilog.rules.business_name = "Quantity-Main>Check Manual - Validate Quantity Package Size";
+    property ilog.rules.package_name = "1_new";
+    algorithm = default;
+    ordering = dynamic;
+    body {
+      $49$$_$new.Go_Manual.Check_Manual_$45$_Validate_Quantity_Package_Size.*
+    }
+  };
+
+  ruletask Quantity$45$Main#Determine_Quantity {
+    property ilog.rules.business_name = "Quantity-Main>Determine Quantity";
+    property ilog.rules.package_name = "1_new";
+    algorithm = default;
+    ordering = dynamic;
+    body {
+      $49$$_$new.Determine_Quantity.*
+    }
+  };
+
+  ruletask Quantity$45$Main#Check_Manual_$45$_Dispensing_Quantity {
+    property ilog.rules.business_name = "Quantity-Main>Check Manual - Dispensing Quantity";
+    property ilog.rules.package_name = "1_new";
+    algorithm = default;
+    ordering = dynamic;
+    body {
+      $49$$_$new.Go_Manual.Check_Manual_$45$_Dispensing_Quantity.*
+    }
+  };
+
+  ruletask Quantity$45$Main#Add_Annotations {
+    property ilog.rules.business_name = "Quantity-Main>Add Annotations";
+    property ilog.rules.package_name = "1_new";
+    algorithm = default;
+    ordering = dynamic;
+    body {
+      $49$$_$new.Common_All_Package_Types.Add_Annotations.*
+    }
+  };
+
+  ruletask Quantity$45$Main#Initialize_Values {
+    property ilog.rules.business_name = "Quantity-Main>Initialize Values";
+    property ilog.rules.package_name = "1_new";
+    algorithm = default;
+    ordering = dynamic;
+    body {
+      $49$$_$new.Common_All_Package_Types.Initialization.Initialize_Values.*
+    }
+  };
+
+  ruletask Quantity$45$Main#Set_Refills_Remaining {
+    property ilog.rules.business_name = "Quantity-Main>Set Refills Remaining";
+    property ilog.rules.package_name = "1_new";
+    algorithm = sequential;
+    property ilog.rules.engine.sequential.fastpath = true;
+    ordering = sorted;
+    body {
+      $49$$_$new.Set_Final_Refill_and_Quantity_Values.Set_Refills_Remaining.*
+    }
+  };
+
+  ruletask Quantity$45$Main#Set_Refills_Remaining_Entered {
+    property ilog.rules.business_name = "Quantity-Main>Set Refills Remaining Entered";
+    property ilog.rules.package_name = "1_new";
+    algorithm = sequential;
+    property ilog.rules.engine.sequential.fastpath = true;
+    ordering = sorted;
+    body {
+      $49$$_$new.Set_Final_Refill_and_Quantity_Values.Set_Refills_Remaining_Entered.*
+    }
+  };
+
+  ruletask Quantity$45$Main#Set_Quantity_Remaining {
+    property ilog.rules.business_name = "Quantity-Main>Set Quantity Remaining";
+    property ilog.rules.package_name = "1_new";
+    algorithm = sequential;
+    property ilog.rules.engine.sequential.fastpath = true;
+    ordering = sorted;
+    body {
+      $49$$_$new.Set_Final_Refill_and_Quantity_Values.Set_Quantity_Remaining.*
+    }
+  };
+
+  ruletask Quantity$45$Main#Initialize_Unit_of_Use_and_Unit_Dose$_$0 {
+    property ilog.rules.business_name = "Quantity-Main>Initialize Unit of Use and Unit Dose_0";
+    property ilog.rules.package_name = "1_new";
+    algorithm = sequential;
+    property ilog.rules.engine.sequential.fastpath = true;
+    ordering = sorted;
+    body {
+      $49$$_$new.Common_Unit_of_Use_and_Unit_Dose.Initialize_Unit_of_Use_and_Unit_Dose.*
+    }
+  };
+
+  ruletask Quantity$45$Main#Calculate_Quantity_Therapeutic_Inclusion$_$0 {
+    property ilog.rules.business_name = "Quantity-Main>Calculate Quantity Therapeutic Inclusion_0";
+    property ilog.rules.package_name = "1_new";
+    algorithm = sequential;
+    property ilog.rules.engine.sequential.fastpath = true;
+    ordering = sorted;
+    body {
+      $49$$_$new.Common_Unit_of_Use_and_Unit_Dose.Calculate_Quantity_Therapeutic_Inclusion.*
+    }
+  };
+
+  ruletask Quantity$45$Main#Check_Manual_Unit_of_Use {
+    property ilog.rules.business_name = "Quantity-Main>Check Manual Unit of Use";
+    property ilog.rules.package_name = "1_new";
+    algorithm = sequential;
+    property ilog.rules.engine.sequential.fastpath = true;
+    ordering = sorted;
+    body {
+      $49$$_$new.Go_Manual.Check_Manual_Unit_of_Use.*
+    }
+  };
+
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Select Warehouse-PreferredGeneri Multi UoU</name>
+  <uuid>006ddb60-9e52-4874-a49a-ecef146d6249</uuid>
+  <documentation><![CDATA[FR# 3.5.5
+FR# 3.5.8
+FR# 3.5.9
+]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'a drug' to a drug in the warehouse drugs of the erx transaction
+            where the package type of this drug is UNIT OF USE
+            and the package size of this drug is at most the quantity prescribed of the prescription ;
+   
+        set 'largest package drug' to a drug 
+            where the package size of this drug is less than the package size of 'a drug' ;
+if            
+            there is no drug
+            where the package size of this drug is more than the package size of 'largest package drug' ,
+then
+    set the substituted drug to 'largest package drug' ;
+    set the completion status of the erx transaction to COMPLETE ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

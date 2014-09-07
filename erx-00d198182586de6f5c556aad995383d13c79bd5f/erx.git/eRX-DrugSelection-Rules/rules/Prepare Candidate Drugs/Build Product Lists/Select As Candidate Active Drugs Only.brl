@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Select As Candidate Active Drugs Only</name>
+  <uuid>39d500f6-7ffb-42ea-872d-ff315912462e</uuid>
+  <documentation><![CDATA[inactive drug will not be part of the candidate drug list]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+set 'a drug' to a drug in the substitution drug lists 
+	where the status of this drug  is ACTIVE and this drug is not excluded; 
+then
+	add 'a drug' to the candidate drugs ; 
+
+	]]></definition>
+  <status>validated</status>
+</ilog.rules.studio.model.brl:ActionRule>

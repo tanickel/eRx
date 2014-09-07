@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Standard Products Only</name>
+  <uuid>b9339e2f-6fe4-4798-b9a9-da18ebf1fdd4</uuid>
+  <documentation><![CDATA[FR# 3.1.8 "Standard products Only?
+The system will determine if there are only Standard package types for the products remaining within the active Core 9 NDC's from the previous process steps.
+
+]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+   set 'a drug' to a drug in the candidate drugs  
+   where the type of this drug is BRAND   
+       and the national drug code of this drug is the same core 9 NDC as the transmitted drug of the prescription;
+if  
+    the dispensed as written of the prescription is 1
+	and the package type of 'a drug' is not STANDARD 
+then
+	remove 'a drug' from the candidate drugs ;]]></definition>
+  <status>defined</status>
+</ilog.rules.studio.model.brl:ActionRule>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <eAnnotations source="ilog.rules.custom_properties">
+    <details key="FR#" value="3.1.12"/>
+  </eAnnotations>
+  <name>Keep Same Package Type</name>
+  <uuid>8282f672-a50d-4823-a522-e95d2d796153</uuid>
+  <documentation><![CDATA[FR3.1.12: Do all remaining NDCs have the same package type?
+Package Types = Standard, Unit of Use, Unit Dose
+The reason for this step is in order to take advantage of linking, all products must be of the same package type.  Products that are linked to one another are all of the same package type, but if there are products that come in different package types the preferred package type is normally the Unit of Use product.
+]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+ set 'not same package drug' to a drug in the candidate drugs 
+ where the package type of this drug is not the package type of the transmitted drug of the prescription ;
+
+then
+  remove 'not same package drug' from the candidate drugs ;]]></definition>
+  <status>defined</status>
+</ilog.rules.studio.model.brl:ActionRule>

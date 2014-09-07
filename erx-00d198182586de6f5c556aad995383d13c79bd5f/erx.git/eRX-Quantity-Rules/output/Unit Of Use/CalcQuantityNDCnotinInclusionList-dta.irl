@@ -1,0 +1,59 @@
+// begin DT CalcQuantityNDCnotinInclusionList
+// -- begin rule 'CalcQuantityNDCnotinInclusionList 0'
+package Unit_Of_Use {
+   rule CalcQuantityNDCnotinInclusionList_0 {
+      property ilog.rules.business_name = "CalcQuantityNDCnotinInclusionList 1";
+      property ilog.rules.dt = "Unit Of Use.CalcQuantityNDCnotinInclusionList";
+      property ilog.rules.group = "Unit_Of_Use.CalcQuantityNDCnotinInclusionList";
+      property ilog.rules.package_name = "Unit Of Use";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         substitued_drug: com.walgreens.pharmacy.rules.Drug() from var$_$0.substitutedDrug;
+         evaluate (((substitued_drug.therapeuticClass in {200404, 680400, 681200, 681604, 81206, 922400}) && (((substitued_drug.packageSize != var$_$0.prescription.quantityPrescribed) && (var$_$0.prescription.quantityPrescribed > 3)))));
+      } then {
+         erxTransaction.completionStatus = com.walgreens.pharmacy.rules.ResultType.MANUAL;
+      }
+   }
+}
+
+// -- end rule 'CalcQuantityNDCnotinInclusionList 0'
+// -- begin rule 'CalcQuantityNDCnotinInclusionList 1'
+package Unit_Of_Use {
+   rule CalcQuantityNDCnotinInclusionList_1 {
+      property ilog.rules.business_name = "CalcQuantityNDCnotinInclusionList 2";
+      property ilog.rules.dt = "Unit Of Use.CalcQuantityNDCnotinInclusionList";
+      property ilog.rules.group = "Unit_Of_Use.CalcQuantityNDCnotinInclusionList";
+      property ilog.rules.package_name = "Unit Of Use";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         substitued_drug: com.walgreens.pharmacy.rules.Drug() from var$_$0.substitutedDrug;
+         evaluate (((substitued_drug.therapeuticClass in {200404, 680400, 681200, 681604, 81206, 922400}) && (((substitued_drug.packageSize < 3) && (var$_$0.prescription.quantityPrescribed !in {1, 2, 3})))));
+      } then {
+         erxTransaction.completionStatus = com.walgreens.pharmacy.rules.ResultType.MANUAL;
+      }
+   }
+}
+
+// -- end rule 'CalcQuantityNDCnotinInclusionList 1'
+// -- begin rule 'CalcQuantityNDCnotinInclusionList 2'
+package Unit_Of_Use {
+   rule CalcQuantityNDCnotinInclusionList_2 {
+      property ilog.rules.business_name = "CalcQuantityNDCnotinInclusionList 3";
+      property ilog.rules.dt = "Unit Of Use.CalcQuantityNDCnotinInclusionList";
+      property ilog.rules.group = "Unit_Of_Use.CalcQuantityNDCnotinInclusionList";
+      property ilog.rules.package_name = "Unit Of Use";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         substitued_drug: com.walgreens.pharmacy.rules.Drug() from var$_$0.substitutedDrug;
+         evaluate (((substitued_drug.therapeuticClass in {200404, 680400, 681200, 681604, 81206, 922400}) && (((!(((substitued_drug.packageSize != var$_$0.prescription.quantityPrescribed) || (substitued_drug.packageSize < 3))))))));
+      } then {
+         substitued_drug.calculatedValues.quantity = (substitued_drug.packageSize * var$_$0.prescription.quantityPrescribed);
+      }
+   }
+}
+
+// -- end rule 'CalcQuantityNDCnotinInclusionList 2'
+// end DT CalcQuantityNDCnotinInclusionList

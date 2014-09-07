@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.ruleflow:RuleFlow xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.ruleflow="http://ilog.rules.studio/model/ruleflow.ecore">
+  <name>Main Drug Selection Flow</name>
+  <uuid>40456457-2943-49bc-8aa6-b1edfab6d22a</uuid>
+  <locale>en_US</locale>
+  <categories>any</categories>
+  <rfModel>
+<Ruleflow xmlns="http://schemas.ilog.com/Rules/7.0/Ruleflow">
+  <Body>
+    <TaskList>
+      <StartTask Identifier="task_0">
+        <Actions Language="irl"><![CDATA[System.out.println("@@@@ Main Drug Selection Ruleflow v0.0.19");]]>&#13;<![CDATA[
+if (erxTransaction.populateTransmittedDrug()) {]]>&#13;<![CDATA[
+   erxTransaction.completionStatus=ResultType.IN_PROGRESS;]]>&#13;<![CDATA[
+} ]]></Actions>
+      </StartTask>
+      <RuleTask ExecutionMode="RetePlus" ExitCriteria="None" Identifier="Assess Obvious Manual Process Conditions" Ordering="Default">
+        <InitialActions Language="irl"><![CDATA[if (erxTransaction.completionStatus.equals(ResultType.MANUAL)) {]]>&#13;<![CDATA[
+	endCurrentTask();]]>&#13;<![CDATA[
+}]]></InitialActions>
+        <RuleList>
+          <Package Name="Assess Manual Process Needs"/>
+        </RuleList>
+      </RuleTask>
+      <SubflowTask Identifier="task_2" Uuid="92f63788-849d-4543-a0e7-9ccd0761df4e"/>
+      <SubflowTask Identifier="task_3" Uuid="3a92cdde-b22d-4899-9243-5c1943283c23"/>
+      <StopTask Identifier="task_1"/>
+    </TaskList>
+    <NodeList>
+      <TaskNode Identifier="node_0" Task="task_0"/>
+      <TaskNode Identifier="node_1" Task="task_1"/>
+      <BranchNode Identifier="node_3"/>
+      <TaskNode Identifier="node_2" Task="Assess Obvious Manual Process Conditions"/>
+      <TaskNode Identifier="node_8" Task="task_2"/>
+      <TaskNode Identifier="node_7" Task="task_3"/>
+      <BranchNode Identifier="node_4"/>
+    </NodeList>
+    <TransitionList>
+      <Transition Identifier="transition_1" Source="node_3" Target="node_1">
+        <Conditions Language="bal"><![CDATA[the completion status of 'eRx Transaction' is MANUAL ]]></Conditions>
+      </Transition>
+      <Transition Identifier="transition_0" Source="node_0" Target="node_2"/>
+      <Transition Identifier="transition_2" Source="node_2" Target="node_3"/>
+      <Transition Identifier="transition_3" Source="node_3" Target="node_7"/>
+      <Transition Identifier="transition_4" Source="node_7" Target="node_4"/>
+      <Transition Identifier="transition_7" Source="node_8" Target="node_1"/>
+      <Transition Identifier="transition_8" Source="node_4" Target="node_8"/>
+      <Transition Identifier="transition_9" Source="node_4" Target="node_1">
+        <Conditions Language="bal"><![CDATA[the completion status of 'eRx Transaction' is MANUAL ]]></Conditions>
+      </Transition>
+    </TransitionList>
+  </Body>
+  <Resources>
+    <ResourceSet Locale="en_US">
+      <Data Name="node_3#height">36.414215</Data>
+      <Data Name="node_0#height">21.0</Data>
+      <Data Name="node_2#height">97.50586</Data>
+      <Data Name="node_4#x">51.000015</Data>
+      <Data Name="node_8#x">89.0</Data>
+      <Data Name="node_4#y">441.23068</Data>
+      <Data Name="node_4#name">node_6</Data>
+      <Data Name="node_8#y">543.48956</Data>
+      <Data Name="node_3#width">36.414215</Data>
+      <Data Name="node_3#y">222.0118</Data>
+      <Data Name="node_3#name">node_6</Data>
+      <Data Name="node_7#height">82.80472</Data>
+      <Data Name="node_1#name">node_2</Data>
+      <Data Name="node_3#x">108.000015</Data>
+      <Data Name="node_8#name">node_8</Data>
+      <Data Name="node_1#width">19.999998</Data>
+      <Data Name="node_0#width">21.0</Data>
+      <Data Name="node_0#name">node_0</Data>
+      <Data Name="node_8#height">68.103516</Data>
+      <Data Name="transition_1#label">Manual</Data>
+      <Data Name="node_2#name">node_1</Data>
+      <Data Name="node_7#x">52.0</Data>
+      <Data Name="node_2#width">124.72069</Data>
+      <Data Name="node_7#name">node_7</Data>
+      <Data Name="node_0#y">10.5</Data>
+      <Data Name="node_0#x">109.0</Data>
+      <Data Name="node_4#height">36.414185</Data>
+      <Data Name="node_4#width">36.414215</Data>
+      <Data Name="node_1#x">89.0</Data>
+      <Data Name="node_1#y">637.5414</Data>
+      <Data Name="node_8#width">102.0</Data>
+      <Data Name="node_1#height">20.000038</Data>
+      <Data Name="transition_9#label">Manual</Data>
+      <Data Name="node_2#x">108.00001</Data>
+      <Data Name="node_2#documentation"><![CDATA[Try to assess as early as possible all the conditions that make the process to go manual.]]>&#13;<![CDATA[
+It is possible that when searching for existing NDC with the populate transmitted drug method, we could not find the NDC so the initial action of this task is to do not execute the rules of this task if this is the case.]]></Data>
+      <Data Name="node_7#y">333.62128</Data>
+      <Data Name="node_2#y">112.40234</Data>
+      <Data Name="node_7#width">102.0</Data>
+    </ResourceSet>
+  </Resources>
+  <Properties>
+    <imports><![CDATA[import com.walgreens.pharmacy.rules.ResultType;
+]]></imports>
+  </Properties>
+</Ruleflow></rfModel>
+  <mainFlowTask>true</mainFlowTask>
+</ilog.rules.studio.model.ruleflow:RuleFlow>

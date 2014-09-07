@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <eAnnotations source="ilog.rules.custom_properties">
+    <details key="FR#" value="3.2.5"/>
+  </eAnnotations>
+  <name>Determine Warehouse Products</name>
+  <uuid>eee1cc36-912c-497e-8860-fb608edd58d7</uuid>
+  <documentation><![CDATA[FR# 3.2.5 The transmitted drug may have a store preffered drug id, when the pharmacy when to substitute it. ]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'the warehouse drug' to a drug in the candidate drugs ;
+
+if 
+	 there is at least one product category in the categories of 'the warehouse drug' 
+  where the category of this product category is Warehouse 
+    	 and the drug id of this product category is the drug id of 'the warehouse drug' ,
+then
+    add 'the warehouse drug'  to the warehouse drugs ;]]></definition>
+  <status>validated</status>
+</ilog.rules.studio.model.brl:ActionRule>

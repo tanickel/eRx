@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>4 3_FR Check Min and Max Dispensing Quantity</name>
+  <uuid>2b400b14-1635-491b-974a-81f8a9bb5f9c</uuid>
+  <documentation><![CDATA[4.17
+4.18
+If minimum dispensing qunity is null, is defaulted to 0
+]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'the quantity' to the quantity of the calculated values of the substituted drug ;
+if
+    'the quantity' is less than the minimum dispensing quantity of the substituted drug
+    or 'the quantity' is more than 99999.999
+then
+    set the completion status of 'eRx Transaction' to MANUAL ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

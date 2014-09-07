@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Add Total Duration</name>
+  <uuid>b722ee07-adce-4954-b3bd-9d3d6c225581</uuid>
+  <documentation><![CDATA[]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[if
+    the translated dosage form of the substituted drug is one of { TABLET , CAPSULE }
+then
+    for each sig in the list of subsigs of the sig of the prescription :
+        - set 'the total duration' to 'the total duration' + the duration of this sig ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

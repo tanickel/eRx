@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><teamservers>
+<teamserver>
+<target login="rtsAdmin" url="http://localhost:9081/teamserver"/>
+</teamserver>
+</teamservers>

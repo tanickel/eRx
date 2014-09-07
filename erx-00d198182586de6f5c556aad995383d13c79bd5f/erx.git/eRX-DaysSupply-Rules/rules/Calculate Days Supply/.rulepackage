@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.base:RulePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.base="http://ilog.rules.studio/model/base.ecore">
+  <name>Calculate Days Supply</name>
+  <uuid>7602e1cc-c4c4-4aa9-9ca4-9d06e41cb592</uuid>
+</ilog.rules.studio.model.base:RulePackage>

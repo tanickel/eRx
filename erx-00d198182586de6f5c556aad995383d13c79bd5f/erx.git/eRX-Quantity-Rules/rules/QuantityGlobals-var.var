@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.base:VariableSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.base="http://ilog.rules.studio/model/base.ecore">
+  <name>QuantityGlobals-var</name>
+  <uuid>f87bb463-28b7-4903-9e24-c4b2ff28626b</uuid>
+  <variables name="sameSizeOrMultiplier" type="boolean" initialValue="false" verbalization="same size or multiple"/>
+  <variables name="totalDefaultDays" type="int" initialValue="0" verbalization="total default days of Supply"/>
+  <variables name="calculatedRefillsChanged" type="boolean" initialValue="false" verbalization="calculated refills changed"/>
+  <variables name="calculatedQuantityChanged" type="boolean" initialValue="false" verbalization="calculated quantity changed"/>
+  <variables name="annotation" type="java.lang.String" initialValue="&quot;&quot;" verbalization="the annotation"/>
+</ilog.rules.studio.model.base:VariableSet>

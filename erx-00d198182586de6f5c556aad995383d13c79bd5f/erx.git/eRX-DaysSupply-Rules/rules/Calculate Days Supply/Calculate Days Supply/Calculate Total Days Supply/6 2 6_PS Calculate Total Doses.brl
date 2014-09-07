@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>6 2 6_PS Calculate Total Doses</name>
+  <uuid>7dc34a4d-6974-43fa-98a0-2de5b5630238</uuid>
+  <documentation><![CDATA[PS # :  6.2.6 
+Requirement Description : This is a process step where system muct calculate  using the existing formuale  defined below: 
+
+Total Doses = (Quantity Dispensed/Calculated Package Quantity) * Drug Doses per Pkg]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'substituted drug' to the substituted drug  ;
+if
+    the quantity of the calculated values of 'substituted drug' is not 0
+    and the doses per package of 'substituted drug' is not 0
+then
+    set 'the total doses' to (( the quantity dispensed of the calculated values of 'substituted drug' 
+    / the quantity of the calculated values of 'substituted drug' ) * the doses per package of 'substituted drug') ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

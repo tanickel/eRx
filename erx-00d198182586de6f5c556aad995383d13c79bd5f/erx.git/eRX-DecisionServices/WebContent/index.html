@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>ERX Decision Services</title>
+</head>
+<body>
+<p>There are two protocols supported to access the different service operations: SOAP over HTTP or RESTful</p>
+<h1>SOAP based service</h1>
+<p>Web service with SOAP, please look to the following WSDL 
+http://hostname:port/erx/serv/ErxDecisionServices.wsdl
+</p>
+<h1>RESTful services</h1>
+<p>
+The decision service can be exposed with RESTful service with JSON payload. Here are the operations offered
+<ul>
+<li>POST http://hostname:port/erxds/rest/erxtransaction/drugSelection: drug selection</li>  
+<li>POST http://hostname:port/erxds/rest/erxtransaction/drugQuantity: quantity computation</li>
+<li>POST http://hostname:port/erxds/rest/erxtransaction/drugDaySupply: day supply</li>  
+<li>POST http://hostname:port/erxds/rest/erxtransaction/thirdParty: thirdParty</li>  
+</ul>
+</p>
+
+
+</body>
+</html>

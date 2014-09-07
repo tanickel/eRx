@@ -1,0 +1,17 @@
+package $49$$_$new.Set_Final_Refill_and_Quantity_Values.Set_Quantity_Remaining {
+   /**
+ * 4.24
+ */
+rule Calculate_Quantity_Dispensed {
+      property ilog.rules.business_name = "Calculate Quantity Dispensed";
+      property ilog.rules.package_name = "1_new.Set Final Refill and Quantity Values.Set Quantity Remaining";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+      } then {
+         var$_$0.substitutedDrug.calculatedValues.quantityDispensed = var$_$0.substitutedDrug.calculatedValues.quantity;
+         erxTransaction.completionStatus = com.walgreens.pharmacy.rules.ResultType.COMPLETE;
+      }
+   }
+}
+

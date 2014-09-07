@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Calculate Total Number of Packages</name>
+  <uuid>44bc2636-4019-4338-944e-626438c01111</uuid>
+  <documentation><![CDATA[
+Validate later if we need to round.
+]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+set 'all drugs' to all drugs in the substitution drug lists  
+	where the status of each drug is ACTIVE;
+then
+    for each drug in 'all drugs' : 
+    	- set the total number of packages of this drug to the quantity prescribed of the prescription   
+    		/ the package size of this drug   ; 
+    	]]></definition>
+  <status>validated</status>
+</ilog.rules.studio.model.brl:ActionRule>

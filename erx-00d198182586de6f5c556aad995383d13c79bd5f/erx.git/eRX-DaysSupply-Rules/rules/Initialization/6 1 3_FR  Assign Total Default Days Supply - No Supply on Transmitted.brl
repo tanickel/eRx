@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>6 1 3_FR  Assign Total Default Days Supply - No Supply on Transmitted</name>
+  <uuid>2e67ba01-68a7-4da6-beff-107b679a81f6</uuid>
+  <documentation><![CDATA[FR # : 6.1.3
+Requirement Description : The system must use the default Day Supply per package if:
+• Unit of use product AND
+• Has a default day supply AND
+• Default SIG OR directions with inference of "as directed" is used
+]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[if
+    the default days of supply of the substituted drug is at least 1
+    and the translated dosage form of the substituted drug is one of { TABLET , CAPSULE }
+    and the package type of the substituted drug is UNIT OF USE
+    and ( the default sig of the substituted drug is not empty
+    	or 'the non specific indicator' is true )
+then
+    set 'use default days of supply' to true ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

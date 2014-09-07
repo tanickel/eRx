@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>4 11_FR Set Refills Remaining Qualifier PRN Equals State PRN</name>
+  <uuid>8765b613-2333-4e30-aff1-c444a40d90a1</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[	
+if
+	the refill qualifier of the prescription is "PRN"
+	and the total fills allowed of the state drug constraint of the substituted drug is "PRN" 
+	and the numeric value of the refills remaining of the calculated values of the substituted drug is 0
+then
+	set the refills remaining entered of the calculated values of the substituted drug to "PRN";
+
+	
+]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

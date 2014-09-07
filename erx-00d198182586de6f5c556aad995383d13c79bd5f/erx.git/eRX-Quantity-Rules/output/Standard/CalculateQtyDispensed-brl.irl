@@ -1,0 +1,15 @@
+package Standard {
+   rule CalculateQtyDispensed {
+      property ilog.rules.business_name = "CalculateQtyDispensed";
+      property ilog.rules.package_name = "Standard";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         substitued_drug: com.walgreens.pharmacy.rules.Drug() from var$_$0.substitutedDrug;
+      } then {
+         substitued_drug.calculatedValues.quantityDispensed = substitued_drug.calculatedValues.quantity;
+         erxTransaction.completionStatus = com.walgreens.pharmacy.rules.ResultType.COMPLETE;
+      }
+   }
+}
+

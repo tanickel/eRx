@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.base:RulePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.base="http://ilog.rules.studio/model/base.ecore">
+  <name>Patient Plan Selection</name>
+  <uuid>c544866e-6cf3-4bdd-ba13-3ed1dabfad58</uuid>
+</ilog.rules.studio.model.base:RulePackage>

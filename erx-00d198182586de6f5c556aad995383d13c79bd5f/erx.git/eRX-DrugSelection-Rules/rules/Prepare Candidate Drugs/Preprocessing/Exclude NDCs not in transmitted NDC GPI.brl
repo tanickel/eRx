@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Exclude NDCs not in transmitted NDC GPI</name>
+  <uuid>8e790482-5b80-4fc2-b622-c48c3a5323aa</uuid>
+  <documentation><![CDATA[3.1.10 find active generic NDC within transmitted NDC's GPI]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+   set 'a drug' to a drug in the candidate drugs where the type of this drug is GENERIC 
+   or ( the type of this drug is BRAND  and the dispensed as written of the prescription is not 1 ) ;
+if
+ the generic product identifier of 'a drug' is not the generic product identifier of the transmitted drug of the prescription
+then
+  remove 'a drug' from the candidate drugs ;]]></definition>
+  <status>validated</status>
+</ilog.rules.studio.model.brl:ActionRule>

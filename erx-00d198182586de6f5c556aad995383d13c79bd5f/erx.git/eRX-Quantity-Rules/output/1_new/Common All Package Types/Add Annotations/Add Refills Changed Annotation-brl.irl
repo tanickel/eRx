@@ -1,0 +1,19 @@
+package $49$$_$new.Common_All_Package_Types.Add_Annotations {
+   use annotation;
+   rule Add_Refills_Changed_Annotation {
+      property ilog.rules.business_name = "Add Refills Changed Annotation";
+      property ilog.rules.package_name = "1_new.Common All Package Types.Add Annotations";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         evaluate (date_and_time : (com.walgreens.pharmacy.rules.util.Utilities.dateToString(var$_$0.transactionDateTime)));
+         evaluate (total_fills_allowed : (com.walgreens.pharmacy.rules.util.Utilities.stringToInt(var$_$0.substitutedDrug.stateDrugClass.totalFillsAllowed)));
+         evaluate (total_fills_allowed.intValue() > var$_$0.prescription.numberOfRefillsPrescribed + 1);
+      } then {
+         annotation = ((((" " + date_and_time) + " Refills changed to ") + total_fills_allowed.intValue()) + " by the system. ");
+         ?context.updateContext();
+         var$_$0.addAnnotation(annotation);
+      }
+   }
+}
+

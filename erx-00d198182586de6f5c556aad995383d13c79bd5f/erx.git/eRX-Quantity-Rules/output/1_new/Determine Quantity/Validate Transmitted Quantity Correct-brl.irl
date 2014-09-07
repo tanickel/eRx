@@ -1,0 +1,20 @@
+package $49$$_$new.Determine_Quantity {
+   use sameSizeOrMultiplier;
+   /**
+ * 4.21
+ * 4.3
+ */
+rule Validate_Transmitted_Quantity_Correct {
+      property ilog.rules.business_name = "Validate Transmitted Quantity Correct";
+      property ilog.rules.package_name = "1_new.Determine Quantity";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         evaluate ((sameSizeOrMultiplier) == (true)
+         	|| var$_$0.prescription.quantityPrescribed > 3);
+      } then {
+         var$_$0.substitutedDrug.calculatedValues.quantity = var$_$0.prescription.quantityPrescribed;
+      }
+   }
+}
+

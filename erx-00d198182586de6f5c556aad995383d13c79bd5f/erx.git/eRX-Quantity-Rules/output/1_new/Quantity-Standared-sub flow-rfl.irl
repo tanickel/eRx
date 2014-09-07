@@ -1,0 +1,94 @@
+package $49$$_$new {
+  import com.walgreens.pharmacy.rules.ResultType;
+
+
+  flowtask Quantity$45$Standared$45$sub_flow {
+    property mainflowtask = false;
+    property ilog.rules.business_name = "Quantity-Standared-sub flow";
+    property ilog.rules.package_name = "1_new";
+    body {
+      Quantity$45$Standared$45$sub_flow#Initialization;
+      Quantity$45$Standared$45$sub_flow#Check_Manual_$45$_Validate_Quantity_Package_Size;
+      if (erxTransaction.completionStatus.equals(ResultType.MANUAL) || erxTransaction.substitutedDrug.calculatedValues.quantity == 0) {
+      }
+      else {
+        Quantity$45$Standared$45$sub_flow#Determine_Quantity;
+        Quantity$45$Standared$45$sub_flow#Check_Manual_$45$_Dispensing_Quantity;
+        if (erxTransaction.completionStatus.equals(ResultType.MANUAL) || erxTransaction.substitutedDrug.calculatedValues.quantity == 0
+        ) {
+        }
+        else {
+          Quantity$45$Standared$45$sub_flow#Add_Annotations;
+          Quantity$45$Standared$45$sub_flow#Set_Final_Quantity_Values;
+        }
+      }
+    }
+  };
+
+  ruletask Quantity$45$Standared$45$sub_flow#Check_Manual_$45$_Validate_Quantity_Package_Size {
+    property ilog.rules.business_name = "Quantity-Standared-sub flow>Check Manual - Validate Quantity Package Size";
+    property ilog.rules.package_name = "1_new";
+    algorithm = default;
+    ordering = dynamic;
+    body {
+      $49$$_$new.Go_Manual.Check_Manual_$45$_Validate_Quantity_Package_Size.*
+    }
+  };
+
+  ruletask Quantity$45$Standared$45$sub_flow#Check_Manual_$45$_Dispensing_Quantity {
+    property ilog.rules.business_name = "Quantity-Standared-sub flow>Check Manual - Dispensing Quantity";
+    property ilog.rules.package_name = "1_new";
+    algorithm = default;
+    ordering = dynamic;
+    body {
+      $49$$_$new.Go_Manual.Check_Manual_$45$_Dispensing_Quantity.*
+    }
+  };
+
+  ruletask Quantity$45$Standared$45$sub_flow#Determine_Quantity {
+    property ilog.rules.business_name = "Quantity-Standared-sub flow>Determine Quantity";
+    property ilog.rules.package_name = "1_new";
+    algorithm = default;
+    ordering = dynamic;
+    body {
+      $49$$_$new.Determine_Quantity.*
+    }
+  };
+
+  ruletask Quantity$45$Standared$45$sub_flow#Set_Final_Quantity_Values {
+    property ilog.rules.business_name = "Quantity-Standared-sub flow>Set Final Quantity Values";
+    property ilog.rules.package_name = "1_new";
+    algorithm = default;
+    ordering = dynamic;
+    body {
+      $49$$_$new.Set_Final_Refill_and_Quantity_Values.*,
+      $49$$_$new.Set_Final_Refill_and_Quantity_Values.Set_Quantity_Remaining.*,
+      $49$$_$new.Set_Final_Refill_and_Quantity_Values.Set_Refills_Remaining.*,
+      $49$$_$new.Set_Final_Refill_and_Quantity_Values.Set_Refills_Remaining_Entered.*
+
+    }
+  };
+
+  ruletask Quantity$45$Standared$45$sub_flow#Initialization {
+    property ilog.rules.business_name = "Quantity-Standared-sub flow>Initialization";
+    property ilog.rules.package_name = "1_new";
+    algorithm = default;
+    ordering = dynamic;
+    body {
+      $49$$_$new.Common_All_Package_Types.Initialization.*,
+      $49$$_$new.Common_All_Package_Types.Initialization.Initialize_Values.*
+
+    }
+  };
+
+  ruletask Quantity$45$Standared$45$sub_flow#Add_Annotations {
+    property ilog.rules.business_name = "Quantity-Standared-sub flow>Add Annotations";
+    property ilog.rules.package_name = "1_new";
+    algorithm = default;
+    ordering = dynamic;
+    body {
+      $49$$_$new.Common_All_Package_Types.Add_Annotations.*
+    }
+  };
+
+}

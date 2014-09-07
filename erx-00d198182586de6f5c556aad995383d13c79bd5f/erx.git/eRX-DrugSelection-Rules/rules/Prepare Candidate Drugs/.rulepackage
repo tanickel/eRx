@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.base:RulePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.base="http://ilog.rules.studio/model/base.ecore">
+  <name>Prepare Candidate Drugs</name>
+  <uuid>ff0f4ade-a22c-442e-9f4d-9e30de79ca06</uuid>
+</ilog.rules.studio.model.base:RulePackage>

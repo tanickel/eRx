@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.base:VariableSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.base="http://ilog.rules.studio/model/base.ecore">
+  <name>Product Globals-var</name>
+  <uuid>33cb716b-4b88-4757-97a7-cc28a07d7e86</uuid>
+  <variables name="preferredGenericProduct" type="boolean" initialValue="false" verbalization="preferred generic product"/>
+</ilog.rules.studio.model.base:VariableSet>

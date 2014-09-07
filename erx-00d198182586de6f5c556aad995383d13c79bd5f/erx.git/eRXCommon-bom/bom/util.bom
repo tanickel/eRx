@@ -1,0 +1,16 @@
+
+property uuid "618792c1-f683-432f-8b29-5d5eaadcefb8"
+
+public class Util
+{
+    public static void assertInterimFact(string fact);
+    public static boolean checkGpi12(string gpi1, string gpi2);
+    public static string dateToString(java.util.Date Date);
+    public static void insert(object obj);
+    public static string intToString(java.lang.Integer QtyRemaining);
+    public static boolean isMultiple(int numerator, int denominator);
+    public static void retract(object object);
+    public static double truncateToThree(double value);
+    public static boolean within24hours(java.util.Date date1, java.util.Date date2);
+}
+

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.ruleflow:RuleFlow xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.ruleflow="http://ilog.rules.studio/model/ruleflow.ecore">
+  <name>Third Party-Main</name>
+  <uuid>f5209d92-a410-4358-adad-a90074f58628</uuid>
+  <locale>en_US</locale>
+  <categories>any</categories>
+  <rfModel>
+<Ruleflow xmlns="http://schemas.ilog.com/Rules/7.0/Ruleflow">
+  <Body>
+    <TaskList>
+      <StartTask Identifier="task_0">
+        <Actions Language="irl"><![CDATA[functions.initialize();]]></Actions>
+      </StartTask>
+      <RuleTask ExecutionMode="RetePlus" ExitCriteria="None" Identifier="Paycode Selection" Ordering="Default">
+        <RuleList>
+          <Package Name="Paycode Selection"/>
+        </RuleList>
+      </RuleTask>
+      <RuleTask ExecutionMode="RetePlus" ExitCriteria="None" Identifier="Patient Plan Selection" Ordering="Default">
+        <RuleList>
+          <Package Name="Patient Plan Selection"/>
+        </RuleList>
+      </RuleTask>
+      <RuleTask ExecutionMode="RetePlus" ExitCriteria="None" Identifier="Check Exclusion Lists" Ordering="Default">
+        <RuleList>
+          <Package Name="Check Exclusion Lists"/>
+        </RuleList>
+      </RuleTask>
+      <RuleTask ExecutionMode="RetePlus" ExitCriteria="None" Identifier="Postprocessing" Ordering="Default">
+        <RuleList>
+          <Package Name="Postprocessing"/>
+        </RuleList>
+      </RuleTask>
+      <StopTask Identifier="task_1"/>
+    </TaskList>
+    <NodeList>
+      <TaskNode Identifier="node_0" Task="task_0"/>
+      <TaskNode Identifier="node_1" Task="task_1"/>
+      <TaskNode Identifier="node_3" Task="Paycode Selection"/>
+      <TaskNode Identifier="node_2" Task="Patient Plan Selection"/>
+      <TaskNode Identifier="node_5" Task="Check Exclusion Lists"/>
+      <TaskNode Identifier="node_7" Task="Postprocessing"/>
+    </NodeList>
+    <TransitionList>
+      <Transition Identifier="transition_1" Source="node_3" Target="node_7"/>
+      <Transition Identifier="transition_2" Source="node_5" Target="node_2"/>
+      <Transition Identifier="transition_3" Source="node_0" Target="node_5"/>
+      <Transition Identifier="transition_6" Source="node_7" Target="node_1"/>
+      <Transition Identifier="transition_0" Source="node_2" Target="node_3"/>
+    </TransitionList>
+  </Body>
+  <Resources>
+    <ResourceSet Locale="en_US">
+      <Data Name="node_3#height">53.402344</Data>
+      <Data Name="node_0#height">21.0</Data>
+      <Data Name="node_2#height">68.103516</Data>
+      <Data Name="node_3#width">102.0</Data>
+      <Data Name="node_3#y">333.9082</Data>
+      <Data Name="node_2#label">Patient Plan Selection</Data>
+      <Data Name="node_3#name">node_1</Data>
+      <Data Name="node_7#height">40.0</Data>
+      <Data Name="node_1#name">node_2</Data>
+      <Data Name="node_3#x">62.021484</Data>
+      <Data Name="node_1#width">15.999998</Data>
+      <Data Name="node_0#width">21.0</Data>
+      <Data Name="node_0#name">node_0</Data>
+      <Data Name="node_5#height">68.103516</Data>
+      <Data Name="node_2#name">node_1</Data>
+      <Data Name="node_7#x">62.021484</Data>
+      <Data Name="node_5#name">node_5</Data>
+      <Data Name="node_2#width">102.0</Data>
+      <Data Name="node_5#width">102.0</Data>
+      <Data Name="node_7#name">node_7</Data>
+      <Data Name="node_0#y">10.5</Data>
+      <Data Name="node_0#x">62.021484</Data>
+      <Data Name="node_3#label">Paycode Selection</Data>
+      <Data Name="node_1#x">62.021484</Data>
+      <Data Name="node_1#y">508.60938</Data>
+      <Data Name="node_1#height">15.999992</Data>
+      <Data Name="node_2#x">62.021484</Data>
+      <Data Name="node_7#y">430.60938</Data>
+      <Data Name="node_2#y">223.15527</Data>
+      <Data Name="node_5#y">105.05176</Data>
+      <Data Name="node_5#x">62.021484</Data>
+      <Data Name="node_7#width">124.04297</Data>
+    </ResourceSet>
+  </Resources>
+  <Properties>
+    <imports><![CDATA[import java.util.Iterator;]]>&#13;<![CDATA[
+import com.walgreens.pharmacy.rules.Patient;]]>&#13;<![CDATA[
+import com.walgreens.pharmacy.rules.ErxTransaction;]]>&#13;<![CDATA[
+import com.walgreens.pharmacy.rules.ResultType;]]>&#13;<![CDATA[
+import com.walgreens.pharmacy.rules.Plan;]]>&#13;<![CDATA[
+import com.walgreens.pharmacy.rules.Fill;]]></imports>
+  </Properties>
+</Ruleflow></rfModel>
+  <mainFlowTask>true</mainFlowTask>
+</ilog.rules.studio.model.ruleflow:RuleFlow>

@@ -1,0 +1,9 @@
+# Vocabulary Properties
+Calculation.totalNumberOfPackages(com.walgreens.erx.Drug,com.walgreens.erx.Prescription)#phrase.navigation = calculation.totalNumberOfPackages({0}, {1})
+uuid = 551724a9-d9da-4555-92a9-4468efcb2144
+
+# Util
+Util#concept.label = util
+Util.checkGpi12(java.lang.String,java.lang.String)#phrase.navigation = {0} has same Gpi12 as {1}
+Util.retract(java.lang.Object)#phrase.action = remove {0} from consideration
+Util.within24hours(java.util.Date,java.util.Date)#phrase.navigation = within 24 hours({0}, {1})

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>7-0_FR Select Primary Plan- Not in Override List</name>
+  <uuid>b777a9f2-17b5-49c0-a6cf-7990a776fd52</uuid>
+  <documentation><![CDATA[]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'primary plan' to a plan
+            where the payment mode of this plan is PRIMARY;
+    set 'fill' to a fill from the fill of the prescription ;
+
+if
+	'primary plan' is plan override flag is false 
+then
+    set the payment method of fill to THIRD_PARTY_PLAN ;
+    set the bill to plan of fill to 'primary plan' ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

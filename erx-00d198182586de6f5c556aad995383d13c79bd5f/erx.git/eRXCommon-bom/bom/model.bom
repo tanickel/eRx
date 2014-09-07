@@ -1,0 +1,553 @@
+
+property loadGetterSetterAsProperties "true"
+property origin "xom:/eRXCommon-bom//eRX-Model"
+property uuid "e62a2b59-a7d0-419f-928f-190a0c348136"
+package com.walgreens.pharmacy.rules;
+
+
+public class CalculatedValues
+{
+    public int dailyDose;
+    public int daysOfSupply;
+    public java.util.Date expirationDate;
+    public int maxDaysToFill
+                property update "true";
+    public java.lang.Integer numberOfFillsPrescribed;
+    public double quantity;
+    public double quantityDispensed;
+    public string quantityRemaining;
+    public java.util.Date refillBeforeDate
+                property update "true";
+    public string refillsRemaining;
+    public string refillsRemainingEntered;
+    public int totalDefaultDaysOfSupply;
+    public CalculatedValues();
+}
+
+public final class CategoryType
+        extends java.lang.Enum
+{
+    domain {static Controlling, static StorePreferred, static Warehouse}
+    public static final readonly com.walgreens.pharmacy.rules.CategoryType Controlling;
+    public static final readonly com.walgreens.pharmacy.rules.CategoryType StorePreferred;
+    public static final readonly com.walgreens.pharmacy.rules.CategoryType Warehouse;
+    public static com.walgreens.pharmacy.rules.CategoryType fromValue(string arg);
+    public string value();
+    public static com.walgreens.pharmacy.rules.CategoryType valueOf(string arg);
+    public static com.walgreens.pharmacy.rules.CategoryType[] values();
+}
+
+public class Drug
+{
+    public com.walgreens.pharmacy.rules.CalculatedValues calculatedValues;
+    public java.util.List categories domain 0,* class com.walgreens.pharmacy.rules.ProductCategory;
+    public boolean compoundDrug;
+    public string dataSource;
+    public java.lang.Integer defaultDaysOfSupply;
+    public string defaultSig;
+    public java.lang.Boolean dispensingRestriction;
+    public string dosageFormCode;
+    public java.lang.Integer dosesPerPackage;
+    public com.walgreens.pharmacy.rules.DrugClassType drugClass;
+    public string drugId;
+    public boolean excluded;
+    public java.lang.Integer expirationDays;
+    public com.walgreens.pharmacy.rules.DrugConstraint federalDrugConstraint;
+    public string genericProductIdentifier;
+    public readonly boolean inWarehouse;
+    public writeonly java.lang.Boolean limitedDistributionCode;
+    public writeonly java.lang.Boolean linked;
+    public java.lang.Boolean maintenanceDrug;
+    public double minimumDispensingQuantity;
+    public string multiHitIndicator;
+    public string name;
+    public string nationalDrugCode;
+    public readonly boolean notInWarehouse;
+    public boolean onTherapeuticInclusionList;
+    public string orangeBookRating;
+    public boolean overridden
+                property update "true";
+    public int packageQuantity;
+    public double packageSize;
+    public com.walgreens.pharmacy.rules.PackageType packageType;
+    public java.util.List preferredGenericProduct domain 0,* class com.walgreens.pharmacy.rules.PreferredGenericProduct;
+    public string quantityUOM;
+    public string routeOfAdministration;
+    public com.walgreens.pharmacy.rules.DrugConstraint stateDrugConstraint;
+    public com.walgreens.pharmacy.rules.StatusType status;
+    public readonly boolean storePreferred;
+    public string storePreferredDrugId;
+    public com.walgreens.pharmacy.rules.SubstitutionIndicator substitutionIndicator;
+    public int therapeuticClass;
+    public java.lang.Double totalNumberOfPackages;
+    public com.walgreens.pharmacy.rules.TranslatedDosageFormType translatedDosageForm;
+    public boolean transmittedQuantityEqualsPackageSize;
+    public boolean transmittedQuantityIsMultipleOfPackageSize;
+    public com.walgreens.pharmacy.rules.DrugType type;
+    public java.lang.Boolean validQuantityQualifier;
+    public writeonly java.lang.Boolean validTherapeuticClass;
+    public double walgreenAcquisitionCost;
+    public Drug();
+    public void addProductCategory(com.walgreens.pharmacy.rules.ProductCategory arg);
+    public java.lang.Boolean isDispensingRestriction();
+    public java.lang.Boolean isLimitedDistributionCode();
+    public java.lang.Boolean isLinked();
+    public java.lang.Boolean isMaintenanceDrug();
+    public boolean isSameNDCCore9(string arg);
+    public java.lang.Boolean isValidTherapeuticClass();
+    public string toString();
+    public boolean v_IsNotSameCore9NDC(string ndc);
+    public int v_maxfillDays();
+    public boolean v_notExcluded();
+}
+
+public final class DrugClassType
+        extends java.lang.Enum
+{
+    domain {static C2, static C3, static C4, static C5, static UNSPECIFIED, static OT, static RX}
+    public static final readonly com.walgreens.pharmacy.rules.DrugClassType C2;
+    public static final readonly com.walgreens.pharmacy.rules.DrugClassType C3;
+    public static final readonly com.walgreens.pharmacy.rules.DrugClassType C4;
+    public static final readonly com.walgreens.pharmacy.rules.DrugClassType C5;
+    public static final readonly com.walgreens.pharmacy.rules.DrugClassType OT;
+    public static final readonly com.walgreens.pharmacy.rules.DrugClassType RX;
+    public static final readonly com.walgreens.pharmacy.rules.DrugClassType UNSPECIFIED;
+    public static com.walgreens.pharmacy.rules.DrugClassType fromValue(string arg);
+    public string value();
+    public static com.walgreens.pharmacy.rules.DrugClassType valueOf(string arg);
+    public static com.walgreens.pharmacy.rules.DrugClassType[] values();
+}
+
+public class DrugConstraint
+{
+    public com.walgreens.pharmacy.rules.DrugClassType drugClass;
+    public int maxDaysToFill;
+    public string totalFillsAllowed;
+    public DrugConstraint();
+}
+
+public final class DrugType
+        extends java.lang.Enum
+{
+    domain {static BRAND, static GENERIC, static UNSPECIFIED}
+    public static final readonly com.walgreens.pharmacy.rules.DrugType BRAND;
+    public static final readonly com.walgreens.pharmacy.rules.DrugType GENERIC;
+    public static final readonly com.walgreens.pharmacy.rules.DrugType UNSPECIFIED;
+    public static com.walgreens.pharmacy.rules.DrugType fromValue(string arg);
+    public string value();
+    public static com.walgreens.pharmacy.rules.DrugType valueOf(string arg);
+    public static com.walgreens.pharmacy.rules.DrugType[] values();
+}
+
+public class ErxTransaction
+        property "translation.irl" "com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue(\"erxTransaction\")"
+{
+    public java.util.List annotations domain 0,* class string;
+    public java.util.ArrayList candidateDrugs domain 0,* class com.walgreens.pharmacy.rules.Drug;
+    public com.walgreens.pharmacy.rules.ResultType completionStatus;
+    public java.util.Collection controllingDrugs domain 0,* class com.walgreens.pharmacy.rules.Drug;
+    public boolean enableAutomation;
+    public boolean enableOrangeBookCheck
+                property update "true";
+    public string genericFor;
+    public com.walgreens.pharmacy.rules.Patient patient;
+    public com.walgreens.pharmacy.rules.Prescription prescription;
+    public java.util.Collection storePreferredDrugs domain 0,* class com.walgreens.pharmacy.rules.Drug;
+    public com.walgreens.pharmacy.rules.Drug substitutedDrug;
+    public java.util.ArrayList substitutionDrugList domain 0,* class com.walgreens.pharmacy.rules.Drug;
+    public java.util.Date transactionDateTime;
+    public java.util.Collection warehouseDrugs domain 0,* class com.walgreens.pharmacy.rules.Drug;
+    public ErxTransaction();
+    public void addAnnotation(string arg);
+    public void addCandidateDrug(com.walgreens.pharmacy.rules.Drug arg);
+    public void addControllingDrug(com.walgreens.pharmacy.rules.Drug arg);
+    public void addStorePreferredDrug(com.walgreens.pharmacy.rules.Drug arg);
+    public void addWarehouseDrug(com.walgreens.pharmacy.rules.Drug arg);
+    public boolean drugsHaveSamePackageType();
+    public com.walgreens.pharmacy.rules.Drug getControllingDrugById(string arg);
+    public com.walgreens.pharmacy.rules.Drug getStorePreferredDrugById(string arg);
+    public com.walgreens.pharmacy.rules.Drug getWarehouseDrugById(string arg);
+    public boolean populateTransmittedDrug();
+    public void removeCandidateDrug(com.walgreens.pharmacy.rules.Drug arg);
+    public static java.util.Collection retainLargestPackageSize(java.util.Collection arg domain 0,* class com.walgreens.pharmacy.rules.Drug) domain 0,* class com.walgreens.pharmacy.rules.Drug;
+    public static java.util.Collection retainLargestPackageSizeLessThan(java.util.Collection arg1 domain 0,* class com.walgreens.pharmacy.rules.Drug, 
+        int arg2) domain 0,* class com.walgreens.pharmacy.rules.Drug;
+    public static java.util.Collection retainLowestAcquitionCost(java.util.Collection arg domain 0,* class com.walgreens.pharmacy.rules.Drug) domain 0,* class com.walgreens.pharmacy.rules.Drug;
+    public static com.walgreens.pharmacy.rules.Drug retainNewestDrug(java.util.Collection arg domain 0,* class com.walgreens.pharmacy.rules.Drug);
+    public static com.walgreens.pharmacy.rules.Drug retainOldestDrug(java.util.Collection arg domain 0,* class com.walgreens.pharmacy.rules.Drug);
+    public static java.util.Collection retainSmallestPackageSize(java.util.Collection arg domain 0,* class com.walgreens.pharmacy.rules.Drug) domain 0,* class com.walgreens.pharmacy.rules.Drug;
+    public static java.util.Collection retainSmallestPackageSizeLessThan(java.util.Collection arg1 domain 0,* class com.walgreens.pharmacy.rules.Drug, 
+        int arg2) domain 0,* class com.walgreens.pharmacy.rules.Drug;
+    public void setManualWhenCandidateDrugsIsEmpty();
+}
+
+public class Fill
+{
+    public com.walgreens.pharmacy.rules.Plan billToPlan
+                property update "true";
+    public com.walgreens.pharmacy.rules.Plan cobPlan
+                property update "true";
+    public string payCode;
+    public com.walgreens.pharmacy.rules.PaymentMethodType paymentMethod;
+    public java.lang.Boolean unlimited;
+    public Fill();
+}
+
+public final class PackageType
+        extends java.lang.Enum
+{
+    domain {static STANDARD, static UNIT_OF_USE, static UNIT_DOSE, static UNSPECIFIED}
+    public static final readonly com.walgreens.pharmacy.rules.PackageType STANDARD;
+    public static final readonly com.walgreens.pharmacy.rules.PackageType UNIT_DOSE;
+    public static final readonly com.walgreens.pharmacy.rules.PackageType UNIT_OF_USE;
+    public static final readonly com.walgreens.pharmacy.rules.PackageType UNSPECIFIED;
+    public static com.walgreens.pharmacy.rules.PackageType fromValue(string arg);
+    public string value();
+    public static com.walgreens.pharmacy.rules.PackageType valueOf(string arg);
+    public static com.walgreens.pharmacy.rules.PackageType[] values();
+}
+
+public class Patient
+{
+    public java.util.Date dateOfBirth;
+    public java.util.List listOfPlans domain 0,* class com.walgreens.pharmacy.rules.Plan;
+    public Patient();
+}
+
+public final class PaymentMethodType
+        extends java.lang.Enum
+{
+    domain {static CASH, static OTHER, static UNSPECIFIED, static THIRD_PARTY_PLAN}
+    public static final readonly com.walgreens.pharmacy.rules.PaymentMethodType CASH;
+    public static final readonly com.walgreens.pharmacy.rules.PaymentMethodType OTHER;
+    public static final readonly com.walgreens.pharmacy.rules.PaymentMethodType THIRD_PARTY_PLAN;
+    public static final readonly com.walgreens.pharmacy.rules.PaymentMethodType UNSPECIFIED;
+    public static com.walgreens.pharmacy.rules.PaymentMethodType fromValue(string arg);
+    public string value();
+    public static com.walgreens.pharmacy.rules.PaymentMethodType valueOf(string arg);
+    public static com.walgreens.pharmacy.rules.PaymentMethodType[] values();
+}
+
+public final class PaymentModeType
+        extends java.lang.Enum
+{
+    domain {static COB, static COUPON, static DISCOUNT_CARD, static PRIMARY, static UNSPECIFIED}
+    public static final readonly com.walgreens.pharmacy.rules.PaymentModeType COB;
+    public static final readonly com.walgreens.pharmacy.rules.PaymentModeType COUPON;
+    public static final readonly com.walgreens.pharmacy.rules.PaymentModeType DISCOUNT_CARD;
+    public static final readonly com.walgreens.pharmacy.rules.PaymentModeType PRIMARY;
+    public static final readonly com.walgreens.pharmacy.rules.PaymentModeType UNSPECIFIED;
+    public static com.walgreens.pharmacy.rules.PaymentModeType fromValue(string arg);
+    public string value();
+    public static com.walgreens.pharmacy.rules.PaymentModeType valueOf(string arg);
+    public static com.walgreens.pharmacy.rules.PaymentModeType[] values();
+}
+
+public class Plan
+{
+    public java.util.Date creationDateTime;
+    public string drugId;
+    public boolean excluded;
+    public string genericProductIdentifier;
+    public string groupNumber;
+    public string id;
+    public com.walgreens.pharmacy.rules.PaymentModeType paymentMode;
+    public string pcn;
+    public java.lang.Boolean planOverrideFlag;
+    public string subType;
+    public com.walgreens.pharmacy.rules.PlanType type;
+    public Plan();
+    public java.lang.Boolean isPlanOverrideFlag();
+}
+
+public final class PlanType
+        extends java.lang.Enum
+{
+    domain {static COMMERCIAL, static COUPON, static MAJOR_MEDICAL, static MEDICAID, static MEDICARE, static UNSPECIFIED, static WORKMANS_COMPENSATION}
+    public static final readonly com.walgreens.pharmacy.rules.PlanType COMMERCIAL;
+    public static final readonly com.walgreens.pharmacy.rules.PlanType COUPON;
+    public static final readonly com.walgreens.pharmacy.rules.PlanType MAJOR_MEDICAL;
+    public static final readonly com.walgreens.pharmacy.rules.PlanType MEDICAID;
+    public static final readonly com.walgreens.pharmacy.rules.PlanType MEDICARE;
+    public static final readonly com.walgreens.pharmacy.rules.PlanType UNSPECIFIED;
+    public static final readonly com.walgreens.pharmacy.rules.PlanType WORKMANS_COMPENSATION;
+    public static com.walgreens.pharmacy.rules.PlanType fromValue(string arg);
+    public string value();
+    public static com.walgreens.pharmacy.rules.PlanType valueOf(string arg);
+    public static com.walgreens.pharmacy.rules.PlanType[] values();
+}
+
+public class PreferredGenericProduct
+{
+    public boolean controlling;
+    public string drugId;
+    public PreferredGenericProduct();
+}
+
+public class Prescription
+{
+    public int dispensedAsWritten;
+    public writeonly java.lang.Boolean doNotFill;
+    public com.walgreens.pharmacy.rules.Fill fill;
+    public string ncltCode;
+    public string notes;
+    public int numberOfRefillsPrescribed;
+    public java.util.Date originalDate;
+    public double quantityPrescribed;
+    public java.util.Date refillBeforeDate;
+    public string refillQualifier;
+    public com.walgreens.pharmacy.rules.Sig sig;
+    public com.walgreens.pharmacy.rules.Store store;
+    public double transformedQuantityPrescribed;
+    public com.walgreens.pharmacy.rules.Drug transmittedDrug;
+    public string transmittedNdc;
+    public writeonly java.lang.Boolean useAsDirected;
+    public Prescription();
+    public java.lang.Boolean isDoNotFill();
+    public java.lang.Boolean isUseAsDirected();
+}
+
+public class ProductCategory
+{
+    public com.walgreens.pharmacy.rules.CategoryType category;
+    public java.util.Date creationDate;
+    public string drugId;
+    public java.util.Date updateDate;
+    public ProductCategory();
+}
+
+public final class ResultType
+        extends java.lang.Enum
+{
+    domain {static COMPLETE, static MANUAL, static IN_PROGRESS}
+    public static final readonly com.walgreens.pharmacy.rules.ResultType COMPLETE;
+    public static final readonly com.walgreens.pharmacy.rules.ResultType IN_PROGRESS;
+    public static final readonly com.walgreens.pharmacy.rules.ResultType MANUAL;
+    public static com.walgreens.pharmacy.rules.ResultType fromValue(string arg);
+    public string value();
+    public static com.walgreens.pharmacy.rules.ResultType valueOf(string arg);
+    public static com.walgreens.pharmacy.rules.ResultType[] values();
+}
+
+public class Sig
+{
+    public string directions;
+    public int dose;
+    public int duration;
+    public int frequency;
+    public java.util.List listOfSubsigs domain 0,* class com.walgreens.pharmacy.rules.Sig;
+    public int timePeriod;
+    public Sig();
+    public void removeSig(com.walgreens.pharmacy.rules.Sig arg);
+    public static boolean searchSubSigs(string arg1, 
+        java.util.ArrayList arg2 domain 0,*);
+}
+
+public final class StateType
+        extends java.lang.Enum
+{
+    domain 
+    {
+        static AK,
+        static AL,
+        static AR,
+        static AZ,
+        static CA,
+        static CO,
+        static CT,
+        static DC,
+        static DE,
+        static FL,
+        static GA,
+        static GU,
+        static HI,
+        static IA,
+        static ID,
+        static IL,
+        static IN,
+        static KS,
+        static KY,
+        static LA,
+        static MA,
+        static MD,
+        static ME,
+        static MI,
+        static MN,
+        static MO,
+        static MS,
+        static MT,
+        static NC,
+        static ND,
+        static NE,
+        static NH,
+        static NJ,
+        static NM,
+        static NV,
+        static NY,
+        static OH,
+        static OK,
+        static OR,
+        static PA,
+        static PR,
+        static RI,
+        static SC,
+        static SD,
+        static TN,
+        static TX,
+        static UT,
+        static VA,
+        static VI,
+        static VT,
+        static WA,
+        static WI,
+        static WV,
+        static WY,
+        static UNSPECIFIED
+    }
+    public static final readonly com.walgreens.pharmacy.rules.StateType AK;
+    public static final readonly com.walgreens.pharmacy.rules.StateType AL;
+    public static final readonly com.walgreens.pharmacy.rules.StateType AR;
+    public static final readonly com.walgreens.pharmacy.rules.StateType AZ;
+    public static final readonly com.walgreens.pharmacy.rules.StateType CA;
+    public static final readonly com.walgreens.pharmacy.rules.StateType CO;
+    public static final readonly com.walgreens.pharmacy.rules.StateType CT;
+    public static final readonly com.walgreens.pharmacy.rules.StateType DC;
+    public static final readonly com.walgreens.pharmacy.rules.StateType DE;
+    public static final readonly com.walgreens.pharmacy.rules.StateType FL;
+    public static final readonly com.walgreens.pharmacy.rules.StateType GA;
+    public static final readonly com.walgreens.pharmacy.rules.StateType GU;
+    public static final readonly com.walgreens.pharmacy.rules.StateType HI;
+    public static final readonly com.walgreens.pharmacy.rules.StateType IA;
+    public static final readonly com.walgreens.pharmacy.rules.StateType ID;
+    public static final readonly com.walgreens.pharmacy.rules.StateType IL;
+    public static final readonly com.walgreens.pharmacy.rules.StateType IN;
+    public static final readonly com.walgreens.pharmacy.rules.StateType KS;
+    public static final readonly com.walgreens.pharmacy.rules.StateType KY;
+    public static final readonly com.walgreens.pharmacy.rules.StateType LA;
+    public static final readonly com.walgreens.pharmacy.rules.StateType MA;
+    public static final readonly com.walgreens.pharmacy.rules.StateType MD;
+    public static final readonly com.walgreens.pharmacy.rules.StateType ME;
+    public static final readonly com.walgreens.pharmacy.rules.StateType MI;
+    public static final readonly com.walgreens.pharmacy.rules.StateType MN;
+    public static final readonly com.walgreens.pharmacy.rules.StateType MO;
+    public static final readonly com.walgreens.pharmacy.rules.StateType MS;
+    public static final readonly com.walgreens.pharmacy.rules.StateType MT;
+    public static final readonly com.walgreens.pharmacy.rules.StateType NC;
+    public static final readonly com.walgreens.pharmacy.rules.StateType ND;
+    public static final readonly com.walgreens.pharmacy.rules.StateType NE;
+    public static final readonly com.walgreens.pharmacy.rules.StateType NH;
+    public static final readonly com.walgreens.pharmacy.rules.StateType NJ;
+    public static final readonly com.walgreens.pharmacy.rules.StateType NM;
+    public static final readonly com.walgreens.pharmacy.rules.StateType NV;
+    public static final readonly com.walgreens.pharmacy.rules.StateType NY;
+    public static final readonly com.walgreens.pharmacy.rules.StateType OH;
+    public static final readonly com.walgreens.pharmacy.rules.StateType OK;
+    public static final readonly com.walgreens.pharmacy.rules.StateType OR;
+    public static final readonly com.walgreens.pharmacy.rules.StateType PA;
+    public static final readonly com.walgreens.pharmacy.rules.StateType PR;
+    public static final readonly com.walgreens.pharmacy.rules.StateType RI;
+    public static final readonly com.walgreens.pharmacy.rules.StateType SC;
+    public static final readonly com.walgreens.pharmacy.rules.StateType SD;
+    public static final readonly com.walgreens.pharmacy.rules.StateType TN;
+    public static final readonly com.walgreens.pharmacy.rules.StateType TX;
+    public static final readonly com.walgreens.pharmacy.rules.StateType UNSPECIFIED;
+    public static final readonly com.walgreens.pharmacy.rules.StateType UT;
+    public static final readonly com.walgreens.pharmacy.rules.StateType VA;
+    public static final readonly com.walgreens.pharmacy.rules.StateType VI;
+    public static final readonly com.walgreens.pharmacy.rules.StateType VT;
+    public static final readonly com.walgreens.pharmacy.rules.StateType WA;
+    public static final readonly com.walgreens.pharmacy.rules.StateType WI;
+    public static final readonly com.walgreens.pharmacy.rules.StateType WV;
+    public static final readonly com.walgreens.pharmacy.rules.StateType WY;
+    public static com.walgreens.pharmacy.rules.StateType fromValue(string arg);
+    public string value();
+    public static com.walgreens.pharmacy.rules.StateType valueOf(string arg);
+    public static com.walgreens.pharmacy.rules.StateType[] values();
+}
+
+public final class StatusType
+        extends java.lang.Enum
+{
+    domain {static ACTIVE, static INACTIVE}
+    public static final readonly com.walgreens.pharmacy.rules.StatusType ACTIVE;
+    public static final readonly com.walgreens.pharmacy.rules.StatusType INACTIVE;
+    public static com.walgreens.pharmacy.rules.StatusType fromValue(string arg);
+    public string value();
+    public static com.walgreens.pharmacy.rules.StatusType valueOf(string arg);
+    public static com.walgreens.pharmacy.rules.StatusType[] values();
+}
+
+public class Store
+{
+    public writeonly java.lang.Boolean inOrangeBookState;
+    public string nabpNumber;
+    public com.walgreens.pharmacy.rules.StateType state;
+    public Store();
+    public java.lang.Boolean isInOrangeBookState();
+}
+
+public final class SubstitutionIndicator
+        extends java.lang.Enum
+{
+    domain {static ELIGIBLE, static INELIGBLE}
+    public static final readonly com.walgreens.pharmacy.rules.SubstitutionIndicator ELIGIBLE;
+    public static final readonly com.walgreens.pharmacy.rules.SubstitutionIndicator INELIGBLE;
+    public static com.walgreens.pharmacy.rules.SubstitutionIndicator fromValue(string arg);
+    public string value();
+    public static com.walgreens.pharmacy.rules.SubstitutionIndicator valueOf(string arg);
+    public static com.walgreens.pharmacy.rules.SubstitutionIndicator[] values();
+}
+
+public final class TranslatedDosageFormType
+        extends java.lang.Enum
+{
+    domain {static CAPSULE, static INHALER, static LIQUID, static OTHER, static RECON, static TABLET, static TOPICAL}
+    public static final readonly com.walgreens.pharmacy.rules.TranslatedDosageFormType CAPSULE;
+    public static final readonly com.walgreens.pharmacy.rules.TranslatedDosageFormType INHALER;
+    public static final readonly com.walgreens.pharmacy.rules.TranslatedDosageFormType LIQUID;
+    public static final readonly com.walgreens.pharmacy.rules.TranslatedDosageFormType OTHER;
+    public static final readonly com.walgreens.pharmacy.rules.TranslatedDosageFormType RECON;
+    public static final readonly com.walgreens.pharmacy.rules.TranslatedDosageFormType TABLET;
+    public static final readonly com.walgreens.pharmacy.rules.TranslatedDosageFormType TOPICAL;
+    public static com.walgreens.pharmacy.rules.TranslatedDosageFormType fromValue(string arg);
+    public string value();
+    public static com.walgreens.pharmacy.rules.TranslatedDosageFormType valueOf(string arg);
+    public static com.walgreens.pharmacy.rules.TranslatedDosageFormType[] values();
+}
+
+package com.walgreens.pharmacy.rules.util;
+
+
+public class DateTimeXmlAdapter
+        extends javax.xml.bind.annotation.adapters.XmlAdapter
+{
+    public DateTimeXmlAdapter();
+    public string marshal(java.util.Date arg);
+    public java.util.Date unmarshal(string arg);
+}
+
+public class DateXmlAdapter
+        extends javax.xml.bind.annotation.adapters.XmlAdapter
+{
+    public DateXmlAdapter();
+    public string marshal(java.util.Date arg);
+    public java.util.Date unmarshal(string arg);
+}
+
+public class Utilities
+{
+    public Utilities();
+    public static int absolute(java.lang.Integer arg);
+    public int absoulteValue(int arg);
+    public static java.util.Date addDays(java.util.Date arg1, int arg2);
+    public static java.util.Date addYers(java.util.Date arg1, int arg2);
+    public static boolean checkGpi12(string arg1, string arg2);
+    public static string dateToString(java.util.Date arg);
+    public static string intToString(java.lang.Integer arg);
+    public static boolean isMultiple(double arg1, double arg2);
+    public static java.lang.Integer stringToInt(string arg);
+    public static java.util.Date subtractDays(java.util.Date arg1, int arg2);
+    public boolean validateWholeNumber(double arg);
+    public static boolean within24hours(java.util.Date arg1, java.util.Date arg2);
+}
+

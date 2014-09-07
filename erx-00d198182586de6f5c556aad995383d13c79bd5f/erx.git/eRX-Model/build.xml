@@ -1,0 +1,67 @@
+<?xml version="1.0" standalone="yes"?>
+<!--
+  Domain Data model for rule processing.
+  Update 08/2014
+-->
+<project name="eRX-Model" basedir="." default="all">
+	  <property environment="env" />
+	  <property name="was.home" value="C:/IBM/WAS_ND_8502/AppServer"/>
+	  <property name="src.dir" value="${basedir}/src"/>
+	  <property name="src.test" value="${basedir}/test"/>  <!-- for unit testing -->
+
+	  <property name="build.dir" value="${basedir}/bin"/>
+	  <!-- version numbering pattern: release.iteration.bugfix -->
+	  <property name="version" value="0.2.0"/>
+	  <property name="jar.name" value="${ant.project.name}-${version}.jar"/>
+	
+	  <patternset id="was.jaxws.jar.files">
+				<include name="com.ibm.jaxws.thinclient_8.5.0.jar" />
+	  </patternset>
+	  	
+	  <path id="local-cp">
+	    <pathelement path="${build.classes}" />
+	    <fileset dir="${was.home}" >
+		    <patternset refid="was.jaxws.jar.files" />
+	    </fileset>
+	  </path>
+
+	  <target name="all" depends="">
+	    <mkdir dir="${build.dir}"/>
+	  	<echo message="Build model"/>
+		<antcall target="compile"/>
+	  	<echo message="Create jar"/>
+	  	<antcall target="jar"/>
+	  </target>
+
+		<target name="clean">
+			<delete includeEmptyDirs="true" quiet="true">
+			  <fileset dir="${build.dir}" />
+			</delete>
+		
+		</target>
+	  	
+	  <target name="compile">
+	  	<javac destdir="${build.dir}/" memoryMaximumSize="300m" 
+	  			deprecation="on" debug="on" optimize="on" verbose="off" fork="yes" 
+	  			includeAntRuntime="no" failonerror="no" srcdir="${src.dir}">
+	  		 <classpath>
+	  			  <path refid="local-cp" /> 
+	  		  </classpath>
+	  	</javac>
+ 	  </target>
+	  			  	
+	  <target name="jar">
+	  		<jar destfile="${basedir}/${jar.name}">
+	  			<fileset dir="${build.dir}">
+	  			   <include name="**/*.class"/>
+	  			   <exclude name="test/*.class"/>
+	  		 	</fileset>
+	  		</jar>	
+	  		<tstamp>
+	  		  <format property="now" pattern="MM/dd/yyyy hh:mm aa" /> 
+	  		</tstamp>
+	  		<echo message="Created jar ${jar.name} at: ${now}" /> 
+	  </target>
+	  	    	
+</project>
+

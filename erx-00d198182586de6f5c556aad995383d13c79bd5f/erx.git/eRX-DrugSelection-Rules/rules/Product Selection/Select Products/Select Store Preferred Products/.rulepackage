@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.base:RulePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.base="http://ilog.rules.studio/model/base.ecore">
+  <name>Select Store Preferred Products</name>
+  <uuid>fab25c73-322a-4a80-92b5-12205112972a</uuid>
+</ilog.rules.studio.model.base:RulePackage>

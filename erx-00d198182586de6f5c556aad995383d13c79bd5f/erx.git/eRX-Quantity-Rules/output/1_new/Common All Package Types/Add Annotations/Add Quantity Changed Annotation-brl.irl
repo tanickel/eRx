@@ -1,0 +1,19 @@
+package $49$$_$new.Common_All_Package_Types.Add_Annotations {
+   use annotation;
+   rule Add_Quantity_Changed_Annotation {
+      property ilog.rules.business_name = "Add Quantity Changed Annotation";
+      property ilog.rules.package_name = "1_new.Common All Package Types.Add Annotations";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         evaluate (calculated_quantity : (var$_$0.substitutedDrug.calculatedValues.quantity));
+         evaluate (date_and_time : (com.walgreens.pharmacy.rules.util.Utilities.dateToString(var$_$0.transactionDateTime)));
+         evaluate (var$_$0.prescription.quantityPrescribed != calculated_quantity);
+      } then {
+         annotation = ((((" " + date_and_time) + " Quantity changed to ") + calculated_quantity) + " by the system. ");
+         ?context.updateContext();
+         var$_$0.addAnnotation(annotation);
+      }
+   }
+}
+

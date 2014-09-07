@@ -1,0 +1,15 @@
+package $49$$_$new.Set_Final_Refill_and_Quantity_Values.Set_Refills_Remaining_Entered {
+   rule Set_Refills_Remaining_Qualifier_R_Entered_is_Zero {
+      property ilog.rules.business_name = "Set Refills Remaining Qualifier R Entered is Zero";
+      property ilog.rules.package_name = "1_new.Set Final Refill and Quantity Values.Set Refills Remaining Entered";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         evaluate (((var$_$0.prescription.refillQualifier.equals("R"))
+         	&& com.walgreens.pharmacy.rules.util.Utilities.stringToInt(var$_$0.substitutedDrug.calculatedValues.refillsRemaining).intValue() == 0));
+      } then {
+         var$_$0.substitutedDrug.calculatedValues.refillsRemainingEntered = "NO";
+      }
+   }
+}
+

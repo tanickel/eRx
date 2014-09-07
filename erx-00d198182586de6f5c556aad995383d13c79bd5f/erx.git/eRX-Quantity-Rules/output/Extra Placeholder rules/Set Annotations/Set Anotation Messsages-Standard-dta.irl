@@ -1,0 +1,86 @@
+// begin DT Set Anotation Messsages-Standard
+// -- begin rule 'Set Anotation Messsages-Standard 0'
+package Extra_Placeholder_rules.Set_Annotations {
+   use calculatedQuantityChanged;
+   use calculatedRefillsChanged;
+   rule Set_Anotation_Messsages$45$Standard_0 {
+      property ilog.rules.business_name = "Set Anotation Messsages-Standard 1";
+      property ilog.rules.dt = "Extra Placeholder rules.Set Annotations.Set Anotation Messsages-Standard";
+      property ilog.rules.group = "Extra_Placeholder_rules.Set_Annotations.Set_Anotation_Messsages$45$Standard";
+      property ilog.rules.package_name = "Extra Placeholder rules.Set Annotations";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         evaluate (presription_refills : (var$_$0.prescription.numberOfRefillsPrescribed));
+         evaluate (calculated_refills : (var$_$0.substitutedDrug.calculatedValues.numberOfFillsPrescribed));
+         evaluate (date_and_time : (com.walgreens.pharmacy.rules.util.Utilities.dateToString(var$_$0.transactionDateTime)));
+         evaluate (quantity_prescribed : (var$_$0.prescription.quantityPrescribed));
+         evaluate (calculated_quanity : (var$_$0.substitutedDrug.calculatedValues.quantity));
+         evaluate (((presription_refills >= 0) && ((((calculatedQuantityChanged) == (true)) && ((calculatedRefillsChanged) == (true))))));
+      } then {
+         var$_$0.annotation = "\"Quantity has been changed from ";
+         var$_$0.annotation = (var$_$0.annotation + quantity_prescribed);
+         var$_$0.annotation = (var$_$0.annotation + " to ");
+         var$_$0.annotation = (var$_$0.annotation + calculated_quanity);
+         var$_$0.annotation = (var$_$0.annotation + presription_refills);
+         var$_$0.annotation = (var$_$0.annotation + "to");
+         var$_$0.annotation = (var$_$0.annotation + calculated_refills.intValue());
+      }
+   }
+}
+
+// -- end rule 'Set Anotation Messsages-Standard 0'
+// -- begin rule 'Set Anotation Messsages-Standard 1'
+package Extra_Placeholder_rules.Set_Annotations {
+   use calculatedQuantityChanged;
+   rule Set_Anotation_Messsages$45$Standard_1 {
+      property ilog.rules.business_name = "Set Anotation Messsages-Standard 2";
+      property ilog.rules.dt = "Extra Placeholder rules.Set Annotations.Set Anotation Messsages-Standard";
+      property ilog.rules.group = "Extra_Placeholder_rules.Set_Annotations.Set_Anotation_Messsages$45$Standard";
+      property ilog.rules.package_name = "Extra Placeholder rules.Set Annotations";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         evaluate (presription_refills : (var$_$0.prescription.numberOfRefillsPrescribed));
+         evaluate (calculated_refills : (var$_$0.substitutedDrug.calculatedValues.numberOfFillsPrescribed));
+         evaluate (date_and_time : (com.walgreens.pharmacy.rules.util.Utilities.dateToString(var$_$0.transactionDateTime)));
+         evaluate (quantity_prescribed : (var$_$0.prescription.quantityPrescribed));
+         evaluate (calculated_quanity : (var$_$0.substitutedDrug.calculatedValues.quantity));
+         evaluate (((presription_refills >= 0) && ((((calculatedQuantityChanged) == (true))))));
+      } then {
+         var$_$0.annotation = "\"Quantity has been changed from ";
+         var$_$0.annotation = (var$_$0.annotation + quantity_prescribed);
+         var$_$0.annotation = (var$_$0.annotation + " to ");
+         var$_$0.annotation = (var$_$0.annotation + calculated_quanity);
+      }
+   }
+}
+
+// -- end rule 'Set Anotation Messsages-Standard 1'
+// -- begin rule 'Set Anotation Messsages-Standard 2'
+package Extra_Placeholder_rules.Set_Annotations {
+   use calculatedRefillsChanged;
+   rule Set_Anotation_Messsages$45$Standard_2 {
+      property ilog.rules.business_name = "Set Anotation Messsages-Standard 3";
+      property ilog.rules.dt = "Extra Placeholder rules.Set Annotations.Set Anotation Messsages-Standard";
+      property ilog.rules.group = "Extra_Placeholder_rules.Set_Annotations.Set_Anotation_Messsages$45$Standard";
+      property ilog.rules.package_name = "Extra Placeholder rules.Set Annotations";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         evaluate (presription_refills : (var$_$0.prescription.numberOfRefillsPrescribed));
+         evaluate (calculated_refills : (var$_$0.substitutedDrug.calculatedValues.numberOfFillsPrescribed));
+         evaluate (date_and_time : (com.walgreens.pharmacy.rules.util.Utilities.dateToString(var$_$0.transactionDateTime)));
+         evaluate (quantity_prescribed : (var$_$0.prescription.quantityPrescribed));
+         evaluate (calculated_quanity : (var$_$0.substitutedDrug.calculatedValues.quantity));
+         evaluate (((presription_refills >= 0) && ((((calculatedRefillsChanged) == (true))))));
+      } then {
+         var$_$0.annotation = (var$_$0.annotation + presription_refills);
+         var$_$0.annotation = (var$_$0.annotation + "to");
+         var$_$0.annotation = (var$_$0.annotation + calculated_refills.intValue());
+      }
+   }
+}
+
+// -- end rule 'Set Anotation Messsages-Standard 2'
+// end DT Set Anotation Messsages-Standard

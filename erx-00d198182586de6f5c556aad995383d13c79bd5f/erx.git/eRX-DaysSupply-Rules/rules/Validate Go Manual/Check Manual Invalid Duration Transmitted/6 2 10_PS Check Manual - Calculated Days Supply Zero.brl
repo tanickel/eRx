@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>6 2 10_PS Check Manual - Calculated Days Supply Zero</name>
+  <uuid>0d7063cb-280a-411f-8e80-6d92f9276c86</uuid>
+  <documentation><![CDATA[PS # : 6.2.10
+Requirement Description : This is a process step leading to manual processing if days of supply is zero.]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'substituted drug' to the substituted drug ;
+if
+    the days of supply of the calculated values of 'substituted drug' is 0
+then
+    set the completion status of 'eRx Transaction' to MANUAL ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>4 9_FR Set Quantity Remaining Non-PRN</name>
+  <uuid>affa3105-345c-4406-9db9-ab54f17da9d5</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'substitued drug' to a drug from the substituted drug ;
+    set 'the refills remaining' to the numeric value of the refills remaining of the calculated values of the substituted drug;
+if
+  	the refills remaining entered of the calculated values of the substituted drug is not "PRN"
+then
+    set the quantity remaining of the calculated values of 'substitued drug' to the string value of
+    	('the refills remaining' * the quantity of the calculated values of 'substitued drug' ) ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

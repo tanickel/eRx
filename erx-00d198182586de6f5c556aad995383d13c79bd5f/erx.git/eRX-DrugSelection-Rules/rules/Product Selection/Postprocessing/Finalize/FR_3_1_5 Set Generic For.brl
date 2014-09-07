@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>FR_3_1_5 Set Generic For</name>
+  <uuid>d9537de3-3a78-48ac-b62d-6d1344509ee4</uuid>
+  <documentation><![CDATA[FR 3.1.5]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[if 
+  the completion status of the erx transaction is COMPLETE and 
+  the type of the transmitted drug of the prescription is BRAND
+and the type of the substituted drug is GENERIC
+
+then
+	set the generic for to the name of the transmitted drug of the prescription ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

@@ -1,0 +1,19 @@
+package Unit_Of_Use {
+   rule SetUnlimitedIndicator {
+      property ilog.rules.business_name = "SetUnlimitedIndicator";
+      property ilog.rules.package_name = "Unit Of Use";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         substitued_drug: com.walgreens.pharmacy.rules.Drug() from var$_$0.substitutedDrug;
+         evaluate ((!(substitued_drug.calculatedValues.totalFillsAllowed.equals("PRN"))
+         	&& (substitued_drug.calculatedValues.numberOfFillsPrescribed.intValue() > com.walgreens.pharmacy.rules.util.Utilities.stringToInt(substitued_drug.calculatedValues.totalFillsAllowed).intValue()
+         	|| ((substitued_drug.calculatedValues.numberOfFillsPrescribed.intValue() == 0
+         	&& var$_$0.prescription.fill.unlimited.booleanValue())))));
+      } then {
+         substitued_drug.calculatedValues.numberOfFillsPrescribed = com.walgreens.pharmacy.rules.util.Utilities.stringToInt(substitued_drug.calculatedValues.totalFillsAllowed);
+         var$_$0.prescription.fill.unlimited = java.lang.Boolean.valueOf(false);
+      }
+   }
+}
+

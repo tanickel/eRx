@@ -1,0 +1,16 @@
+package $49$$_$new.Set_Final_Refill_and_Quantity_Values.Set_Quantity_Remaining {
+   rule Set_Quantity_Remaining_Non$45$PRN {
+      property ilog.rules.business_name = "Set Quantity Remaining Non-PRN";
+      property ilog.rules.package_name = "1_new.Set Final Refill and Quantity Values.Set Quantity Remaining";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         substitued_drug: com.walgreens.pharmacy.rules.Drug() from var$_$0.substitutedDrug;
+         evaluate (the_refills_remaining : (com.walgreens.pharmacy.rules.util.Utilities.stringToInt(var$_$0.substitutedDrug.calculatedValues.refillsRemaining)));
+         evaluate (!(var$_$0.substitutedDrug.calculatedValues.refillsRemainingEntered.equals("PRN")));
+      } then {
+         substitued_drug.calculatedValues.quantityRemaining = com.walgreens.pharmacy.rules.util.Utilities.intToString((java.lang.Integer.valueOf((int)(the_refills_remaining.doubleValue() * substitued_drug.calculatedValues.quantity))));
+      }
+   }
+}
+

@@ -1,0 +1,96 @@
+
+flowtask Standard {
+  property mainflowtask = false;
+  property ilog.rules.business_name = "Standard";
+  property ilog.rules.package_name = "";
+  body {
+    Standard#Valid_Qualifier;
+    if ((erxTransaction.completionStatus.equals(com.walgreens.pharmacy.rules.ResultType.MANUAL))) {
+    }
+    else {
+      Standard#Calculate_Quantity;
+      if (erxTransaction.substitutedDrug.calculatedValues.quantity == erxTransaction.prescription.quantityPrescribed
+      ) {
+        _node_7 : Standard#Check_Min$47$Max_Dispense_Quantity_;
+        Standard#Set_Annotation;
+        Standard#Calculate_Qty_Dispensed$44$Remaining;
+      }
+      else {
+        Standard#Check_Qty_$38$_Package_Size;
+        if ((erxTransaction.completionStatus.equals(com.walgreens.pharmacy.rules.ResultType.MANUAL))) {
+        }
+        else {
+          goto _node_7;
+        }
+      }
+    }
+  }
+};
+
+ruletask Standard#Valid_Qualifier {
+  property ilog.rules.business_name = "Standard>Valid Qualifier";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    group("Standard.Valid_Qualifier_Mapping"),
+    Standard.SetUnlimitedIndicator
+
+  }
+};
+
+ruletask Standard#Check_Qty_$38$_Package_Size {
+  property ilog.rules.business_name = "Standard>Check Qty & Package Size";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    Standard.checkQty$38$PackageSizeAuto,
+    Standard.checkQty$38$PackageSizeManual
+
+  }
+};
+
+ruletask Standard#Check_Min$47$Max_Dispense_Quantity_ {
+  property ilog.rules.business_name = "Standard>Check Min/Max Dispense Quantity ";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    Standard.CheckMin$38$MaxDispensingQty
+  }
+};
+
+ruletask Standard#Set_Annotation {
+  property ilog.rules.business_name = "Standard>Set Annotation";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    group("Standard.Annotation")
+  }
+};
+
+ruletask Standard#Calculate_Qty_Dispensed$44$Remaining {
+  property ilog.rules.business_name = "Standard>Calculate Qty Dispensed,Remaining";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    Standard.CalculateQtyDispensed,
+    Standard.setQtyRemainingtoCalcValue,
+    Standard.setQtyRemainingtoPRN
+
+  }
+};
+
+ruletask Standard#Calculate_Quantity {
+  property ilog.rules.business_name = "Standard>Calculate Quantity";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    Standard.CalculateQty
+  }
+};
+

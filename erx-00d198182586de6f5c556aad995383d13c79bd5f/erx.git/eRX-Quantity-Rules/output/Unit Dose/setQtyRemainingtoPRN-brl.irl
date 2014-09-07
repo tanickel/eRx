@@ -1,0 +1,15 @@
+package Unit_Dose {
+   rule setQtyRemainingtoPRN {
+      property ilog.rules.business_name = "setQtyRemainingtoPRN";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         substitued_drug: com.walgreens.pharmacy.rules.Drug() from var$_$0.substitutedDrug;
+         evaluate (var$_$0.prescription.fill.unlimited.booleanValue());
+      } then {
+         substitued_drug.calculatedValues.quantityRemaining = "PRN";
+      }
+   }
+}
+

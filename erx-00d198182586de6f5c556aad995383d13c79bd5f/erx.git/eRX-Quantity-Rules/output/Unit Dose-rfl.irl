@@ -1,0 +1,112 @@
+
+flowtask Unit_Dose {
+  property mainflowtask = false;
+  property ilog.rules.business_name = "Unit Dose";
+  property ilog.rules.package_name = "";
+  body {
+    Unit_Dose#Valid_Qualifier;
+    if ((erxTransaction.completionStatus.equals(com.walgreens.pharmacy.rules.ResultType.MANUAL))) {
+    }
+    else {
+      Unit_Dose#Calculate_Quantity;
+      if (erxTransaction.substitutedDrug.calculatedValues.quantity == erxTransaction.prescription.quantityPrescribed
+      ) {
+        _node_7 : Unit_Dose#Check_Min$47$Max_Dispense_Quantity_;
+        Unit_Dose#Set_Annotation;
+        Unit_Dose#Calculate_Qty_Dispensed$44$Remaining;
+      }
+      else {
+        Unit_Dose#CheckQtyPrescribed;
+        if ((erxTransaction.completionStatus.equals(com.walgreens.pharmacy.rules.ResultType.MANUAL))) {
+        }
+        else {
+          Unit_Dose#Check_Qty_$38$_Package_Size;
+          if ((erxTransaction.completionStatus.equals(com.walgreens.pharmacy.rules.ResultType.MANUAL))) {
+          }
+          else {
+            goto _node_7;
+          }
+        }
+      }
+    }
+  }
+};
+
+ruletask Unit_Dose#Valid_Qualifier {
+  property ilog.rules.business_name = "Unit Dose>Valid Qualifier";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    group("Unit_Dose.Valid_Qualifier_Mapping"),
+    Unit_Dose.SetUnlimitedIndicator
+
+  }
+};
+
+ruletask Unit_Dose#Check_Qty_$38$_Package_Size {
+  property ilog.rules.business_name = "Unit Dose>Check Qty & Package Size";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    group("Unit_Dose.CalcQuantityNDCinInclusionList"),
+    Unit_Dose.CalcQuantityNDCnotinInclusionListAuto,
+    Unit_Dose.CalcQuantityNDCnotinInclusionListManual
+
+  }
+};
+
+ruletask Unit_Dose#Check_Min$47$Max_Dispense_Quantity_ {
+  property ilog.rules.business_name = "Unit Dose>Check Min/Max Dispense Quantity ";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    Unit_Dose.CheckMin$38$MaxDispensingQty
+  }
+};
+
+ruletask Unit_Dose#Set_Annotation {
+  property ilog.rules.business_name = "Unit Dose>Set Annotation";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    group("Unit_Dose.Annotation")
+  }
+};
+
+ruletask Unit_Dose#Calculate_Qty_Dispensed$44$Remaining {
+  property ilog.rules.business_name = "Unit Dose>Calculate Qty Dispensed,Remaining";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    Unit_Dose.CalculateQtyDispensed,
+    Unit_Dose.setQtyRemainingtoCalcValue,
+    Unit_Dose.setQtyRemainingtoPRN
+
+  }
+};
+
+ruletask Unit_Dose#Calculate_Quantity {
+  property ilog.rules.business_name = "Unit Dose>Calculate Quantity";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    Unit_Dose.CalculateQty
+  }
+};
+
+ruletask Unit_Dose#CheckQtyPrescribed {
+  property ilog.rules.business_name = "Unit Dose>CheckQtyPrescribed";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    Unit_Dose.CheckQtyPrescribed
+  }
+};
+

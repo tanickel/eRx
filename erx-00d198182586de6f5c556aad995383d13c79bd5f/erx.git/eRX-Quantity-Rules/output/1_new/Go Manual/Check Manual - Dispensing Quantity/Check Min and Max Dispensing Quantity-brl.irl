@@ -1,0 +1,21 @@
+package $49$$_$new.Go_Manual.Check_Manual_$45$_Dispensing_Quantity {
+   /**
+ * 4.17
+ * 4.18
+ * If minimum dispensing qunity is null, is defaulted to 0
+ */
+rule Check_Min_and_Max_Dispensing_Quantity {
+      property ilog.rules.business_name = "Check Min and Max Dispensing Quantity";
+      property ilog.rules.package_name = "1_new.Go Manual.Check Manual - Dispensing Quantity";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         evaluate (the_quantity : (var$_$0.substitutedDrug.calculatedValues.quantity));
+         evaluate (the_quantity < var$_$0.substitutedDrug.minimumDispensingQuantity
+         	|| the_quantity > 99999.999d);
+      } then {
+         erxTransaction.completionStatus = com.walgreens.pharmacy.rules.ResultType.MANUAL;
+      }
+   }
+}
+

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.base:RulePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.base="http://ilog.rules.studio/model/base.ecore">
+  <name>Check Manual - Retained Days Supply Greater than Max Limit</name>
+  <uuid>17518e8e-33c9-40d0-8059-a2e60c564e4f</uuid>
+</ilog.rules.studio.model.base:RulePackage>

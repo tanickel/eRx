@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>6 2 6_PS Calculate Total Days Supply</name>
+  <uuid>b70d126e-9d83-4e2e-8638-3382795e74df</uuid>
+  <documentation><![CDATA[PS # :  6.2.6 
+Requirement Description : This is a process step where system muct calculate  using the existing formulae  defined below: 
+
+Day Supply = Total Doses/ Daily Dose. Round down to whole number
+
+Added Priority, this rule has to trigger last]]></documentation>
+  <priority>-100</priority>
+  <locale>en_US</locale>
+  <definition><![CDATA[then
+    set the days of supply of the calculated values of the substituted drug to 'the total doses' / 'the daily dose' ; ]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

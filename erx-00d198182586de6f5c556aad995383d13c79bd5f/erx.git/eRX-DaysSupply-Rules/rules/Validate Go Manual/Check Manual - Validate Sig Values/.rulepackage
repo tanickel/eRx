@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.base:RulePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.base="http://ilog.rules.studio/model/base.ecore">
+  <name>Check Manual - Validate Sig Values</name>
+  <uuid>4455b0e9-461c-465c-af3a-440d16942f41</uuid>
+</ilog.rules.studio.model.base:RulePackage>

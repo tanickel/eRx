@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RuleApp>
+   <ruleset>
+      <kind>ruleproject</kind>
+      <display-name>eRX-DrugSelection-Rules</display-name>
+      <name>eRXDrugSelectionRules</name>
+      <version>1.0</version>
+      <fullpath>runtime/eRXDrugSelectionRules10.jar</fullpath>
+      <location>eRX-DrugSelection-Rules</location>
+      <export>true</export>
+   </ruleset>
+   <ruleset>
+      <kind>ruleproject</kind>
+      <display-name>eRX-Quantity-Rules</display-name>
+      <name>eRXQuantityRules</name>
+      <version>1.0</version>
+      <fullpath>runtime/eRXQuantityRules10.jar</fullpath>
+      <location>eRX-Quantity-Rules</location>
+      <export>true</export>
+   </ruleset>
+   <ruleset>
+      <kind>ruleproject</kind>
+      <display-name>eRXCommon-bom</display-name>
+      <name>eRXCommonbom</name>
+      <version>1.0</version>
+      <fullpath>runtime/eRXCommonbom10.jar</fullpath>
+      <location>eRXCommon-bom</location>
+      <export>true</export>
+   </ruleset>
+   <ruleset>
+      <kind>ruleproject</kind>
+      <display-name>eRX-DaysSupply-Rules</display-name>
+      <name>eRXDaysSupplyRules</name>
+      <version>1.0</version>
+      <fullpath>runtime/eRXDaysSupplyRules10.jar</fullpath>
+      <location>eRX-DaysSupply-Rules</location>
+      <export>true</export>
+   </ruleset>
+   <ruleset>
+      <kind>ruleproject</kind>
+      <display-name>eRX-ThirdParty-Rules</display-name>
+      <name>eRXThirdPartyRules</name>
+      <version>1.0</version>
+      <fullpath>runtime/eRXThirdPartyRules10.jar</fullpath>
+      <location>eRX-ThirdParty-Rules</location>
+      <export>true</export>
+   </ruleset>
+</RuleApp>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>7-9_FR Select New Commercial Plan Added in 24 hrs - Primary Overriden</name>
+  <uuid>a7795d33-57ec-4258-83dc-6c7fd96d9834</uuid>
+  <documentation><![CDATA[7.9
+7.9.2]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'primary plan' to a plan where the payment mode of this plan is PRIMARY;
+    set 'current time' to the transaction date time ;
+    
+    set 'the commerical plan' to a plan 
+    	where the type of this plan is COMMERCIAL 
+    	and this plan is plan override flag is false
+    	and the creation date time of this plan is within 24 hours of 'current time';
+
+    set 'fill' to a fill from the fill of the prescription ;
+   
+if
+	 'primary plan'  is plan override flag is true
+then
+    set the payment method of fill to THIRD_PARTY_PLAN ;
+    set the bill to plan of fill to 'the commerical plan' ;
+    ]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Manual when Notes not found on prescription</name>
+  <uuid>231a7f62-ce9b-4cfe-9061-21911fdce040</uuid>
+  <documentation><![CDATA[FR# 0.07]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[if
+    the notes of the prescription is not empty
+then
+    set the completion status of 'eRx Transaction' to MANUAL ;]]></definition>
+  <status>validated</status>
+</ilog.rules.studio.model.brl:ActionRule>

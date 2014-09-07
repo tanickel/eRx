@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.rule:Function xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.rule="http://ilog.rules.studio/model/rule.ecore">
+  <name>initialize</name>
+  <uuid>41028c3b-e42f-4747-9349-5971c316324f</uuid>
+  <definition><![CDATA[erxTransaction.completionStatus = ResultType.COMPLETE;
+if ( erxTransaction.prescription != null ) {
+	erxTransaction.prescription.fill = new Fill();
+}
+
+//populate the working memory with the patient plans (from the paient)
+Plan p = new Plan();
+if( erxTransaction.patient != null) {
+	Iterator i = erxTransaction.patient.listOfPlans.iterator();
+	while (i.hasNext()) {
+		p = (Plan)i.next();
+		insert(p);
+	}
+}]]></definition>
+  <imports>import com.walgreens.pharmacy.rules.*;</imports>
+  <imports>import java.util.Iterator;</imports>
+  <imports>import com.walgreens.pharmacy.rules.ErxTransaction;</imports>
+</ilog.rules.studio.model.rule:Function>

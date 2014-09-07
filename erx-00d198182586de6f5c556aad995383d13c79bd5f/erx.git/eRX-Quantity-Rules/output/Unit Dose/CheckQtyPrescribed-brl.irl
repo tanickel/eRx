@@ -1,0 +1,14 @@
+package Unit_Dose {
+   rule CheckQtyPrescribed {
+      property ilog.rules.business_name = "CheckQtyPrescribed";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate (var$_$0.prescription.quantityPrescribed > 3);
+      } then {
+         erxTransaction.completionStatus = com.walgreens.pharmacy.rules.ResultType.MANUAL;
+      }
+   }
+}
+

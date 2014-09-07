@@ -1,0 +1,15 @@
+package Unit_Of_Use {
+   rule setQtyRemainingtoCalcValue {
+      property ilog.rules.business_name = "setQtyRemainingtoCalcValue";
+      property ilog.rules.package_name = "Unit Of Use";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         substitued_drug: com.walgreens.pharmacy.rules.Drug() from var$_$0.substitutedDrug;
+         evaluate (!(var$_$0.prescription.fill.unlimited.booleanValue()));
+      } then {
+         substitued_drug.calculatedValues.quantityRemaining = com.walgreens.pharmacy.rules.util.Utilities.intToString((java.lang.Integer.valueOf((int)(((double)(substitued_drug.calculatedValues.numberOfFillsPrescribed.intValue() - 1)) * substitued_drug.calculatedValues.quantity))));
+      }
+   }
+}
+

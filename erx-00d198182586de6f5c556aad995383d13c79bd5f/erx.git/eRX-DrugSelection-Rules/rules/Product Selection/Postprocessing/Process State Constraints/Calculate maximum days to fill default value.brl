@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Calculate maximum days to fill default value</name>
+  <uuid>50bfd08f-1f21-4f3c-b661-eae95ef55ae4</uuid>
+  <documentation><![CDATA[Populate the max days to fill for the selected drug: it looks there is a missing case when neither state or federal constraints are provided as part of the input request. So this rule protects the future computation by assigning 0]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[       
+if   
+    the completion status of the erx transaction is COMPLETE  
+    and
+    the state drug constraint of the substituted drug is null
+    and 
+    the federal drug constraint of the substituted drug is null  
+then
+    set the max days to fill of the calculated values of the substituted drug to 0 ;]]></definition>
+  <status>defined</status>
+</ilog.rules.studio.model.brl:ActionRule>

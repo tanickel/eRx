@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>7 11_FR DAW is false</name>
+  <uuid>087ce87a-ec9b-4cb0-8b2f-7a77c37b252f</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[if
+    the dispensed as written of the prescription is 0
+then
+    set the pay code of the fill of the prescription to "0" ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

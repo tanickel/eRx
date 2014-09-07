@@ -1,0 +1,97 @@
+<?xml version="1.0" standalone="yes"?>
+<!--
+ Testing and automatic non-regression tests.
+  Update 08/2014
+-->
+<project name="eRX-Rules-UnitTesting" basedir="." default="all">
+	  <property environment="env" />
+	  <property name="odm.home" value="c:/IBM/ODM860"/>
+	  <property name="src.dir" value="${basedir}/src"/>
+	  <property name="src.test" value="${basedir}/test"/>  <!-- for unit testing -->
+
+	  <property name="build.dir" value="${basedir}/bin"/>
+	
+	  	
+	  <path id="local-cp">
+	    <pathelement path="${build.dir}" />
+	    <fileset dir="${basedir}/lib">
+	    	<include name="*.jar"/>
+	    </fileset>
+	    <pathelement path="${basedir}/../eRX-Model/bin"/>
+	  	<pathelement path="${basedir}/../eRX-DecisionServices/bin"/>
+	    <fileset dir="${odm.home}/executionserver/lib">
+	    	<include name="j2ee_connector-1_5-fr.jar"/>
+	    	<include name="asm**.jar"/>
+	    	<include name="jrules-res-execution.jar"/>
+	    	<include name="jrules-engine.jar"/>
+	    	<include name="log4j-1.2.8.jar"/>
+	    </fileset>
+	  </path>
+
+	  <target name="all" depends="">
+	    <mkdir dir="${build.dir}"/>
+	  	<echo message="Build model"/>
+		<antcall target="compile"/>
+		<antcall target="compile.test"/>
+	  	<antcall target="utest"/>
+	  </target>
+
+		<target name="clean">
+			<delete includeEmptyDirs="true" quiet="true">
+			  <fileset dir="${build.dir}" />
+			</delete>
+		
+		</target>
+	  	
+	  <target name="compile">
+	  	<javac destdir="${build.dir}/" memoryMaximumSize="300m" 
+	  			deprecation="on" debug="on" optimize="on" verbose="off" fork="yes" 
+	  			includeAntRuntime="no" failonerror="no" srcdir="${src.dir}">
+	  		 <classpath>
+	  			  <path refid="local-cp" /> 
+	  		  </classpath>
+	  	</javac>
+ 	  </target>
+	  <target name="compile.test">
+	  	<javac destdir="${build.dir}/" memoryMaximumSize="300m" 
+	  			deprecation="on" debug="on" optimize="on" verbose="off" fork="yes" 
+	  			includeAntRuntime="no" failonerror="no" srcdir="${src.test}">
+	  		 <classpath>
+	  			  <path refid="local-cp" /> 
+	  		  </classpath>
+	  	</javac>
+		<copy todir="${build.dir}">
+				<fileset dir="${src.dir}/">
+				  <include name="**/*.xml" /> 
+				  <include name="*.properties" /> 
+				 </fileset>				
+	    </copy>
+	  </target>	  			  	
+	 
+	  <property name="report.tests" value="${basedir}/test-reports" /> 
+	  <target name="utest">
+			<mkdir dir="${report.tests}"/>
+			<junit printsummary="on" fork="yes" haltonfailure="no">
+				<classpath>
+					<path refid="local-cp" />  			
+			 	</classpath>
+				<!-- The results of the tests can be printed in different formats. Output will always be sent to a file -->
+				<formatter type="xml" /> 
+				<batchtest fork="yes" todir="${report.tests}">
+				    <fileset dir="${src.test}">
+				      <include name="**/*Test*.java"/>
+				      <exclude name="**/AllTests.java"/>
+				      <exclude name="**/BaseTest.java"/>
+				      <exclude name="**/*TestData.java"/>
+				    </fileset>
+				 </batchtest>
+			</junit>
+			<junitreport todir="${report.tests}">
+			  <fileset dir="${report.tests}">
+			    <include name="TEST-*.xml"/>
+			  </fileset>
+			  <report format="frames" todir="${report.tests}/html"/>
+			</junitreport>
+		</target>
+</project>
+

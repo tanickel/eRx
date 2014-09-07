@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.ruleflow:RuleFlow xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.ruleflow="http://ilog.rules.studio/model/ruleflow.ecore">
+  <name>Quantity-Main</name>
+  <uuid>2a14935e-c783-4bf5-874c-67dbdea73e4c</uuid>
+  <locale>en_US</locale>
+  <categories>any</categories>
+  <rfModel>
+<Ruleflow xmlns="http://schemas.ilog.com/Rules/7.0/Ruleflow">
+  <Body>
+    <TaskList>
+      <StartTask Identifier="task_2"/>
+      <RuleTask ExecutionMode="RetePlus" ExitCriteria="None" Identifier="Add Annotations" Ordering="Default">
+        <RuleList>
+          <Package Name="Common All Package Types.Add Annotations"/>
+        </RuleList>
+      </RuleTask>
+      <RuleTask ExecutionMode="RetePlus" ExitCriteria="None" Identifier="Set Refills Remaining" Ordering="Default">
+        <RuleList>
+          <Package Name="Set Final Refill and Quantity Values.Set Refills Remaining"/>
+        </RuleList>
+      </RuleTask>
+      <RuleTask ExecutionMode="RetePlus" ExitCriteria="None" Identifier="Set Refills Remaining Entered" Ordering="Default">
+        <RuleList>
+          <Package Name="Set Final Refill and Quantity Values.Set Refills Remaining Entered"/>
+        </RuleList>
+      </RuleTask>
+      <RuleTask ExecutionMode="RetePlus" ExitCriteria="None" Identifier="Set Quantity Remaining" Ordering="Default">
+        <RuleList>
+          <Package Name="Set Final Refill and Quantity Values.Set Quantity Remaining"/>
+        </RuleList>
+      </RuleTask>
+      <RuleTask ExecutionMode="RetePlus" ExitCriteria="None" Identifier="Initialize Translated Dosage and Quanity Equals Package Size" Ordering="Default">
+        <RuleList>
+          <Package Name="Common All Package Types.Initialization.Initialize Translated Dosage and Quanity Equals Package Size"/>
+        </RuleList>
+      </RuleTask>
+      <RuleTask ExecutionMode="RetePlus" ExitCriteria="None" Identifier="Initialize Qualifier" Ordering="Default">
+        <RuleList>
+          <Package Name="Common All Package Types.Initialization.Initialize Qualifier"/>
+        </RuleList>
+      </RuleTask>
+      <RuleTask ExecutionMode="RetePlus" ExitCriteria="None" Identifier="Calculate Initial Quantity" Ordering="Default">
+        <RuleList>
+          <Package Name="Calculate Initial Quantity"/>
+        </RuleList>
+      </RuleTask>
+      <RuleTask ExecutionMode="RetePlus" ExitCriteria="None" Identifier="Check Go Manual Conditions" Ordering="Default">
+        <RuleList>
+          <Package Name="Check Go Manual Conditions"/>
+        </RuleList>
+      </RuleTask>
+      <RuleTask ExecutionMode="RetePlus" ExitCriteria="None" Identifier="Check Therapeutic Class Inclusion List" Ordering="Default">
+        <RuleList>
+          <Rule Uuid="dfe2a4ff-8ff1-4e32-9c9c-5295a688a6de"/>
+        </RuleList>
+      </RuleTask>
+      <RuleTask ExecutionMode="RetePlus" ExitCriteria="None" Identifier="Calculate Quantity NDC Therapeutic Inclusion" Ordering="Default">
+        <RuleList>
+          <Rule Uuid="09ed6101-0758-4570-9982-5cf44d8fc58b"/>
+        </RuleList>
+      </RuleTask>
+      <StopTask Identifier="task_3"/>
+    </TaskList>
+    <NodeList>
+      <TaskNode Identifier="node_2" Task="task_2"/>
+      <TaskNode Identifier="node_3" Task="task_3"/>
+      <BranchNode Identifier="node_8"/>
+      <BranchNode Identifier="node_12"/>
+      <TaskNode Identifier="node_6" Task="Add Annotations"/>
+      <TaskNode Identifier="node_10" Task="Set Refills Remaining"/>
+      <TaskNode Identifier="node_11" Task="Set Refills Remaining Entered"/>
+      <TaskNode Identifier="node_15" Task="Set Quantity Remaining"/>
+      <TaskNode Identifier="node_1" Task="Initialize Translated Dosage and Quanity Equals Package Size"/>
+      <TaskNode Identifier="node_4" Task="Initialize Qualifier"/>
+      <TaskNode Identifier="node_9" Task="Calculate Initial Quantity"/>
+      <BranchNode Identifier="node_13"/>
+      <TaskNode Identifier="node_5" Task="Check Go Manual Conditions"/>
+      <TaskNode Identifier="node_7" Task="Check Therapeutic Class Inclusion List"/>
+      <TaskNode Identifier="node_14" Task="Calculate Quantity NDC Therapeutic Inclusion"/>
+    </NodeList>
+    <TransitionList>
+      <Transition Identifier="transition_0" Source="node_2" Target="node_1"/>
+      <Transition Identifier="transition_8" Source="node_8" Target="node_6"/>
+      <Transition Identifier="transition_7" Source="node_8" Target="node_3">
+        <Conditions Language="irl"><![CDATA[erxTransaction.completionStatus.equals(ResultType.MANUAL)]]></Conditions>
+      </Transition>
+      <Transition Identifier="transition_13" Source="node_12" Target="node_7">
+        <Conditions Language="irl"><![CDATA[erxTransaction.substitutedDrug.packageType.equals(PackageType.UNIT_OF_USE) ||]]>&#13;<![CDATA[
+erxTransaction.substitutedDrug.packageType.equals(PackageType.UNIT_DOSE)]]>&#13;<![CDATA[
+]]></Conditions>
+      </Transition>
+      <Transition Identifier="transition_16" Source="node_12" Target="node_5"/>
+      <Transition Identifier="transition_3" Source="node_10" Target="node_11"/>
+      <Transition Identifier="transition_4" Source="node_11" Target="node_15"/>
+      <Transition Identifier="transition_17" Source="node_15" Target="node_3"/>
+      <Transition Identifier="transition_6" Source="node_13" Target="node_3">
+        <Conditions Language="irl"><![CDATA[erxTransaction.completionStatus.equals(ResultType.MANUAL)]]></Conditions>
+      </Transition>
+      <Transition Identifier="transition_1" Source="node_14" Target="node_5"/>
+      <Transition Identifier="transition_2" Source="node_1" Target="node_4"/>
+      <Transition Identifier="transition_9" Source="node_13" Target="node_9"/>
+      <Transition Identifier="transition_10" Source="node_9" Target="node_12"/>
+      <Transition Identifier="transition_12" Source="node_4" Target="node_13"/>
+      <Transition Identifier="transition_14" Source="node_5" Target="node_8"/>
+      <Transition Identifier="transition_11" Source="node_6" Target="node_10"/>
+      <Transition Identifier="transition_5" Source="node_7" Target="node_14"/>
+    </TransitionList>
+  </Body>
+  <Resources>
+    <ResourceSet Locale="en_US">
+      <Data Name="node_11#width">102.0</Data>
+      <Data Name="node_12#name">node_6</Data>
+      <Data Name="node_2#height">21.0</Data>
+      <Data Name="node_14#width">105.36914</Data>
+      <Data Name="node_3#width">18.0</Data>
+      <Data Name="node_15#x">89.84912</Data>
+      <Data Name="node_15#y">1559.5363</Data>
+      <Data Name="node_7#height">97.50586</Data>
+      <Data Name="transition_7#label">Go Manual</Data>
+      <Data Name="transition_13#label">Unit of Use or Unit Dose</Data>
+      <Data Name="node_6#name">node_6</Data>
+      <Data Name="node_8#name">node_6</Data>
+      <Data Name="node_12#width">36.414215</Data>
+      <Data Name="node_11#height">82.80469</Data>
+      <Data Name="node_13#name">node_6</Data>
+      <Data Name="node_12#y">588.7365</Data>
+      <Data Name="node_6#y">1197.8751</Data>
+      <Data Name="node_6#x">89.84912</Data>
+      <Data Name="transition_6#label">Go Manual</Data>
+      <Data Name="node_13#y">384.2188</Data>
+      <Data Name="node_7#x">89.842285</Data>
+      <Data Name="node_5#name">node_5</Data>
+      <Data Name="node_13#x">109.2737</Data>
+      <Data Name="node_2#width">21.0</Data>
+      <Data Name="node_12#x">51.000015</Data>
+      <Data Name="node_5#width">102.0</Data>
+      <Data Name="node_15#height">68.103516</Data>
+      <Data Name="node_9#height">68.103516</Data>
+      <Data Name="node_13#width">36.414215</Data>
+      <Data Name="node_10#height">68.103516</Data>
+      <Data Name="node_10#name">node_10</Data>
+      <Data Name="node_13#height">36.414185</Data>
+      <Data Name="node_4#height">53.402344</Data>
+      <Data Name="node_4#width">102.0</Data>
+      <Data Name="node_6#width">105.396484</Data>
+      <Data Name="node_14#height">97.50586</Data>
+      <Data Name="node_14#x">89.842285</Data>
+      <Data Name="node_8#width">36.414215</Data>
+      <Data Name="node_14#y">853.2024</Data>
+      <Data Name="node_7#y">705.69653</Data>
+      <Data Name="node_9#width">102.0</Data>
+      <Data Name="node_5#y">993.35767</Data>
+      <Data Name="node_5#x">51.0</Data>
+      <Data Name="node_7#width">105.36914</Data>
+      <Data Name="node_3#height">18.000002</Data>
+      <Data Name="node_10#x">89.84912</Data>
+      <Data Name="node_10#y">1308.628</Data>
+      <Data Name="node_8#x">51.000015</Data>
+      <Data Name="node_4#x">109.27368</Data>
+      <Data Name="node_4#y">289.31055</Data>
+      <Data Name="node_8#y">1102.9669</Data>
+      <Data Name="node_4#name">node_4</Data>
+      <Data Name="node_6#height">53.402344</Data>
+      <Data Name="node_3#y">1652.588</Data>
+      <Data Name="node_3#name">node_2</Data>
+      <Data Name="node_1#name">node_1</Data>
+      <Data Name="node_3#x">89.84912</Data>
+      <Data Name="node_12#height">36.414185</Data>
+      <Data Name="node_9#y">486.47766</Data>
+      <Data Name="node_9#name">node_9</Data>
+      <Data Name="node_9#x">51.0</Data>
+      <Data Name="node_10#width">102.0</Data>
+      <Data Name="node_11#y">1434.0822</Data>
+      <Data Name="node_11#x">89.84912</Data>
+      <Data Name="node_1#width">102.0</Data>
+      <Data Name="node_14#name">node_14</Data>
+      <Data Name="node_5#height">82.80469</Data>
+      <Data Name="node_8#height">36.414062</Data>
+      <Data Name="node_11#name">node_11</Data>
+      <Data Name="node_2#name">node_0</Data>
+      <Data Name="node_7#name">node_7</Data>
+      <Data Name="node_15#name">node_15</Data>
+      <Data Name="node_1#x">109.27368</Data>
+      <Data Name="node_1#y">141.80469</Data>
+      <Data Name="node_1#height">141.60938</Data>
+      <Data Name="node_2#x">109.27368</Data>
+      <Data Name="node_2#y">10.5</Data>
+      <Data Name="node_15#width">102.0</Data>
+    </ResourceSet>
+  </Resources>
+  <Properties>
+    <imports><![CDATA[import com.walgreens.pharmacy.rules.ResultType;
+import com.walgreens.pharmacy.rules.Drug;
+import com.walgreens.pharmacy.rules.PackageType;
+]]></imports>
+  </Properties>
+</Ruleflow></rfModel>
+  <mainFlowTask>true</mainFlowTask>
+</ilog.rules.studio.model.ruleflow:RuleFlow>

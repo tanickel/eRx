@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Select Product Remaining-Unit of Use(Generic) Specified Qty</name>
+  <uuid>0e5ad5df-6b3c-47a3-84a3-4dac94fd2191</uuid>
+  <documentation><![CDATA[FR# 3.7
+FR# 3.7.11
+FR# 3.7.14
+FR# 3.7.15]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'all drugs' to all drugs in the candidate drugs
+            where the quantity prescribed of the prescription is one of { 1 , 2 , 3 }
+            and the package size of each drug is more than 5
+            and the package type of each drug is UNIT OF USE
+            and the type of each drug is GENERIC ;
+    set 'the drug' to a drug in 'all drugs' ;
+if
+    the number of elements in 'all drugs' is 1
+    and the completion status of the erx transaction is not COMPLETE
+then
+    set the substituted drug to 'the drug' ;
+    set the completion status of the erx transaction to COMPLETE ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

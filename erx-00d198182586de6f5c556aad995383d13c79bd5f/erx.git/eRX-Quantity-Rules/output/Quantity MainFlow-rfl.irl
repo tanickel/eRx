@@ -1,0 +1,58 @@
+import com.walgreens.pharmacy.rules.PackageType;
+
+use Standard;
+use Unit_Dose;
+use Unit_Of_Use;
+
+flowtask Quantity_MainFlow {
+  property mainflowtask = true;
+  property ilog.rules.business_name = "Quantity MainFlow";
+  property ilog.rules.package_name = "";
+  body {
+    if (erxTransaction.substitutedDrug.packageType.equals(PackageType.UNIT_DOSE)) {
+      Quantity_MainFlow#Unit$_$Dose;
+    }
+    else if (erxTransaction.substitutedDrug.packageType.equals(PackageType.UNIT_OF_USE)) {
+      Quantity_MainFlow#Unit$_$Of$_$Use;
+    }
+    else if (erxTransaction.substitutedDrug.packageType.equals(PackageType.STANDARD)) {
+      Quantity_MainFlow#Standard;
+    }
+    else {
+      Quantity_MainFlow#Unspecified;
+    }
+  }
+};
+
+flowtask Quantity_MainFlow#Unit$_$Dose {
+  property ilog.rules.business_name = "Quantity MainFlow>Unit Dose";
+  property ilog.rules.package_name = "";
+  body {
+    Unit_Dose;
+  }
+};
+
+flowtask Quantity_MainFlow#Unit$_$Of$_$Use {
+  property ilog.rules.business_name = "Quantity MainFlow>Unit Of Use";
+  property ilog.rules.package_name = "";
+  body {
+    Unit_Of_Use;
+  }
+};
+
+flowtask Quantity_MainFlow#Standard {
+  property ilog.rules.business_name = "Quantity MainFlow>Standard";
+  property ilog.rules.package_name = "";
+  body {
+    Standard;
+  }
+};
+
+functiontask Quantity_MainFlow#Unspecified {
+  property ilog.rules.business_name = "Quantity MainFlow>Unspecified";
+  property ilog.rules.package_name = "";
+  body {
+    erxTransaction.completionStatus = com.walgreens.pharmacy.rules.ResultType.MANUAL;
+  }
+};
+

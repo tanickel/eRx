@@ -1,0 +1,44 @@
+package $49$$_$new {
+
+  flowtask Unit_Of_Use$45$sub_flow {
+    property mainflowtask = false;
+    property ilog.rules.business_name = "Unit Of Use-sub flow";
+    property ilog.rules.package_name = "1_new";
+    body {
+      Unit_Of_Use$45$sub_flow#Initialize_Unit_of_Use_and_Unit_Dose;
+      Unit_Of_Use$45$sub_flow#Calculate_Quantity_Therapeutic_Inclusion;
+      Unit_Of_Use$45$sub_flow#Check_Manual_$45$_Dispensing_Quantity;
+    }
+  };
+
+  ruletask Unit_Of_Use$45$sub_flow#Initialize_Unit_of_Use_and_Unit_Dose {
+    property ilog.rules.business_name = "Unit Of Use-sub flow>Initialize Unit of Use and Unit Dose";
+    property ilog.rules.package_name = "1_new";
+    algorithm = default;
+    ordering = dynamic;
+    body {
+      $49$$_$new.Common_Unit_of_Use_and_Unit_Dose.Initialize_Unit_of_Use_and_Unit_Dose.*
+    }
+  };
+
+  ruletask Unit_Of_Use$45$sub_flow#Calculate_Quantity_Therapeutic_Inclusion {
+    property ilog.rules.business_name = "Unit Of Use-sub flow>Calculate Quantity Therapeutic Inclusion";
+    property ilog.rules.package_name = "1_new";
+    algorithm = default;
+    ordering = dynamic;
+    body {
+      $49$$_$new.Common_Unit_of_Use_and_Unit_Dose.Calculate_Quantity_Therapeutic_Inclusion.*
+    }
+  };
+
+  ruletask Unit_Of_Use$45$sub_flow#Check_Manual_$45$_Dispensing_Quantity {
+    property ilog.rules.business_name = "Unit Of Use-sub flow>Check Manual - Dispensing Quantity";
+    property ilog.rules.package_name = "1_new";
+    algorithm = default;
+    ordering = dynamic;
+    body {
+      $49$$_$new.Go_Manual.Check_Manual_$45$_Dispensing_Quantity.*
+    }
+  };
+
+}

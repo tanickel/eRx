@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <eAnnotations source="ilog.rules.custom_properties">
+    <details key="FR#" value="3.1.20"/>
+  </eAnnotations>
+  <name>Manual when multiple Active T_NDC</name>
+  <uuid>026590ea-e372-48e5-9d02-5db094870ccb</uuid>
+  <documentation><![CDATA[FR# 3.1.20 if there is more than one active drug in the substitution list than we should go manual because there is a problem in the data or human needs to pickup the appropriate drug]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+   	set 'active drug list' to all drugs in the substitution drug lists
+            where the national drug code of each drug is the national 
+            drug code of the transmitted drug of the prescription
+            and the status of each drug is ACTIVE ;             
+if
+    there are more than 1 drugs in 'active drug list' 
+then
+	set the completion status of the erx transaction to MANUAL ; 
+	            ]]></definition>
+  <status>defined</status>
+</ilog.rules.studio.model.brl:ActionRule>

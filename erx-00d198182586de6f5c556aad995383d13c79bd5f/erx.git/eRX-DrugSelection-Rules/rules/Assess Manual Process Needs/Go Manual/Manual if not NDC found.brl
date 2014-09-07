@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <eAnnotations source="ilog.rules.custom_properties">
+    <details key="FR#" value="3.1.2"/>
+  </eAnnotations>
+  <name>Manual if not NDC found</name>
+  <uuid>3436f01e-5709-44a0-b0d2-2969b44ff8eb</uuid>
+  <documentation><![CDATA[This is to cover not found NDC. The search should be done by preparing the data before calling the ruleset execution. 
+So this rule just validates that as part of the substitution drug list there is at least one that has the same NDC.
+Part of this logic is done by loading the data from the different datasource: IC+, medispan
+It is expected that there is at least one drug in the substitution drug list.
+The transaction has one prescription and the prescription as a transmitted NDC string attribute
+
+FR# 3.1.1 "The eRx Message is sent from the prescriber's EHR application through the SureScripts gateway to Walgreen's eRx Platform.
+Automation System must obtain the NDC and DAW from the eRx message.
+3.1.2	Is Transmitted NDC Found?
+"The system must search for the NDC.  If the NDC cannot be found in the IC+ drug table, it must look in MediSpan.  If the system cannot find it in MediSpan it must exit automation and revert to the 'Manual' process.
+If transmitted NDC that are not equal to 11 or are blank must revert to the 'Manual' process.
+The status (Active/Inactive) of the NDC does not matter for this step.
+This step helps determine if the NDC is found so that the system can utilize the other drug attributes in the drug selection process."
+]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[if
+  there is no drug in the substitution drug lists where the national drug code of this drug is the transmitted NDC of the prescription, 
+then
+  set the completion status of the erx transaction to MANUAL ;]]></definition>
+  <status>validated</status>
+</ilog.rules.studio.model.brl:ActionRule>

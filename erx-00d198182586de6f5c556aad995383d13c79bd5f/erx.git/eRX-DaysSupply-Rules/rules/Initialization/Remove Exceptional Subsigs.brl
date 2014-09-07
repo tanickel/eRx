@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Remove Exceptional Subsigs</name>
+  <uuid>312d87ec-588a-4562-9443-a2731d866e55</uuid>
+  <documentation><![CDATA[]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'list of exceptional sigs' to a string in { "MAX" , "MAXIMUM" , "MDD" , "EXCEED" , "DECREASE" , "SPRINKLE" , "OFF" , "IGNORE" } ;
+    set 'the sigs' to a sig in the list of subsigs of the sig of the prescription ;
+if
+    the directions of 'the sigs' is in { 'list of exceptional sigs' }
+then
+    for each sig in the list of subsigs of the sig of the prescription :
+        - remove this sig from the sigs of the sig of the prescription ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

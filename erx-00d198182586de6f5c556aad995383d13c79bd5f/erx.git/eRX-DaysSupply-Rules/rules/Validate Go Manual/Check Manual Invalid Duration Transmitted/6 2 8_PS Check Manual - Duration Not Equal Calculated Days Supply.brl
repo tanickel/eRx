@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>6 2 8_PS Check Manual - Duration Not Equal Calculated Days Supply</name>
+  <uuid>47ac4a50-f33b-442b-8f7c-c70cb09bde93</uuid>
+  <documentation><![CDATA[PS # :  6.2.8    FR # :  6.1.8
+Requirement Description : This is a process step leading to manual processing if absolute difference between days of supply and duration is more than one day.
+]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'substituted drug' to the substituted drug ;
+    set 'diff in days supply' to the days of supply of the calculated values of 'substituted drug' - 'the total duration' ;
+if
+    all of the following conditions are true:
+            - 'the total duration' is more than 0
+            - the translated dosage form of 'substituted drug' is one of { TABLET , CAPSULE }
+            - absolute value of ( 'diff in days supply' ) is more than 1
+then
+    set the completion status of 'eRx Transaction' to MANUAL ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

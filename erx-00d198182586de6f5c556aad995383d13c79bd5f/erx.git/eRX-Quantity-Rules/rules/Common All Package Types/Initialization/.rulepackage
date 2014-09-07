@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.base:RulePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.base="http://ilog.rules.studio/model/base.ecore">
+  <name>Initialization</name>
+  <uuid>b5f85041-f94a-4bd7-be9d-1e9873a8b3ec</uuid>
+</ilog.rules.studio.model.base:RulePackage>

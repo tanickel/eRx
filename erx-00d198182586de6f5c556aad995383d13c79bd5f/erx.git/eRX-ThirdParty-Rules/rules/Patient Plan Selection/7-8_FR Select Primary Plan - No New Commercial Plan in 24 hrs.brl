@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>7-8_FR Select Primary Plan - No New Commercial Plan in 24 hrs</name>
+  <uuid>c513ce6d-0a8d-496e-9bd0-9df2e2bf5fc8</uuid>
+  <documentation><![CDATA[7.8
+7.9.1
+]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'primary plan' to a plan
+            where the payment mode of this plan is PRIMARY ;
+    set 'fill' to a fill from the fill of the prescription ;
+    set 'current time' to the transaction date time ;
+
+if all of the following conditions are true :
+     
+    - 'primary plan' is plan override flag is true
+    - there is no plan where the type of this plan is COMMERCIAL 
+         and the creation date time of this plan is within 24 hours of 'current time'
+         and this plan is plan override flag is false,
+then
+    set the payment method of fill to THIRD_PARTY_PLAN ;
+    set the bill to plan of fill to 'primary plan' ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

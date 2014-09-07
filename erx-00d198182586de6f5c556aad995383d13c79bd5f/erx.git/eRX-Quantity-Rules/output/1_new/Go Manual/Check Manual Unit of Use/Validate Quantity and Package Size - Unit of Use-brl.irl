@@ -1,0 +1,20 @@
+package $49$$_$new.Go_Manual.Check_Manual_Unit_of_Use {
+   use sameSizeOrMultiplier;
+   rule Validate_Quantity_and_Package_Size_$45$_Unit_of_Use {
+      property ilog.rules.business_name = "Validate Quantity and Package Size - Unit of Use";
+      property ilog.rules.package_name = "1_new.Go Manual.Check Manual Unit of Use";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         evaluate ((((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.UNIT_OF_USE))
+         	&& (sameSizeOrMultiplier) == (false))
+         	&& var$_$0.prescription.quantityPrescribed > 3)
+         	|| ((((var$_$0.substitutedDrug.isValidTherapeuticClass().booleanValue()) == (false)
+         	&& var$_$0.prescription.quantityPrescribed <= 3)
+         	&& var$_$0.substitutedDrug.packageSize >= 3)));
+      } then {
+         erxTransaction.completionStatus = com.walgreens.pharmacy.rules.ResultType.MANUAL;
+      }
+   }
+}
+

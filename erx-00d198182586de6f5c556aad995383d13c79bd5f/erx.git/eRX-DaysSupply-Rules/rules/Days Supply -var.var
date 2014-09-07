@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.base:VariableSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.base="http://ilog.rules.studio/model/base.ecore">
+  <name>Days Supply -var</name>
+  <uuid>8ca21ca9-7736-414c-9e22-80d2e3d1fc6b</uuid>
+  <variables name="nonSpecificIndicator" type="boolean" initialValue="false" verbalization="the non specific indicator"/>
+  <variables name="useDefaultDaysOfSupply" type="boolean" initialValue="false" verbalization="use default days of supply"/>
+  <variables name="dailyDose" type="int" initialValue="0" verbalization="the daily dose"/>
+  <variables name="totalDoses" type="int" initialValue="0" verbalization="the total doses"/>
+  <variables name="totalDuration" type="int" initialValue="0" verbalization="the total duration"/>
+</ilog.rules.studio.model.base:VariableSet>

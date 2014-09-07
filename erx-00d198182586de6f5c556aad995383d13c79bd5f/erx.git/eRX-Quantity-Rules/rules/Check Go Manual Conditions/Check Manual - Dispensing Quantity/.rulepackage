@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.base:RulePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.base="http://ilog.rules.studio/model/base.ecore">
+  <name>Check Manual - Dispensing Quantity</name>
+  <uuid>22137c51-1b7f-4ffd-9d64-74b4f09e8d0e</uuid>
+</ilog.rules.studio.model.base:RulePackage>

@@ -1,0 +1,15 @@
+package Standard {
+   rule checkQty$38$PackageSizeAuto {
+      property ilog.rules.business_name = "checkQty&PackageSizeAuto";
+      property ilog.rules.package_name = "Standard";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         substitued_drug: com.walgreens.pharmacy.rules.Drug() from var$_$0.substitutedDrug;
+         evaluate (((var$_$0.prescription.quantityPrescribed in {1, 2, 3}) && (substitued_drug.packageSize > 3)));
+      } then {
+         substitued_drug.calculatedValues.quantity = (var$_$0.prescription.quantityPrescribed * substitued_drug.packageSize);
+      }
+   }
+}
+

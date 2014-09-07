@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Select Warehouse-Unit of Use(Generic) Same Pkg Size</name>
+  <uuid>413269fe-07d8-49aa-bd78-7453a40d3f6d</uuid>
+  <documentation><![CDATA[FR# 3.7
+FR# 3.7.1
+FR# 3.7.7
+FR# 3.7.8]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'all drugs' to all drugs in the warehouse drugs of the erx transaction
+            where the quantity prescribed of the prescription is the package size of each drug
+            and the package size of each drug is more than 3
+            and the package type of each drug is UNIT OF USE
+            and the type of each drug is GENERIC ;
+    set 'the drug' to a drug in 'all drugs' ;
+if
+    the number of elements in 'all drugs' is 1
+    and the completion status of the erx transaction is not COMPLETE
+then
+    set the substituted drug to 'the drug' ;
+    set the completion status of the erx transaction to COMPLETE ;
+    print the name of this rule ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

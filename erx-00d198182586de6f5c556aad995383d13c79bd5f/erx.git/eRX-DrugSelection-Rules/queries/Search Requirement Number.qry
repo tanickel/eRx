@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.query:Query xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.query="http://ilog.rules.studio/model/query.ecore">
+  <name>Search Requirement Number</name>
+  <uuid>b33ec4c2-8383-4df8-8e27-7c6296f46969</uuid>
+  <definition><![CDATA[Find all business rules 
+	 such that the tag "FR#" of each business rule  contains "3.1.15" or the documentation of each business rule contains "3.1.15"]]></definition>
+  <locale>en_US</locale>
+</ilog.rules.studio.model.query:Query>

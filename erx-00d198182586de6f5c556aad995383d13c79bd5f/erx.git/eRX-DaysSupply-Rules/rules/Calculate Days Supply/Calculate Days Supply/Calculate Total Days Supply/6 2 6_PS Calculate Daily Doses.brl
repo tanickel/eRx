@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>6 2 6_PS Calculate Daily Doses</name>
+  <uuid>b1326e02-15af-40c6-a08f-7449b9c62f42</uuid>
+  <documentation><![CDATA[PS # :  6.2.6 
+Requirement Description : This is a process step where system muct calculate using the existing formual defined below: 
+
+Daily dose = Dose*Freq/Time Period]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'all sub sigs' to all sigs in the list of subsigs of the sig of the prescription
+            where the time period of each sig is not 0 ;
+then
+    for each sig in 'all sub sigs' : 
+        - set 'the daily dose' to 'the daily dose' + ( the dose of this sig * the frequency of this sig ) / the time period of this sig ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

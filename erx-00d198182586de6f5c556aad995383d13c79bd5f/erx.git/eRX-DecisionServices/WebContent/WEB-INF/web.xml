@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>ERX-DecisionServices</display-name>
+  <servlet>
+    <servlet-name>ErxDS</servlet-name>
+    <servlet-class>com.walgreens.pharmacy.ds.ErxDecisionServiceImpl</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ErxDSApplication</servlet-name>
+    <servlet-class>com.ibm.websphere.jaxrs.server.IBMRestServlet</servlet-class>
+    <init-param>
+      <param-name>javax.ws.rs.Application</param-name>
+      <param-value>com.walgreens.pharmacy.ds.ErxDSApplication</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ErxDS</servlet-name>
+    <url-pattern>/serv</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ErxDSApplication</servlet-name>
+    <url-pattern>
+		/rest/*</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <resource-ref>
+    <description></description>
+    <res-ref-name>eis/XUConnectionFactory</res-ref-name>
+    <res-type>javax.resource.cci.ConnectionFactory</res-type>
+    <res-auth>Application</res-auth>
+    <res-sharing-scope>Unshareable</res-sharing-scope>
+  </resource-ref>
+</web-app>

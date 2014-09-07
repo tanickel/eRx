@@ -1,0 +1,86 @@
+<b2x:translation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://schemas.ilog.com/JRules/1.1/Translation ilog/rules/schemas/1_1/b2x.xsd"
+        xmlns:b2x="http://schemas.ilog.com/JRules/1.1/Translation">
+    <id>d99bd148-549b-4835-a4b7-910a4ecfc35b</id>
+    <class>
+        <businessName>Util</businessName>
+        <executionName>java.lang.Object</executionName>
+        <import>model.xom.*</import>
+        <import>java.text.DateFormat</import>
+        <import>java.text.SimpleDateFormat</import>
+        <method>
+            <name>assertInterimFact</name>
+            <parameter type="java.lang.String"/>
+            <body language="irl"><![CDATA[
+            context.insert(fact);
+            ]]></body>
+        </method>
+        <method>
+            <name>checkGpi12</name>
+            <parameter type="java.lang.String"/>
+            <parameter type="java.lang.String"/>
+            <body language="irl"><![CDATA[
+            if ( gpi1 == null || gpi2 == null
+  || gpi1.length() < 12 || gpi2.length() < 12 ) return false;
+return gpi1.substring(0,12).equals(gpi2.substring(0,12));
+            ]]></body>
+        </method>
+        <method>
+            <name>dateToString</name>
+            <parameter type="java.util.Date"/>
+            <body language="irl"><![CDATA[
+            if( Date == null) return new String("");
+DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+return df.format(Date);
+            ]]></body>
+        </method>
+        <method>
+            <name>insert</name>
+            <parameter type="java.lang.Object"/>
+            <body language="irl"><![CDATA[
+            insert(obj);
+            ]]></body>
+        </method>
+        <method>
+            <name>intToString</name>
+            <parameter type="java.lang.Integer"/>
+            <body language="irl"><![CDATA[
+            if(QtyRemaining == 0)return "";
+return QtyRemaining.toString();
+            ]]></body>
+        </method>
+        <method>
+            <name>isMultiple</name>
+            <parameter type="int"/>
+            <parameter type="int"/>
+            <body language="irl"><![CDATA[
+            return numerator%denominator == 0;
+            ]]></body>
+        </method>
+        <method>
+            <name>retract</name>
+            <parameter type="java.lang.Object"/>
+            <body language="irl"><![CDATA[
+            retract(object);
+            ]]></body>
+        </method>
+        <method>
+            <name>truncateToThree</name>
+            <parameter type="double"/>
+            <body language="irl"><![CDATA[
+            return new java.math.BigDecimal(value).setScale(3,java.math.RoundingMode.FLOOR).doubleValue();
+            ]]></body>
+        </method>
+        <method>
+            <name>within24hours</name>
+            <parameter type="java.util.Date"/>
+            <parameter type="java.util.Date"/>
+            <body language="irl"><![CDATA[
+            if ( date1 == null || date2 == null )
+	return false;
+else
+	return java.lang.Math.abs( date1.getTime() - date2.getTime()) < 1440000;  // 24 * 60 * 1000 = 24hrs in milliseconds
+            ]]></body>
+        </method>
+    </class>
+</b2x:translation>

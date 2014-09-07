@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Determine Linked Products</name>
+  <uuid>ea83e983-6eec-4835-aef1-04ebe93dd816</uuid>
+  <documentation><![CDATA[3AB remove the transmitted drug id matching condition]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'the drug' to a drug in the substitution drug lists
+    	where the drug id of the transmitted drug of the prescription is the drug id of this drug ;
+    set 'the stored preferred list' to the preferred generic products of 'the drug'
+            where the drug id of each preferred generic product is not empty ;
+if
+    the number of elements in 'the stored preferred list' is at least 1
+then
+    'the drug' is linked to true ;]]></definition>
+  <status>defined</status>
+</ilog.rules.studio.model.brl:ActionRule>

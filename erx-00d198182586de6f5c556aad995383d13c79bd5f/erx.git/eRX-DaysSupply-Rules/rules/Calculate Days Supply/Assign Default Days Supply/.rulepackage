@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.base:RulePackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.base="http://ilog.rules.studio/model/base.ecore">
+  <name>Assign Default Days Supply</name>
+  <uuid>249fc898-93bd-4522-9d70-48a46f401f23</uuid>
+</ilog.rules.studio.model.base:RulePackage>

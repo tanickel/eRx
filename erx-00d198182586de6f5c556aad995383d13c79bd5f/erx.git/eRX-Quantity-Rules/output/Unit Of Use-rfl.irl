@@ -1,0 +1,96 @@
+
+flowtask Unit_Of_Use {
+  property mainflowtask = false;
+  property ilog.rules.business_name = "Unit Of Use";
+  property ilog.rules.package_name = "";
+  body {
+    Unit_Of_Use#Valid_Qualifier;
+    if ((erxTransaction.completionStatus.equals(com.walgreens.pharmacy.rules.ResultType.MANUAL))) {
+    }
+    else {
+      Unit_Of_Use#Calculate_Quantity;
+      if (erxTransaction.substitutedDrug.calculatedValues.quantity == erxTransaction.prescription.quantityPrescribed
+      ) {
+        goto _node_7;
+      }
+      else {
+        Unit_Of_Use#Check_Qty_$38$_Package_Size;
+        if ((erxTransaction.completionStatus.equals(com.walgreens.pharmacy.rules.ResultType.MANUAL))) {
+        }
+        else {
+          _node_7 : Unit_Of_Use#Check_Min$47$Max_Dispense_Quantity_;
+          Unit_Of_Use#Set_Annotation;
+          Unit_Of_Use#Calculate_Qty_Dispensed$44$Remaining;
+        }
+      }
+    }
+  }
+};
+
+ruletask Unit_Of_Use#Valid_Qualifier {
+  property ilog.rules.business_name = "Unit Of Use>Valid Qualifier";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    group("Unit_Of_Use.Valid_Qualifier_Mapping"),
+    Unit_Of_Use.SetUnlimitedIndicator
+
+  }
+};
+
+ruletask Unit_Of_Use#Check_Qty_$38$_Package_Size {
+  property ilog.rules.business_name = "Unit Of Use>Check Qty & Package Size";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    group("Unit_Of_Use.CalcQuantityNDCinInclusionList"),
+    group("Unit_Of_Use.CalcQuantityNDCnotinInclusionList")
+
+  }
+};
+
+ruletask Unit_Of_Use#Check_Min$47$Max_Dispense_Quantity_ {
+  property ilog.rules.business_name = "Unit Of Use>Check Min/Max Dispense Quantity ";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    Unit_Of_Use.CheckMin$38$MaxDispensingQty
+  }
+};
+
+ruletask Unit_Of_Use#Set_Annotation {
+  property ilog.rules.business_name = "Unit Of Use>Set Annotation";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    group("Unit_Of_Use.Annotation")
+  }
+};
+
+ruletask Unit_Of_Use#Calculate_Qty_Dispensed$44$Remaining {
+  property ilog.rules.business_name = "Unit Of Use>Calculate Qty Dispensed,Remaining";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    Unit_Of_Use.CalculateQtyDispensed,
+    Unit_Of_Use.setQtyRemainingtoCalcValue,
+    Unit_Of_Use.setQtyRemainingtoPRN
+
+  }
+};
+
+ruletask Unit_Of_Use#Calculate_Quantity {
+  property ilog.rules.business_name = "Unit Of Use>Calculate Quantity";
+  property ilog.rules.package_name = "";
+  algorithm = default;
+  ordering = dynamic;
+  body {
+    Unit_Of_Use.CalculateQty
+  }
+};
+

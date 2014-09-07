@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>4 12_FR Add Refills Changed Annotation</name>
+  <uuid>c2005d87-7f76-4490-800a-1beed5b5759a</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'date and time' to the string value of the transaction date time ;
+    set 'total fills allowed' to the numeric value of the total fills allowed 
+		of the state drug constraint of the substituted drug ;
+
+if
+    'total fills allowed' is more than the number of refills prescribed of the prescription + 1
+then
+    set 'the annotation' to " " + 'date and time' + " Refills changed to " + 'total fills allowed' + " by the system. " ;
+    add 'the annotation' to the annotations of the erx transaction ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

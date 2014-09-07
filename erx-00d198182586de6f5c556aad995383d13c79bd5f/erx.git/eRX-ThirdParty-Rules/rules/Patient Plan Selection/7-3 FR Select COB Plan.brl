@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>7-3 FR Select COB Plan</name>
+  <uuid>093f78a3-cb97-47ed-b49d-0f2ffad57420</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set fill to the fill of the prescription ;
+    set 'COB plan' to a plan
+            where the payment mode of this plan is COB ; 
+
+if
+    all of the following conditions are true :
+            - the bill to plan of fill is not null
+then
+    set the cob plan of fill to 'COB plan' ;
+    ]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

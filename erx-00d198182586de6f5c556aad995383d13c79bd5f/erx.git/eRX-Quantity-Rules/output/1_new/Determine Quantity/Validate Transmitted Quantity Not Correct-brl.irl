@@ -1,0 +1,21 @@
+package $49$$_$new.Determine_Quantity {
+   use sameSizeOrMultiplier;
+   /**
+ * 4.4
+ * Note: Rule needs to validate quantity prescribed and package size must be a whole number.  Cannot round because package size must equal quantity or fails.
+ */
+rule Validate_Transmitted_Quantity_Not_Correct {
+      property ilog.rules.business_name = "Validate Transmitted Quantity Not Correct";
+      property ilog.rules.package_name = "1_new.Determine Quantity";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction() from context.getParameterValue("erxTransaction");
+         evaluate ((sameSizeOrMultiplier) == (false)
+         	|| ((var$_$0.prescription.quantityPrescribed in {1, 2, 3}
+         	&& var$_$0.substitutedDrug.packageSize >= 3)));
+      } then {
+         var$_$0.substitutedDrug.calculatedValues.quantity = (var$_$0.prescription.quantityPrescribed * var$_$0.substitutedDrug.packageSize);
+      }
+   }
+}
+

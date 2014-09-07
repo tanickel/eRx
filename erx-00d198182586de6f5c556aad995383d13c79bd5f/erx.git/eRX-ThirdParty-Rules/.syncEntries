@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><teamservers>
+<teamserver>
+<target dataSource="" login="odmadmin" url="http://localhost:9084/teamserver"/>
+<entry baseType="BRLRule" checksum="3506395679" projectName="eRX-ThirdParty" qualifiedName="Patient Plan Selection.Cob plan is true" sourceCS="90A5719D9D47B5A25953641A6E6B02F3" targetCS="3506395679" type="BRLRule" uuid="580e443e-ea7b-4022-a66f-84b6689114b9"/>
+<entry baseType="BRLRule" checksum="4190938773" projectName="eRX-ThirdParty" qualifiedName="Patient Plan Selection.Coupon is true" sourceCS="2F6673E7BE9F4EB8894A9C12960BEB65" targetCS="4190938773" type="BRLRule" uuid="19ede268-f17c-44b6-9eb8-2e89717a2702"/>
+<entry baseType="BRLRule" checksum="2821031373" projectName="eRX-ThirdParty" qualifiedName="Patient Plan Selection.Primary plan is excluded" sourceCS="183D3B7BFEDA270226524EB62ABEEF69" targetCS="2821031373" type="BRLRule" uuid="6af1a430-dd86-443e-9e20-7348782d7667"/>
+<entry baseType="BRLRule" checksum="1436589407" projectName="eRX-ThirdParty" qualifiedName="Patient Plan Selection.Primary plan is false" sourceCS="0E90993EAC57E6FCAD51D59B8B35D0E0" targetCS="1436589407" type="BRLRule" uuid="50639ebb-afd4-417a-b6e5-adec92971cd0"/>
+<entry baseType="BRLRule" checksum="883933282" projectName="eRX-ThirdParty" qualifiedName="Paycode Selection.DAW is false" sourceCS="E31DC207BE49929321E74E345879AC08" targetCS="883933282" type="BRLRule" uuid="09b62170-b66b-4a81-be48-9686a7731646"/>
+<entry baseType="BRLRule" checksum="1171746910" projectName="eRX-ThirdParty" qualifiedName="Paycode Selection.DAW is true" sourceCS="E68840112B037A3322A5AB0DCF0EA1FD" targetCS="1171746910" type="BRLRule" uuid="47e2efd9-65e5-4393-aa46-46b1568f4281"/>
+<entry baseType="Function" checksum="3946920742" projectName="eRX-ThirdParty" qualifiedName="functions.initialize" sourceCS="7BC192ED41799AD07157A4F8424E8795" targetCS="3946920742" type="Function" uuid="58984d6d-a1dc-4457-ac84-e5ef8431d221"/>
+<entry baseType="Resource" checksum="2977781481" projectName="eRX-ThirdParty" qualifiedName="META-INF/deployment.xml" sourceCS="129714C3F10C978F7FE7D6B49DB2509E" targetCS="2977781481" type="Resource" uuid="META-INF/deployment.xml"/>
+<entry baseType="Ruleflow" checksum="2973894347" projectName="eRX-ThirdParty" qualifiedName="Third Party ruleflow" sourceCS="775E61D626551067D8A7C95AF330F433" targetCS="2973894347" type="Ruleflow" uuid="d4e36016-bb82-48d2-a516-c600a837956a"/>
+<entry baseType="RulePackageInfo" checksum="3991249743" projectName="eRX-ThirdParty" qualifiedName="functions" sourceCS="4C4DF3F68035582B4B3B358E4DE8F2BD" targetCS="3991249743" type="RulePackageInfo" uuid="df9ca923-74b0-4a95-8a4e-6e16efb21f71"/>
+<entry baseType="RulePackageInfo" checksum="2647896966" projectName="eRX-ThirdParty" qualifiedName="Patient Plan Selection" sourceCS="DA122C5AEECDF6A135CA4C5237DD880A" targetCS="2647896966" type="RulePackageInfo" uuid="00e7dd01-8db0-4e83-abf2-da59e096f3e6"/>
+<entry baseType="RulePackageInfo" checksum="2456593293" projectName="eRX-ThirdParty" qualifiedName="Paycode Selection" sourceCS="223EAF152EF2C16724F03D81BC7DBA48" targetCS="2456593293" type="RulePackageInfo" uuid="3203ed35-4fb6-46fb-b075-bb55a2317208"/>
+<entry baseType="RuleProjectInfo" checksum="938004239" projectName="eRX-ThirdParty" qualifiedName="eRX-ThirdParty" sourceCS="DDD392D3CF2D85D0A1359A8386F4AD0A" targetCS="938004239" type="RuleProjectInfo" uuid="1220e05e-3217-4ba5-ac6e-8555157420f7"/>
+</teamserver>
+</teamservers>

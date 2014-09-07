@@ -1,0 +1,272 @@
+// begin DT Valid Qualifier Mapping
+// -- begin rule 'Valid Qualifier Mapping 0'
+package Unit_Dose {
+   rule Valid_Qualifier_Mapping_0 {
+      property ilog.rules.business_name = "Valid Qualifier Mapping 1";
+      property ilog.rules.dt = "Unit Dose.Valid Qualifier Mapping";
+      property ilog.rules.group = "Unit_Dose.Valid_Qualifier_Mapping";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate ((((var$_$0.prescription.ncltCode.equals("C48155"))) && ((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.STANDARD)))));
+      } then {
+         var$_$0.prescription.prescribedQualifier = com.walgreens.pharmacy.rules.QualifierType.BOTTLE;
+      }
+   }
+}
+
+// -- end rule 'Valid Qualifier Mapping 0'
+// -- begin rule 'Valid Qualifier Mapping 1'
+package Unit_Dose {
+   rule Valid_Qualifier_Mapping_1 {
+      property ilog.rules.business_name = "Valid Qualifier Mapping 2";
+      property ilog.rules.dt = "Unit Dose.Valid Qualifier Mapping";
+      property ilog.rules.group = "Unit_Dose.Valid_Qualifier_Mapping";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate ((((var$_$0.prescription.ncltCode.equals("C48155"))) && ((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.UNIT_OF_USE)))));
+      } then {
+         var$_$0.prescription.prescribedQualifier = com.walgreens.pharmacy.rules.QualifierType.BOTTLE;
+      }
+   }
+}
+
+// -- end rule 'Valid Qualifier Mapping 1'
+// -- begin rule 'Valid Qualifier Mapping 2'
+package Unit_Dose {
+   rule Valid_Qualifier_Mapping_2 {
+      property ilog.rules.business_name = "Valid Qualifier Mapping 3";
+      property ilog.rules.dt = "Unit Dose.Valid Qualifier Mapping";
+      property ilog.rules.group = "Unit_Dose.Valid_Qualifier_Mapping";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate ((((var$_$0.prescription.ncltCode.equals("C48155"))) && ((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.UNIT_DOSE)))));
+      } then {
+         var$_$0.prescription.prescribedQualifier = com.walgreens.pharmacy.rules.QualifierType.BOTTLE;
+      }
+   }
+}
+
+// -- end rule 'Valid Qualifier Mapping 2'
+// -- begin rule 'Valid Qualifier Mapping 3'
+package Unit_Dose {
+   rule Valid_Qualifier_Mapping_3 {
+      property ilog.rules.business_name = "Valid Qualifier Mapping 4";
+      property ilog.rules.dt = "Unit Dose.Valid Qualifier Mapping";
+      property ilog.rules.group = "Unit_Dose.Valid_Qualifier_Mapping";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate ((((var$_$0.prescription.ncltCode.equals("C48475"))) && ((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.STANDARD)))));
+      } then {
+         var$_$0.prescription.prescribedQualifier = com.walgreens.pharmacy.rules.QualifierType.BOTTLE;
+      }
+   }
+}
+
+// -- end rule 'Valid Qualifier Mapping 3'
+// -- begin rule 'Valid Qualifier Mapping 4'
+package Unit_Dose {
+   rule Valid_Qualifier_Mapping_4 {
+      property ilog.rules.business_name = "Valid Qualifier Mapping 5";
+      property ilog.rules.dt = "Unit Dose.Valid Qualifier Mapping";
+      property ilog.rules.group = "Unit_Dose.Valid_Qualifier_Mapping";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate ((((var$_$0.prescription.ncltCode.equals("C48475"))) && ((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.UNIT_OF_USE)))));
+      } then {
+         var$_$0.prescription.prescribedQualifier = com.walgreens.pharmacy.rules.QualifierType.BOTTLE;
+      }
+   }
+}
+
+// -- end rule 'Valid Qualifier Mapping 4'
+// -- begin rule 'Valid Qualifier Mapping 5'
+package Unit_Dose {
+   rule Valid_Qualifier_Mapping_5 {
+      property ilog.rules.business_name = "Valid Qualifier Mapping 6";
+      property ilog.rules.dt = "Unit Dose.Valid Qualifier Mapping";
+      property ilog.rules.group = "Unit_Dose.Valid_Qualifier_Mapping";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate ((((var$_$0.prescription.ncltCode.equals("C48475"))) && ((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.UNIT_DOSE)))));
+      } then {
+         var$_$0.prescription.prescribedQualifier = com.walgreens.pharmacy.rules.QualifierType.BOTTLE;
+      }
+   }
+}
+
+// -- end rule 'Valid Qualifier Mapping 5'
+// -- begin rule 'Valid Qualifier Mapping 6'
+package Unit_Dose {
+   rule Valid_Qualifier_Mapping_6 {
+      property ilog.rules.business_name = "Valid Qualifier Mapping 7";
+      property ilog.rules.dt = "Unit Dose.Valid Qualifier Mapping";
+      property ilog.rules.group = "Unit_Dose.Valid_Qualifier_Mapping";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate ((((var$_$0.prescription.ncltCode.equals("C53495"))) && ((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.STANDARD)))));
+      } then {
+         var$_$0.prescription.prescribedQualifier = com.walgreens.pharmacy.rules.QualifierType.BOTTLE;
+      }
+   }
+}
+
+// -- end rule 'Valid Qualifier Mapping 6'
+// -- begin rule 'Valid Qualifier Mapping 7'
+package Unit_Dose {
+   rule Valid_Qualifier_Mapping_7 {
+      property ilog.rules.business_name = "Valid Qualifier Mapping 8";
+      property ilog.rules.dt = "Unit Dose.Valid Qualifier Mapping";
+      property ilog.rules.group = "Unit_Dose.Valid_Qualifier_Mapping";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate ((((var$_$0.prescription.ncltCode.equals("C53495"))) && ((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.UNIT_OF_USE)))));
+      } then {
+         var$_$0.prescription.prescribedQualifier = com.walgreens.pharmacy.rules.QualifierType.BOTTLE;
+      }
+   }
+}
+
+// -- end rule 'Valid Qualifier Mapping 7'
+// -- begin rule 'Valid Qualifier Mapping 8'
+package Unit_Dose {
+   rule Valid_Qualifier_Mapping_8 {
+      property ilog.rules.business_name = "Valid Qualifier Mapping 9";
+      property ilog.rules.dt = "Unit Dose.Valid Qualifier Mapping";
+      property ilog.rules.group = "Unit_Dose.Valid_Qualifier_Mapping";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate ((((var$_$0.prescription.ncltCode.equals("C53495"))) && ((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.UNIT_DOSE)))));
+      } then {
+         var$_$0.prescription.prescribedQualifier = com.walgreens.pharmacy.rules.QualifierType.BOTTLE;
+      }
+   }
+}
+
+// -- end rule 'Valid Qualifier Mapping 8'
+// -- begin rule 'Valid Qualifier Mapping 9'
+package Unit_Dose {
+   rule Valid_Qualifier_Mapping_9 {
+      property ilog.rules.business_name = "Valid Qualifier Mapping 10";
+      property ilog.rules.dt = "Unit Dose.Valid Qualifier Mapping";
+      property ilog.rules.group = "Unit_Dose.Valid_Qualifier_Mapping";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate ((((var$_$0.prescription.ncltCode.equals("C48480"))) && ((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.STANDARD)))));
+      } then {
+         var$_$0.prescription.prescribedQualifier = com.walgreens.pharmacy.rules.QualifierType.BOTTLE;
+      }
+   }
+}
+
+// -- end rule 'Valid Qualifier Mapping 9'
+// -- begin rule 'Valid Qualifier Mapping 10'
+package Unit_Dose {
+   rule Valid_Qualifier_Mapping_10 {
+      property ilog.rules.business_name = "Valid Qualifier Mapping 11";
+      property ilog.rules.dt = "Unit Dose.Valid Qualifier Mapping";
+      property ilog.rules.group = "Unit_Dose.Valid_Qualifier_Mapping";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate ((((var$_$0.prescription.ncltCode.equals("C48480"))) && ((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.UNIT_OF_USE)))));
+      } then {
+         var$_$0.prescription.prescribedQualifier = com.walgreens.pharmacy.rules.QualifierType.BOTTLE;
+      }
+   }
+}
+
+// -- end rule 'Valid Qualifier Mapping 10'
+// -- begin rule 'Valid Qualifier Mapping 11'
+package Unit_Dose {
+   rule Valid_Qualifier_Mapping_11 {
+      property ilog.rules.business_name = "Valid Qualifier Mapping 12";
+      property ilog.rules.dt = "Unit Dose.Valid Qualifier Mapping";
+      property ilog.rules.group = "Unit_Dose.Valid_Qualifier_Mapping";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate ((((var$_$0.prescription.ncltCode.equals("C48480"))) && ((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.UNIT_DOSE)))));
+      } then {
+         var$_$0.prescription.prescribedQualifier = com.walgreens.pharmacy.rules.QualifierType.BOTTLE;
+      }
+   }
+}
+
+// -- end rule 'Valid Qualifier Mapping 11'
+// -- begin rule 'Valid Qualifier Mapping 12'
+package Unit_Dose {
+   rule Valid_Qualifier_Mapping_12 {
+      property ilog.rules.business_name = "Valid Qualifier Mapping 13";
+      property ilog.rules.dt = "Unit Dose.Valid Qualifier Mapping";
+      property ilog.rules.group = "Unit_Dose.Valid_Qualifier_Mapping";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate ((((var$_$0.prescription.ncltCode.equals("C48478"))) && ((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.STANDARD)))));
+      } then {
+         var$_$0.prescription.prescribedQualifier = com.walgreens.pharmacy.rules.QualifierType.BOTTLE;
+      }
+   }
+}
+
+// -- end rule 'Valid Qualifier Mapping 12'
+// -- begin rule 'Valid Qualifier Mapping 13'
+package Unit_Dose {
+   rule Valid_Qualifier_Mapping_13 {
+      property ilog.rules.business_name = "Valid Qualifier Mapping 14";
+      property ilog.rules.dt = "Unit Dose.Valid Qualifier Mapping";
+      property ilog.rules.group = "Unit_Dose.Valid_Qualifier_Mapping";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate ((((var$_$0.prescription.ncltCode.equals("C48478"))) && ((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.UNIT_OF_USE)))));
+      } then {
+         var$_$0.prescription.prescribedQualifier = com.walgreens.pharmacy.rules.QualifierType.BOTTLE;
+      }
+   }
+}
+
+// -- end rule 'Valid Qualifier Mapping 13'
+// -- begin rule 'Valid Qualifier Mapping 14'
+package Unit_Dose {
+   rule Valid_Qualifier_Mapping_14 {
+      property ilog.rules.business_name = "Valid Qualifier Mapping 15";
+      property ilog.rules.dt = "Unit Dose.Valid Qualifier Mapping";
+      property ilog.rules.group = "Unit_Dose.Valid_Qualifier_Mapping";
+      property ilog.rules.package_name = "Unit Dose";
+      property status = "new";
+      when {
+         var$_$0: com.walgreens.pharmacy.rules.ErxTransaction();
+         evaluate ((((var$_$0.prescription.ncltCode.equals("C48478"))) && ((var$_$0.substitutedDrug.packageType.equals(com.walgreens.pharmacy.rules.PackageType.UNIT_DOSE)))));
+      } then {
+         var$_$0.prescription.prescribedQualifier = com.walgreens.pharmacy.rules.QualifierType.BOTTLE;
+      }
+   }
+}
+
+// -- end rule 'Valid Qualifier Mapping 14'
+// end DT Valid Qualifier Mapping

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>6 2 5_PS Calculate Total Doses Not Found Standard Drug</name>
+  <uuid>7b400446-983d-4870-848e-b79889eb2a4d</uuid>
+  <documentation><![CDATA[PS # :  6.2.5
+Requirement Description : This is a process step if the total doses can be found and set accordingly.]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[if
+	the package type of the substituted drug is STANDARD 
+	and the doses per package of the substituted drug is 0
+then
+	set 'the total doses' to the quantity dispensed of the calculated values of the substituted drug ; 
+		 ]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

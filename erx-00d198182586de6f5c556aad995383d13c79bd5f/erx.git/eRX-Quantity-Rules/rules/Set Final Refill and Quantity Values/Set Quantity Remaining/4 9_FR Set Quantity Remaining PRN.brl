@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>4 9_FR Set Quantity Remaining PRN</name>
+  <uuid>a4a2d00e-920f-4930-9d36-0769f5343d4e</uuid>
+  <documentation><![CDATA[PRN is as needed.
+Add qualifer to Prescription. Check
+$= Number of Refills
+P = Pharmacy Requested Refills
+A = Addtiona Refills Authorized
+PRN = As Needed
+]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[if
+    the refills remaining of the calculated values of the substituted drug is "0"
+    and the refills remaining entered of the calculated values of the substituted drug is "PRN"
+then
+    set the quantity remaining of the calculated values of the substituted drug to "0" ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

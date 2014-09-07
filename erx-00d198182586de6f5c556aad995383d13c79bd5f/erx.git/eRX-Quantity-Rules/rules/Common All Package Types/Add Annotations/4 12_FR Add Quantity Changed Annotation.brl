@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>4 12_FR Add Quantity Changed Annotation</name>
+  <uuid>d8439a4f-a4cb-4219-87c6-e42179d3e5ae</uuid>
+  <locale>en_US</locale>
+  <definition><![CDATA[definitions
+    set 'calculated quantity' to the quantity of the calculated values of the substituted drug ;
+    set 'date and time' to the string value of the transaction date time ;
+if
+    the quantity prescribed of the prescription is not 'calculated quantity'
+then
+    set 'the annotation' to " " + 'date and time' + " Quantity changed to " + 'calculated quantity' + " by the system. " ;
+    add 'the annotation' to the annotations of the erx transaction ;]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>

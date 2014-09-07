@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.base:VariableSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.base="http://ilog.rules.studio/model/base.ecore">
+  <name>Drug Selection-var</name>
+  <uuid>71c629c0-2331-44d4-838e-a67d7d034d70</uuid>
+  <variables name="onlyStandardItems" type="java.lang.Boolean" initialValue="true" verbalization="Only Standard Items"/>
+</ilog.rules.studio.model.base:VariableSet>

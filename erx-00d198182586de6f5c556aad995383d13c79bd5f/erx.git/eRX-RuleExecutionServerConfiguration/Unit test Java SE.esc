@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server>
+  <name value="Unit test Java SE">  </name>
+  <url value="">  </url>
+  <appliurl value="">  </appliurl>
+  <uuid value="_LBudoCfHEeSDQ-cG7kxDLQ">  </uuid>
+  <application-server>false</application-server>
+  <res-console-deployed>false</res-console-deployed>
+  <type>Java SE configuration</type>
+  <install-directory></install-directory>
+  <deployment-directory></deployment-directory>
+  <deployment>
+    <mode>FILE</mode>
+    <fileMode>
+      <destinationDirectory>C:\jb_ws\Customer_projects\Walgreens-ERX-ws\working_code\eRX-Rules-UnitTesting\res_data</destinationDirectory>
+    </fileMode>
+  </deployment>
+</server>

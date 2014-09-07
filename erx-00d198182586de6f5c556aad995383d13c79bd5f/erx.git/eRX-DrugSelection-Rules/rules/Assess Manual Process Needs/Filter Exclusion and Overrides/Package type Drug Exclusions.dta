@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.dt:DecisionTable xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.dt="http://ilog.rules.studio/model/dt.ecore">
+  <name>Package type Drug Exclusions</name>
+  <uuid>450a673c-c0ee-4e0e-aa10-7db9237a65c9</uuid>
+  <documentation><![CDATA[FR# 3.1.3 The system must exclude drugs from the automation process using the following configurable drug exclusion lists:
+
+!!! This rule is just a template for future exclusion logic]]></documentation>
+  <priority></priority>
+  <locale>en_US</locale>
+  <definition>
+<DT xmlns="http://schemas.ilog.com/Rules/7.0/DecisionTable" Version="7.0">
+  <Body>
+    <Properties>
+      <Property Name="Check.Gap.ErrorLevel">Info</Property>
+      <Property Name="UI.RenderBoolean" Type="xs:boolean"><![CDATA[true]]></Property>
+    </Properties>
+    <Preconditions>
+      <Text><![CDATA[definitions]]>&#13;<![CDATA[
+     set drug to a drug in the substitution drug lists ]]>&#13;<![CDATA[
+    	where it is not true that this drug is overridden ;]]>&#13;<![CDATA[
+    ]]>&#13;<![CDATA[
+    ]]>&#13;<![CDATA[
+    ]]>&#13;<![CDATA[
+    ]]></Text>
+    </Preconditions>
+    <Structure>
+      <ConditionDefinitions>
+        <ConditionDefinition Id="C5">
+          <ExpressionDefinition>
+            <Text><![CDATA[the package type of drug is <an object>]]></Text>
+          </ExpressionDefinition>
+        </ConditionDefinition>
+      </ConditionDefinitions>
+      <ActionDefinitions>
+        <ActionDefinition Id="A0">
+          <ExpressionDefinition>
+            <Text><![CDATA[make it <a boolean> that drug is excluded]]></Text>
+          </ExpressionDefinition>
+        </ActionDefinition>
+        <ActionDefinition Id="A1">
+          <ExpressionDefinition>
+            <Text><![CDATA[set the completion status of the erx transaction to <a result type>]]></Text>
+          </ExpressionDefinition>
+        </ActionDefinition>
+      </ActionDefinitions>
+    </Structure>
+    <Contents>
+      <Partition DefId="C5">
+        <Condition>
+          <Expression>
+            <Param><![CDATA[UNIT DOSE]]></Param>
+          </Expression>
+          <ActionSet>
+            <Action DefId="A0">
+              <Expression>
+                <Param><![CDATA[true]]></Param>
+              </Expression>
+            </Action>
+            <Action DefId="A1">
+              <Expression>
+                <Param><![CDATA[MANUAL]]></Param>
+              </Expression>
+            </Action>
+          </ActionSet>
+        </Condition>
+      </Partition>
+    </Contents>
+  </Body>
+  <Resources DefaultLocale="en_US">
+    <ResourceSet Locale="en_US">
+      <Data Name="Definitions(A0)#HeaderText"><![CDATA[Excluded]]></Data>
+      <Data Name="Definitions(A0)#Width"><![CDATA[275]]></Data>
+      <Data Name="Definitions(A1)#HeaderText"><![CDATA[Set to Completion Status]]></Data>
+      <Data Name="Definitions(A1)#Width"><![CDATA[274]]></Data>
+      <Data Name="Definitions(C5)#HeaderText"><![CDATA[Package Type]]></Data>
+      <Data Name="Definitions(C5)#Width"><![CDATA[279]]></Data>
+    </ResourceSet>
+  </Resources>
+</DT></definition>
+  <status>validated</status>
+</ilog.rules.studio.model.dt:DecisionTable>

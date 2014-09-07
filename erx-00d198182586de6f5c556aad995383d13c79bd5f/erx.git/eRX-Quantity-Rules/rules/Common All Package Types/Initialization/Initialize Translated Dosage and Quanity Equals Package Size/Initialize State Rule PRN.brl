@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ilog.rules.studio.model.brl:ActionRule xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ilog.rules.studio.model.brl="http://ilog.rules.studio/model/brl.ecore">
+  <name>Initialize State Rule PRN</name>
+  <uuid>c3083747-1119-4562-91c2-a7f79ba6835a</uuid>
+  <documentation><![CDATA[ICPlus will send negative 1 which will translate to PRN for the total fills allowed for the substituted drug.]]></documentation>
+  <locale>en_US</locale>
+  <definition><![CDATA[if
+	the total fills allowed of the state drug constraint of the substituted drug is "-1"
+then
+	set the total fills allowed of the state drug constraint of the substituted drug to "PRN";
+		 
+	]]></definition>
+</ilog.rules.studio.model.brl:ActionRule>
